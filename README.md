@@ -12,11 +12,11 @@ The traced mouse trail will only last a certain amount of time before fading awa
 
 In Hoop, users will be able to 
 
-[] Draw on the canvas using their mouse
-[] Customize theme of game
-[] Start the game when ready
-[] Reset to play a new game
-[] See their high score
+ - [x] Draw on the canvas using their mouse
+ - [ ] Customize theme of game
+ - [ ] Start the game when ready
+ - [ ] Reset to play a new game
+ - [ ] See their high score
 
 In addition,this project will include
 [] An About dropdown describing the basic functionality
@@ -30,4 +30,9 @@ This project will be implemented with the following technologies
 * Vanilla JavaScript for overall structure and game logic
 * `HTML5 Canvas` for DOM manipulation and rendering
 * Webpack to bundle up and serve the various scripts
+
+## Implementation Timeline
+
+##### Day 1: Setup all necessary Node Modules
+[]
 
