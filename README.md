@@ -8,5 +8,18 @@ The longer you survive, the faster objects will show up. Each object has a certa
 
 The traced mouse trail will only last a certain amount of time before fading away. Objects must be fully encompassed with an active trail to count. Hooping around multiple friendlies with the same hoop will result in a bonus.
 
-## Funcitonality and Mvp
+## Funcitonality and MVPs
+
+In Hoop, users will be able to 
+
+[] Draw on the canvas using their mouse
+[] Customize theme of game
+[] Start the game when ready
+[] Reset to play a new game
+[] See their high score
+
+In addition,this project will include
+[] An About dropdown describing the basic functionality
+
+## Wireframes
 
