@@ -23,6 +23,16 @@ In addition,this project will include
 
 ## Wireframes
 
+This app will consist of a single page with a canvas. The canvas contains all the game info including health, score, time, and the board.
+
+Upon loading the page, a modal will be displayed on top of the board with options and a start button. Above the modal will be the name of the game
+
+After pressing start, the modal will disappear and the user can control the mouse to draw on the board. After a few seconds, the game will start
+
+Upon Game Over, the modal will reappear with settings and a restart button. Above this modal will be the score from the previous game
+
+At the top of the page is a dropdown that activated on hover. The dropdown will contain info about the game and links to Github repository and LinkedIn.
+
 ## Architecture and Technologies
 
 This project will be implemented with the following technologies
