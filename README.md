@@ -12,7 +12,7 @@ The traced mouse trail will only last a certain amount of time before fading awa
 
 In Hoop, users will be able to 
 
- - [x] Draw on the canvas using their mouse
+ - [ ] Draw on the canvas using their mouse
  - [ ] Customize theme of game
  - [ ] Start the game when ready
  - [ ] Reset to play a new game
@@ -33,6 +33,30 @@ This project will be implemented with the following technologies
 
 ## Implementation Timeline
 
-##### Day 1: Setup all necessary Node Modules
-[]
+##### Day 1: 
+- [ ] Setup all necessary Node Modules, including webpack
+- [ ] Setup most of what site will look like including menu modal
+- [ ] Learn how to use HTML5 Canvas
 
+##### Day 2: 
+- [ ] Write logic for drawing on the canvas
+- [ ] Figure out how to only trace past few frames of drawing
+- [ ] Figure out how to determine when a hoop is closed and check what is encompassed
+
+##### Day 3:
+- [ ] Learn how to draw objects on the board
+- [ ] Create random object generator
+
+
+##### Day 4:
+- [ ] Write logic to make objects appear/disappear 
+- [ ] Write logic to add/subtract from score
+
+##### Day 5:
+- [ ] Add effects
+- [ ] Finish styling
+
+##### Day 6:
+- [ ] Create about modal
+- [ ] Clean up code, styling
+- [ ] Publish live site
