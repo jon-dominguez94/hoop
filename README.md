@@ -29,6 +29,8 @@ Upon loading the page, a modal will be displayed on top of the board with option
 
 After pressing start, the modal will disappear and the user can control the mouse to draw on the board. After a few seconds, the game will start
 
+![Wireframe](./screenshots/actie_game.png)
+
 Upon Game Over, the modal will reappear with settings and a restart button. Above this modal will be the score from the previous game
 
 At the top of the page is a dropdown that activated on hover. The dropdown will contain info about the game and links to Github repository and LinkedIn.
