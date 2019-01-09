@@ -23,3 +23,11 @@ In addition,this project will include
 
 ## Wireframes
 
+## Architecture and Technologies
+
+This project will be implemented with the following technologies
+
+* Vanilla JavaScript for overall structure and game logic
+* `HTML5 Canvas` for DOM manipulation and rendering
+* Webpack to bundle up and serve the various scripts
+
