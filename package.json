@@ -1,0 +1,26 @@
+{
+  "name": "hoop",
+  "version": "1.0.0",
+  "description": "## Background and Overview",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^4.28.1",
+    "webpack-cli": "^3.2.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch --mode=development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jon-dominguez94/hoop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jon-dominguez94/hoop/issues"
+  },
+  "homepage": "https://github.com/jon-dominguez94/hoop#readme"
+}
