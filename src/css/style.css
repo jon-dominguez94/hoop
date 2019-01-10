@@ -6,9 +6,8 @@
 }
 
 .header {
-  /* height: 60px; */
-  background: #111111;
   flex: 0 1 60px;
+  background: #111111;
 }
 
 .main {
