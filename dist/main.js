@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("console.log(\"webpack is working\");\n\nlet canvas,\n  ctx,\n  prevX = 0,\n  currX = 0,\n  prevY = 0,\n  currY = 0,\n  lineColor = '#008080',\n  lineSize = 2,\n  width,\n  height;\n\nfunction init(){\n  canvas = document.getElementById('game-canvas');\n  ctx = canvas.getContext('2d');\n  width = canvas.width;\n  height = canvas.height;\n\n  canvas.addEventListener('mousemove', e => {\n    findxy('move', e)\n  });\n}\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("console.log(\"webpack is working\");\n\nlet canvas,\n  ctx,\n  prevX = 0,\n  currX = 0,\n  prevY = 0,\n  currY = 0,\n  lineColor = '#008080',\n  lineSize = 2,\n  width,\n  height;\n\nfunction init(){\n  canvas = document.getElementById('game-canvas');\n  ctx = canvas.getContext('2d');\n  width = canvas.width;\n  height = canvas.height;\n\n  canvas.addEventListener('mousemove', e => {\n    findxy('move', e);\n  });\n}\n\nfunction draw(){\n  ctx.beginPath();\n  ctx.moveTo(prevX, prevY);\n  ctx.lineTo(currX, currY);\n  ctx.strokeStyle = lineColor;\n  ctx.lineWidth = lineSize;\n  ctx.stroke();\n  ctx.closePath();\n}\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 

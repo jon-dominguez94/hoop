@@ -18,6 +18,16 @@ function init(){
   height = canvas.height;
 
   canvas.addEventListener('mousemove', e => {
-    findxy('move', e)
+    findxy('move', e);
   });
+}
+
+function draw(){
+  ctx.beginPath();
+  ctx.moveTo(prevX, prevY);
+  ctx.lineTo(currX, currY);
+  ctx.strokeStyle = lineColor;
+  ctx.lineWidth = lineSize;
+  ctx.stroke();
+  ctx.closePath();
 }
