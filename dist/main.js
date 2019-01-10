@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("console.log(\"webpack is working\");\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("console.log(\"webpack is working\");\n\nlet canvas,\n  ctx,\n  prevX = 0,\n  currX = 0,\n  prevY = 0,\n  currY = 0,\n  lineColor = '#008080',\n  lineSize = 2;\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
