@@ -2,10 +2,10 @@ console.log("webpack is working");
 
 let canvas,
   ctx,
-  prevX = 0,
-  currX = 0,
-  prevY = 0,
-  currY = 0,
+  prevX,
+  currX,
+  prevY,
+  currY,
   lineColor = '#008080',
   lineSize = 2,
   width,
@@ -18,7 +18,10 @@ function init(){
   height = canvas.height;
 
   canvas.addEventListener('mousemove', e => {
-    findxy('move', e);
+    findxy(e);
+  });
+  canvas.addEventListener('mouseout', e => {
+    currX = currY = undefined;
   });
 }
 
@@ -31,3 +34,19 @@ function draw(){
   ctx.stroke();
   ctx.closePath();
 }
+
+function findxy(e) {
+  if(currX === undefined && currY === undefined){
+    currX = e.clientX - canvas.offsetLeft;
+    currY = e.clientY - canvas.offsetTop;
+  }
+  prevX = currX;
+  prevY = currY;
+  currX = e.clientX - canvas.offsetLeft;
+  currY = e.clientY - canvas.offsetTop;
+  draw();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  init();
+});
