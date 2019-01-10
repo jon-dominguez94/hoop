@@ -1,0 +1,25 @@
+.page-wrapper {
+  height: 100vh;
+  background: black;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  /* height: 60px; */
+  background: #111111;
+  flex: 0 1 60px;
+}
+
+.main {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-container {
+  width: 900px;
+  height: 500px;
+  background: #111111;
+}
