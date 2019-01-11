@@ -55,6 +55,7 @@ function findxy(e) {
 const game = new Game();
 window.game = game;
 let container,
+  world,
   context;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -65,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const initialize = () => {
   container = document.getElementById('game');
   // menu = document.getElementById('menu');
-  canvas = document.getElementById('game-canvas');
+  world = document.getElementById('game-canvas');
   // scorePanel = document.getElementById('score');
   // startButton = document.getElementById('start-button');
   if (canvas && canvas.getContext) {
@@ -105,13 +106,14 @@ const onDocumentMouseDownHandler = (e) => {
   game.mouse.down = true;
 };
 
-const onDocumentMouseMoveHandler(event) {
-  mouse.previousX = mouse.x;
-  mouse.previousY = mouse.y;
+const onDocumentMouseMoveHandler = (event) => {
+  game.mouse.previousX = game.mouse.x;
+  game.mouse.previousY = game.mouse.y;
 
-  mouse.x = event.clientX - (window.innerWidth - world.width) * 0.5;
-  mouse.y = event.clientY - (window.innerHeight - world.height) * 0.5;
+  game.mouse.x = event.clientX - (window.innerWidth - game.world.width) * 0.5;
+  game.mouse.y = event.clientY - (window.innerHeight - game.world.height) * 0.5;
 
-  mouse.velocityX = Math.abs(mouse.x - mouse.previousX) / world.width;
-  mouse.velocityY = Math.abs(mouse.y - mouse.previousY) / world.height;
-}
+  game.mouse.velocityX = Math.abs(game.mouse.x - game.mouse.previousX) / world.width;
+  game.mouse.velocityY = Math.abs(game.mouse.y - game.mouse.previousY) / world.height;
+  console.log(game.mouse);
+};
