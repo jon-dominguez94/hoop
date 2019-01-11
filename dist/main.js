@@ -94,7 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nconst constants = {\n  DEFAULT_HEIGHT: 510,\n  DEFAULT_WIDTH: 900,\n  TOUCH_INPUT: navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/i)\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (constants);\n\n//# sourceURL=webpack:///./src/constants.js?");
+eval("__webpack_require__.r(__webpack_exports__);\nconst constants = {\n  FRAMERATE: 60,\n  DEFAULT_HEIGHT: 510,\n  DEFAULT_WIDTH: 900,\n  TOUCH_INPUT: navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/i)\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (constants);\n\n//# sourceURL=webpack:///./src/constants.js?");
 
 /***/ }),
 

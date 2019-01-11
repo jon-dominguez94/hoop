@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "## Background and Overview",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "live-server": "^1.2.1"
+  },
   "devDependencies": {
     "webpack": "^4.28.1",
     "webpack-cli": "^3.2.1"
