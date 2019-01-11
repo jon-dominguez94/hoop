@@ -10,7 +10,7 @@ const constants = {
   ENEMY_TYPE_BOMB: 2,
   ENEMY_TYPE_NORMAL_MOVER: 3,
   ENEMY_TYPE_BOMB_MOVER: 4,
-  ENEMY_MOVER_START_FRAME: FRAMERATE * 2,
+  // ENEMY_MOVER_START_FRAME: this.FRAMERATE * 2,
 
   SCORE_PER_ENEMY: 30,
   SCORE_PER_TICK: 0.01,
@@ -29,4 +29,7 @@ const constants = {
   STATE_WINNER: 'winner'
 };
 
+constants.ENEMY_MOVER_START_FRAME = constants.FRAMERATE * 2;
+
+console.log(constants);
 export default constants;
