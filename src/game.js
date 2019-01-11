@@ -1,3 +1,6 @@
+const DEFAULT_HEIGHT = 510;
+const DEFAULT_WIDTH = 900;
+
 class Game {
   constructor(){
     this.mouse = {
@@ -16,6 +19,11 @@ class Game {
 
       // Flags if the mouse is currently pressed down
       down: false
+    };
+
+    this.world = {
+      width: DEFAULT_WIDTH,
+      height: DEFAULT_HEIGHT
     };
   }
 }
