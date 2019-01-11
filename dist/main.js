@@ -90,10 +90,23 @@
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("console.log(\"webpack is working\");\n\nlet canvas,\n  ctx,\n  prevX,\n  currX,\n  prevY,\n  currY,\n  lineColor = '#008080',\n  lineSize = 2,\n  width,\n  height;\n\nfunction init(){\n  canvas = document.getElementById('game-canvas');\n  ctx = canvas.getContext('2d');\n  width = canvas.width;\n  height = canvas.height;\n\n  canvas.addEventListener('mousemove', e => {\n    findxy(e);\n  });\n  canvas.addEventListener('mouseout', e => {\n    currX = currY = undefined;\n  });\n}\n\nfunction draw(){\n  ctx.beginPath();\n  ctx.moveTo(prevX, prevY);\n  ctx.lineTo(currX, currY);\n  ctx.strokeStyle = lineColor;\n  ctx.lineWidth = lineSize;\n  ctx.stroke();\n  ctx.closePath();\n}\n\nfunction findxy(e) {\n  if(currX === undefined && currY === undefined){\n    currX = e.clientX - canvas.offsetLeft;\n    currY = e.clientY - canvas.offsetTop;\n  }\n  prevX = currX;\n  prevY = currY;\n  currX = e.clientX - canvas.offsetLeft;\n  currY = e.clientY - canvas.offsetTop;\n  draw();\n}\n\ndocument.addEventListener('DOMContentLoaded', () => {\n  init();\n});\n\nwindow.requestAnimFrame = (function () {\n  return window.requestAnimationFrame ||\n    window.webkitRequestAnimationFrame ||\n    window.mozRequestAnimationFrame ||\n    window.oRequestAnimationFrame ||\n    window.msRequestAnimationFrame ||\n    function (/* function */ callback, /* DOMElement */ element) {\n      window.setTimeout(callback, 1000 / 60);\n    };\n})();\n\n\n//# sourceURL=webpack:///./src/index.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ \"./src/util.js\");\nconsole.log(\"webpack is working\");\n\n\n\n\n_util__WEBPACK_IMPORTED_MODULE_0__[\"requestAnimFrame\"]();\n\nlet canvas,\n  ctx,\n  prevX,\n  currX,\n  prevY,\n  currY,\n  lineColor = '#008080',\n  lineSize = 2,\n  width,\n  height;\n\nfunction init(){\n  canvas = document.getElementById('game-canvas');\n  ctx = canvas.getContext('2d');\n  width = canvas.width;\n  height = canvas.height;\n\n  canvas.addEventListener('mousemove', e => {\n    findxy(e);\n  });\n  canvas.addEventListener('mouseout', e => {\n    currX = currY = undefined;\n  });\n}\n\nfunction draw(){\n  ctx.beginPath();\n  ctx.moveTo(prevX, prevY);\n  ctx.lineTo(currX, currY);\n  ctx.strokeStyle = lineColor;\n  ctx.lineWidth = lineSize;\n  ctx.stroke();\n  ctx.closePath();\n}\n\nfunction findxy(e) {\n  if(currX === undefined && currY === undefined){\n    currX = e.clientX - canvas.offsetLeft;\n    currY = e.clientY - canvas.offsetTop;\n  }\n  prevX = currX;\n  prevY = currY;\n  currX = e.clientX - canvas.offsetLeft;\n  currY = e.clientY - canvas.offsetTop;\n  draw();\n}\n\ndocument.addEventListener('DOMContentLoaded', () => {\n  init();\n});\n\n// window.requestAnimFrame = (function () {\n//   return window.requestAnimationFrame ||\n//     window.webkitRequestAnimationFrame ||\n//     window.mozRequestAnimationFrame ||\n//     window.oRequestAnimationFrame ||\n//     window.msRequestAnimationFrame ||\n//     function (/* function */ callback, /* DOMElement */ element) {\n//       window.setTimeout(callback, 1000 / 60);\n//     };\n// })();\n\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/util.js":
+/*!*********************!*\
+  !*** ./src/util.js ***!
+  \*********************/
+/*! exports provided: requestAnimFrame */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"requestAnimFrame\", function() { return requestAnimFrame; });\n// window.requestAnimFrame = (function () {\n//   return window.requestAnimationFrame ||\n//     window.webkitRequestAnimationFrame ||\n//     window.mozRequestAnimationFrame ||\n//     window.oRequestAnimationFrame ||\n//     window.msRequestAnimationFrame ||\n//     function (/* function */ callback, /* DOMElement */ element) {\n//       window.setTimeout(callback, 1000 / 60);\n//     };\n// })();\n\nconst requestAnimFrame = () => {\n  return window.requestAnimationFrame ||\n    window.webkitRequestAnimationFrame ||\n    window.mozRequestAnimationFrame ||\n    window.oRequestAnimationFrame ||\n    window.msRequestAnimationFrame ||\n    function (/* function */ callback, /* DOMElement */ element) {\n      window.setTimeout(callback, 1000 / 60);\n    };\n};\n\n\n//# sourceURL=webpack:///./src/util.js?");
 
 /***/ })
 
