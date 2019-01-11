@@ -90,10 +90,10 @@
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/*! no static exports found */
+/*! no exports provided */
 /***/ (function(module, exports) {
 
-eval("throw new Error(\"Module parse failed: Unexpected token (98:32)\\nYou may need an appropriate loader to handle this file type.\\n| };\\n| \\n> const onDocumentMouseDownHandler(e){\\n|   game.mouse.down = true;\\n| }\");\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("throw new Error(\"Module parse failed: Unexpected token (108:32)\\nYou may need an appropriate loader to handle this file type.\\n| };\\n| \\n> const onDocumentMouseMoveHandler(event) {\\n|   mouse.previousX = mouse.x;\\n|   mouse.previousY = mouse.y;\");\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 

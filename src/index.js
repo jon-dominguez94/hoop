@@ -1,7 +1,9 @@
 console.log("webpack is working");
+
+
 import Game from './game';
 
-const game = Game.new();
+
 
 let canvas,
   ctx,
@@ -50,15 +52,19 @@ function findxy(e) {
   draw();
 }
 
+const game = new Game();
+window.game = game;
+let container,
+  context;
+
 document.addEventListener('DOMContentLoaded', () => {
   init();
   initialize();
 });
 
-
 const initialize = () => {
   container = document.getElementById('game');
-  menu = document.getElementById('menu');
+  // menu = document.getElementById('menu');
   canvas = document.getElementById('game-canvas');
   // scorePanel = document.getElementById('score');
   // startButton = document.getElementById('start-button');
@@ -69,11 +75,11 @@ const initialize = () => {
     // startButton.addEventListener('click', onStartButtonClick, false);
     document.addEventListener('mousedown', onDocumentMouseDownHandler, false);
     document.addEventListener('mousemove', onDocumentMouseMoveHandler, false);
-    document.addEventListener('mouseup', onDocumentMouseUpHandler, false);
-    canvas.addEventListener('touchstart', onCanvasTouchStartHandler, false);
-    canvas.addEventListener('touchmove', onCanvasTouchMoveHandler, false);
-    canvas.addEventListener('touchend', onCanvasTouchEndHandler, false);
-    window.addEventListener('resize', onWindowResizeHandler, false);
+    // document.addEventListener('mouseup', onDocumentMouseUpHandler, false);
+    // canvas.addEventListener('touchstart', onCanvasTouchStartHandler, false);
+    // canvas.addEventListener('touchmove', onCanvasTouchMoveHandler, false);
+    // canvas.addEventListener('touchend', onCanvasTouchEndHandler, false);
+    // window.addEventListener('resize', onWindowResizeHandler, false);
 
     // Force an initial layout
     // onWindowResizeHandler();
@@ -95,6 +101,17 @@ const initialize = () => {
   }
 };
 
-const onDocumentMouseDownHandler(e){
+const onDocumentMouseDownHandler = (e) => {
   game.mouse.down = true;
+};
+
+const onDocumentMouseMoveHandler(event) {
+  mouse.previousX = mouse.x;
+  mouse.previousY = mouse.y;
+
+  mouse.x = event.clientX - (window.innerWidth - world.width) * 0.5;
+  mouse.y = event.clientY - (window.innerHeight - world.height) * 0.5;
+
+  mouse.velocityX = Math.abs(mouse.x - mouse.previousX) / world.width;
+  mouse.velocityY = Math.abs(mouse.y - mouse.previousY) / world.height;
 }
