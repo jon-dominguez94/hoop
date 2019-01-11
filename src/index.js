@@ -1,9 +1,7 @@
 console.log("webpack is working");
+import Game from './game';
 
-
-import * as Utils from './util';
-
-Utils.requestAnimFrame();
+const game = Game.new();
 
 let canvas,
   ctx,
@@ -54,15 +52,49 @@ function findxy(e) {
 
 document.addEventListener('DOMContentLoaded', () => {
   init();
+  initialize();
 });
 
-// window.requestAnimFrame = (function () {
-//   return window.requestAnimationFrame ||
-//     window.webkitRequestAnimationFrame ||
-//     window.mozRequestAnimationFrame ||
-//     window.oRequestAnimationFrame ||
-//     window.msRequestAnimationFrame ||
-//     function (/* function */ callback, /* DOMElement */ element) {
-//       window.setTimeout(callback, 1000 / 60);
-//     };
-// })();
+
+const initialize = () => {
+  container = document.getElementById('game');
+  menu = document.getElementById('menu');
+  canvas = document.getElementById('game-canvas');
+  // scorePanel = document.getElementById('score');
+  // startButton = document.getElementById('start-button');
+  if (canvas && canvas.getContext) {
+    context = canvas.getContext('2d');
+
+    // Bind event listeners
+    // startButton.addEventListener('click', onStartButtonClick, false);
+    document.addEventListener('mousedown', onDocumentMouseDownHandler, false);
+    document.addEventListener('mousemove', onDocumentMouseMoveHandler, false);
+    document.addEventListener('mouseup', onDocumentMouseUpHandler, false);
+    canvas.addEventListener('touchstart', onCanvasTouchStartHandler, false);
+    canvas.addEventListener('touchmove', onCanvasTouchMoveHandler, false);
+    canvas.addEventListener('touchend', onCanvasTouchEndHandler, false);
+    window.addEventListener('resize', onWindowResizeHandler, false);
+
+    // Force an initial layout
+    // onWindowResizeHandler();
+
+    // createSprites();
+
+    // Now that everything is laid out we can show the canvas & UI
+    // container.fadeIn(MENU_FADE_IN_DURATION);
+    // menu.hide().delay(MENU_FADE_IN_DURATION).fadeIn(MENU_FADE_IN_DURATION);
+
+    // Update the game state
+    // document.body.setAttribute('class', STATE_WELCOME);
+
+    // reset();
+    // update();
+  }
+  else {
+    alert('Doesn\'t seem like your browser supports the HTML5 canvas element :(');
+  }
+};
+
+const onDocumentMouseDownHandler(e){
+  game.mouse.down = true;
+}
