@@ -55,7 +55,6 @@ function findxy(e) {
 const game = new Game();
 window.game = game;
 let container,
-  world,
   context;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -66,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const initialize = () => {
   container = document.getElementById('game');
   // menu = document.getElementById('menu');
-  world = document.getElementById('game-canvas');
+  canvas = document.getElementById('game-canvas');
   // scorePanel = document.getElementById('score');
   // startButton = document.getElementById('start-button');
   if (canvas && canvas.getContext) {
@@ -76,8 +75,8 @@ const initialize = () => {
     // startButton.addEventListener('click', onStartButtonClick, false);
     document.addEventListener('mousedown', onDocumentMouseDownHandler, false);
     document.addEventListener('mousemove', onDocumentMouseMoveHandler, false);
-    // document.addEventListener('mouseup', onDocumentMouseUpHandler, false);
-    // canvas.addEventListener('touchstart', onCanvasTouchStartHandler, false);
+    document.addEventListener('mouseup', onDocumentMouseUpHandler, false);
+    canvas.addEventListener('touchstart', onCanvasTouchStartHandler, false);
     // canvas.addEventListener('touchmove', onCanvasTouchMoveHandler, false);
     // canvas.addEventListener('touchend', onCanvasTouchEndHandler, false);
     // window.addEventListener('resize', onWindowResizeHandler, false);
@@ -104,6 +103,7 @@ const initialize = () => {
 
 const onDocumentMouseDownHandler = (e) => {
   game.mouse.down = true;
+  console.log(game.mouse);
 };
 
 const onDocumentMouseMoveHandler = (event) => {
@@ -113,7 +113,23 @@ const onDocumentMouseMoveHandler = (event) => {
   game.mouse.x = event.clientX - (window.innerWidth - game.world.width) * 0.5;
   game.mouse.y = event.clientY - (window.innerHeight - game.world.height) * 0.5;
 
-  game.mouse.velocityX = Math.abs(game.mouse.x - game.mouse.previousX) / world.width;
-  game.mouse.velocityY = Math.abs(game.mouse.y - game.mouse.previousY) / world.height;
+  game.mouse.velocityX = Math.abs(game.mouse.x - game.mouse.previousX) / game.world.width;
+  game.mouse.velocityY = Math.abs(game.mouse.y - game.mouse.previousY) / game.world.height;
   console.log(game.mouse);
 };
+
+const onDocumentMouseUpHandler = (event) => {
+  game.mouse.down = false;
+  console.log(game.mouse);
+};
+
+const onCanvasTouchStartHandler = (event) => {
+  if (event.touches.length == 1) {
+    event.preventDefault();
+
+    game.mouse.x = event.touches[0].pageX - (window.innerWidth - game.world.width) * 0.5;
+    game.mouse.y = event.touches[0].pageY - (window.innerHeight - game.world.height) * 0.5;
+
+    game.mouse.down = true;
+  }
+}
