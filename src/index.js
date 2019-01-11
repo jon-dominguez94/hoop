@@ -2,7 +2,7 @@ console.log("webpack is working");
 
 
 import Game from './game';
-
+import constants from './constants';
 
 
 let canvas,
@@ -154,12 +154,12 @@ const onCanvasTouchEndHandler = (event) => {
 
 const onWindowResizeHandler = () => {
   // Update the game size
-  game.world.width = TOUCH_INPUT ? window.innerWidth : DEFAULT_WIDTH;
-  game.world.height = TOUCH_INPUT ? window.innerHeight : DEFAULT_HEIGHT;
+  game.world.width = constants.TOUCH_INPUT ? window.innerWidth : constants.DEFAULT_WIDTH;
+  game.world.height = constants.TOUCH_INPUT ? window.innerHeight : constants.DEFAULT_HEIGHT;
 
   // Resize the container
-  container.width(game.world.width);
-  container.height(game.world.height);
+  container.style.width = (game.world.width);
+  container.style.height = (game.world.height);
 
   // Resize the canvas
   canvas.width = game.world.width;
@@ -170,15 +170,13 @@ const onWindowResizeHandler = () => {
   var cy = Math.max((window.innerHeight - game.world.height) * 0.5, 1);
 
   // Update the position of the canvas
-  container.css({
-    left: cx,
-    top: cy
-  });
+  container.style.left = cx;
+  container.style.top = cy;
 
   // Center the menu
-  menu.css({
-    left: (game.world.width - menu.width()) / 2,
-    top: (game.world.height - menu.height()) / 2
-  });
+  // menu.css({
+  //   left: (game.world.width - menu.width()) / 2,
+  //   top: (game.world.height - menu.height()) / 2
+  // });
 
-}
+};
