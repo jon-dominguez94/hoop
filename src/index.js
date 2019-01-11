@@ -1,5 +1,10 @@
 console.log("webpack is working");
 
+
+import * as Utils from './util';
+
+Utils.requestAnimFrame();
+
 let canvas,
   ctx,
   prevX,
@@ -51,13 +56,13 @@ document.addEventListener('DOMContentLoaded', () => {
   init();
 });
 
-window.requestAnimFrame = (function () {
-  return window.requestAnimationFrame ||
-    window.webkitRequestAnimationFrame ||
-    window.mozRequestAnimationFrame ||
-    window.oRequestAnimationFrame ||
-    window.msRequestAnimationFrame ||
-    function (/* function */ callback, /* DOMElement */ element) {
-      window.setTimeout(callback, 1000 / 60);
-    };
-})();
+// window.requestAnimFrame = (function () {
+//   return window.requestAnimationFrame ||
+//     window.webkitRequestAnimationFrame ||
+//     window.mozRequestAnimationFrame ||
+//     window.oRequestAnimationFrame ||
+//     window.msRequestAnimationFrame ||
+//     function (/* function */ callback, /* DOMElement */ element) {
+//       window.setTimeout(callback, 1000 / 60);
+//     };
+// })();
