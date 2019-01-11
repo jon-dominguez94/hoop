@@ -1,5 +1,4 @@
-const DEFAULT_HEIGHT = 510;
-const DEFAULT_WIDTH = 900;
+import constants from './constants';
 
 class Game {
   constructor(){
@@ -22,8 +21,8 @@ class Game {
     };
 
     this.world = {
-      width: DEFAULT_WIDTH,
-      height: DEFAULT_HEIGHT
+      width: constants.DEFAULT_WIDTH,
+      height: constants.DEFAULT_HEIGHT
     };
   }
 }

@@ -77,12 +77,12 @@ const initialize = () => {
     document.addEventListener('mousemove', onDocumentMouseMoveHandler, false);
     document.addEventListener('mouseup', onDocumentMouseUpHandler, false);
     canvas.addEventListener('touchstart', onCanvasTouchStartHandler, false);
-    // canvas.addEventListener('touchmove', onCanvasTouchMoveHandler, false);
-    // canvas.addEventListener('touchend', onCanvasTouchEndHandler, false);
-    // window.addEventListener('resize', onWindowResizeHandler, false);
+    canvas.addEventListener('touchmove', onCanvasTouchMoveHandler, false);
+    canvas.addEventListener('touchend', onCanvasTouchEndHandler, false);
+    window.addEventListener('resize', onWindowResizeHandler, false);
 
     // Force an initial layout
-    // onWindowResizeHandler();
+    onWindowResizeHandler();
 
     // createSprites();
 
@@ -132,4 +132,53 @@ const onCanvasTouchStartHandler = (event) => {
 
     game.mouse.down = true;
   }
+  // console.log(game.mouse);
+};
+
+const onCanvasTouchMoveHandler = (event) => {
+  if (event.touches.length == 1) {
+    event.preventDefault();
+
+    game.mouse.x = event.touches[0].pageX - (window.innerWidth - game.world.width) * 0.5;
+    game.mouse.y = event.touches[0].pageY - (window.innerHeight - game.world.height) * 0.5 - 20;
+  }
+  // console.log(game.mouse);
+
+};
+
+const onCanvasTouchEndHandler = (event) => {
+  game.mouse.down = false;
+  // console.log(game.mouse);
+
+};
+
+const onWindowResizeHandler = () => {
+  // Update the game size
+  game.world.width = TOUCH_INPUT ? window.innerWidth : DEFAULT_WIDTH;
+  game.world.height = TOUCH_INPUT ? window.innerHeight : DEFAULT_HEIGHT;
+
+  // Resize the container
+  container.width(game.world.width);
+  container.height(game.world.height);
+
+  // Resize the canvas
+  canvas.width = game.world.width;
+  canvas.height = game.world.height;
+
+  // Determine the x/y position of the canvas
+  var cx = Math.max((window.innerWidth - game.world.width) * 0.5, 1);
+  var cy = Math.max((window.innerHeight - game.world.height) * 0.5, 1);
+
+  // Update the position of the canvas
+  container.css({
+    left: cx,
+    top: cy
+  });
+
+  // Center the menu
+  menu.css({
+    left: (game.world.width - menu.width()) / 2,
+    top: (game.world.height - menu.height()) / 2
+  });
+
 }
