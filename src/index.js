@@ -54,8 +54,7 @@ function findxy(e) {
 
 const game = new Game();
 window.game = game;
-let container,
-  context;
+let container;
 
 document.addEventListener('DOMContentLoaded', () => {
   init();
@@ -69,7 +68,7 @@ const initialize = () => {
   // scorePanel = document.getElementById('score');
   // startButton = document.getElementById('start-button');
   if (canvas && canvas.getContext) {
-    context = canvas.getContext('2d');
+    game.context = canvas.getContext('2d');
 
     // Bind event listeners
     // startButton.addEventListener('click', onStartButtonClick, false);

@@ -4,7 +4,10 @@ import { requestAnimFrame } from './util';
 import Player from './entities/player';
 
 class Game {
-  constructor(){
+  constructor(context){
+
+    this.context = context;
+
     this.mouse = {
       x: 0,
       y: 0,
@@ -28,6 +31,7 @@ class Game {
     };
 
     this.dirtyRegions = [],
+
     this.playing = false,
     this.score = 0,
     this.duration = 0,
@@ -163,25 +167,25 @@ class Game {
     // There are quite the few updates and renders that only need
     // to be carried out while the game is active
     if (this.playing) {
-      context.save();
-      context.globalCompositeOperation = 'lighter';
+      this.context.save();
+      this.context.globalCompositeOperation = 'lighter';
 
-      updateMeta();
-      updatePlayer();
-      updateParticles();
+      // updateMeta();
+      // updatePlayer();
+      // updateParticles();
 
-      findIntersections();
-      solveIntersections();
+      // findIntersections();
+      // solveIntersections();
 
-      renderPlayer();
+      // renderPlayer();
 
-      updateEnemies();
-      renderEnemies();
-      renderParticles();
+      // updateEnemies();
+      // renderEnemies();
+      // renderParticles();
 
-      context.restore();
+      this.context.restore();
 
-      renderNotifications();
+      // renderNotifications();
     }
 
 
@@ -199,10 +203,28 @@ class Game {
 
     while (i--) {
       var r = this.dirtyRegions[i];
-      context.clearRect(Math.floor(r.x), Math.floor(r.y), Math.ceil(r.width), Math.ceil(r.height));
+      this.context.clearRect(Math.floor(r.x), Math.floor(r.y), Math.ceil(r.width), Math.ceil(r.height));
     }
 
     this.dirtyRegions = [];
+  }
+
+  start() {
+    this.reset();
+
+    this.timeStart = Date.now();
+    this.timeLastFrame = this.timeStart;
+
+    this.playing = true;
+
+    this.menu.fadeOut(constants.MENU_FADE_OUT_DURATION, function () {
+      // Remove the header after the menu has appeared since
+      // it will no longer be used
+      document.getElementById('initial-header').remove();
+    });
+
+    // Update the game state
+    document.body.setAttribute('class', STATE_PLAYING);
   }
 }
 
