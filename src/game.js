@@ -396,6 +396,34 @@ class Game {
 
     this.context.translate(122, 0);
 
+    
+
+    // this.context.translate(73, 0);
+
+    // Time label
+    this.context.font = "10px Arial";
+    this.context.fillStyle = "#ffffff";
+    this.context.fillText(TIME_LABEL, 0, 8);
+
+    // Time
+    this.context.font = "bold 10px Arial";
+    this.context.fillStyle = "rgba(251,114,0, 0.8)";
+    this.context.fillText(Math.round(this.duration / 1000) + 's', 35, 8);
+
+    this.context.translate(65, 0);
+
+    // Score label
+    this.context.font = "10px Arial";
+    this.context.fillStyle = "#ffffff";
+    this.context.fillText(SCORE_LABEL, 0, 8);
+
+    // Score
+    this.context.font = "bold 10px Arial";
+    this.context.fillStyle = "rgba(251,114,0, 0.8)";
+    this.context.fillText(Math.floor(score), 47, 8);
+    
+    this.context.translate(86, 0);
+    
     // Multiplier label
     this.context.font = "10px Arial";
     this.context.fillStyle = "#ffffff";
@@ -409,12 +437,12 @@ class Game {
       this.context.save();
       this.context.beginPath();
 
-      var x = 6 + (i / constants.MULTIPLIER_LIMIT) * 80;
-      var y = 5;
-      var s = 6;
+      const x = 6 + (i / constants.MULTIPLIER_LIMIT) * 80;
+      const y = 5;
+      const radius = 6;
 
       this.context.fillStyle = 'rgba(40,40,40,0.8)';
-      this.context.arc(x, y, s, 0, Math.PI * 2, true);
+      this.context.arc(x, y, radius, 0, Math.PI * 2, true);
       this.context.fill();
 
       if (i < this.multiplier.major) {
@@ -422,17 +450,20 @@ class Game {
         this.context.shadowOffsetX = 0;
         this.context.shadowOffsetY = 0;
         this.context.shadowBlur = 14;
-        this.context.shadowColor = "rgba(0,240,255,0.9)";
-        this.context.fillStyle = 'rgba(0,200,220,0.8)';
+        // this.context.shadowColor = "rgba(0,240,255,0.9)";
+        // this.context.fillStyle = 'rgba(0,200,220,0.8)';
+        this.context.shadowColor = "rgba(255,150,0,0.9)";
+        this.context.fillStyle = 'rgba(251,114,0, 0.8)';
 
         if (i < this.multiplier.major - 1) {
           // We're drawing a major (entirely filled) step
-          this.context.arc(x, y, s, 0, Math.PI * 2, true);
+          this.context.arc(x, y, radius, 0, Math.PI * 2, true);
         }
         else {
           // We're drawing a minor (partly filled) step
-          this.context.fillStyle = 'rgba(0,200,220,' + (0.8 * this.multiplier.minor) + ')';
-          this.context.arc(x, y, s * this.multiplier.minor, 0, Math.PI * 2, false);
+          this.context.fillStyle = "rgba(251,114,0," + 0.8 * this.multiplier.minor + ")";
+          // this.context.fillStyle = 'rgba(0,200,220,' + (0.8 * this.multiplier.minor) + ')';
+          this.context.arc(x, y, radius * this.multiplier.minor, 0, Math.PI * 2, false);
         }
 
         this.context.fill();
@@ -440,30 +471,6 @@ class Game {
 
       this.context.restore();
     }
-
-    this.context.translate(73, 0);
-
-    // Time label
-    this.context.font = "10px Arial";
-    this.context.fillStyle = "#ffffff";
-    this.context.fillText(TIME_LABEL, 0, 8);
-
-    // Time
-    this.context.font = "bold 10px Arial";
-    this.context.fillStyle = 'rgba(0,200,220, 0.8)';
-    this.context.fillText(Math.round(this.duration / 1000) + 's', 35, 8);
-
-    this.context.translate(65, 0);
-
-    // Score label
-    this.context.font = "10px Arial";
-    this.context.fillStyle = "#ffffff";
-    this.context.fillText(SCORE_LABEL, 0, 8);
-
-    // Score
-    this.context.font = "bold 10px Arial";
-    this.context.fillStyle = 'rgba(0,200,220, 0.8)';
-    this.context.fillText(Math.floor(score), 47, 8);
 
     this.context.restore();
 
