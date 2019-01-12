@@ -304,40 +304,55 @@ class Game {
     this.invalidate(boundsRect.x, boundsRect.y, boundsRect.width, boundsRect.height);
   }
 
-  updateMeta() {
-  // Fetch the current time for this frame
-    var timeThisFrame = Date.now();
+  adjustScore(offset) {
+    let multipliedOffset = 0;
 
-    // Increase the frame count
-    framesThisSecond++;
+    if (this.playing) {
+      multipliedOffset = offset * this.multiplier.major;
 
-    // Check if a second has passed since the last time we updated the FPS
-    if (timeThisFrame > timeLastSecond + 1000) {
-      // Establish the current, minimum and maximum FPS
-      fps = Math.min(Math.round((framesThisSecond * 1000) / (timeThisFrame - timeLastSecond)), FRAMERATE);
-      fpsMin = Math.min(fpsMin, fps);
-      fpsMax = Math.max(fpsMax, fps);
-
-      timeLastSecond = timeThisFrame;
-      framesThisSecond = 0;
+      // Adjust the score, but scale the adjustment by a factor
+      // of the framerate. This is done to avoid giving people
+      // with low FPS an advantage.
+      this.score += multipliedOffset * (this.fps / constants.FRAMERATE);
     }
 
-    timeDelta = timeThisFrame - timeLastFrame;
-    timeFactor = timeDelta / (1000 / FRAMERATE);
+    return multipliedOffset;
+  }
+
+  updateMeta() {
+  // Fetch the current time for this frame
+    const timeThisFrame = Date.now();
+
+    // Increase the frame count
+    this.framesThisSecond++;
+
+    // Check if a second has passed since the last time we updated the FPS
+    if (timeThisFrame > this.timeLastSecond + 1000) {
+      // Establish the current, minimum and maximum FPS
+      this.fps = Math.min(Math.round((this.framesThisSecond * 1000) / (timeThisFrame - this.timeLastSecond)), constants.FRAMERATE);
+      this.fpsMin = Math.min(this.fpsMin, this.fps);
+      this.fpsMax = Math.max(this.fpsMax, this.fps);
+
+      this.timeLastSecond = timeThisFrame;
+      this.framesThisSecond = 0;
+    }
+
+    this.timeDelta = timeThisFrame - this.timeLastFrame;
+    this.timeFactor = this.timeDelta / (1000 / constants.FRAMERATE);
 
     // Increment the difficulty by a factor of the time
     // passed since the last rendered frame to ensure that
     // difficulty progresses at the same speed no matter what
     // FPS the game runs at
-    difficulty += 0.002 * Math.max(timeFactor, 1);
-    adjustScore(1);
+    this.difficulty += 0.002 * Math.max(this.timeFactor, 1);
+    this.adjustScore(1);
 
     frameCount++;
     frameScore++;
 
     duration = timeThisFrame - timeStart;
 
-    timeLastFrame = timeThisFrame;
+    this.timeLastFrame = timeThisFrame;
 
   }
 }
