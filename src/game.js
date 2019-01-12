@@ -347,10 +347,10 @@ class Game {
     this.difficulty += 0.002 * Math.max(this.timeFactor, 1);
     this.adjustScore(1);
 
-    frameCount++;
-    frameScore++;
+    this.frameCount++;
+    this.frameScore++;
 
-    duration = timeThisFrame - timeStart;
+    this.duration = timeThisFrame - this.timeStart;
 
     this.timeLastFrame = timeThisFrame;
 
