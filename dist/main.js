@@ -106,7 +106,7 @@ eval("__webpack_require__.r(__webpack_exports__);\nconst constants = {\n  FRAMER
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./constants */ \"./src/constants.js\");\n\n\nclass Game {\n  constructor(){\n    this.mouse = {\n      x: 0,\n      y: 0,\n      previousX: 0,\n      previousY: 0,\n      velocityX: 0,\n      velocityY: 0,\n      down: false\n    };\n\n    this.world = {\n      width: _constants__WEBPACK_IMPORTED_MODULE_0__[\"default\"].DEFAULT_WIDTH,\n      height: _constants__WEBPACK_IMPORTED_MODULE_0__[\"default\"].DEFAULT_HEIGHT\n    };\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Game);\n\n//# sourceURL=webpack:///./src/game.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./constants */ \"./src/constants.js\");\n\n\nclass Game {\n  constructor(){\n    this.mouse = {\n      x: 0,\n      y: 0,\n      previousX: 0,\n      previousY: 0,\n      velocityX: 0,\n      velocityY: 0,\n      down: false\n    };\n\n    this.world = {\n      width: _constants__WEBPACK_IMPORTED_MODULE_0__[\"default\"].DEFAULT_WIDTH,\n      height: _constants__WEBPACK_IMPORTED_MODULE_0__[\"default\"].DEFAULT_HEIGHT\n    };\n\n    this.sprites = {\n      bomb: null,\n      enemy: null,\n      enemyDyingA: null,\n      enemyDyingB: null\n    };\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Game);\n\n//# sourceURL=webpack:///./src/game.js?");
 
 /***/ }),
 

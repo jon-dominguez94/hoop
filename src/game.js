@@ -16,6 +16,13 @@ class Game {
       width: constants.DEFAULT_WIDTH,
       height: constants.DEFAULT_HEIGHT
     };
+
+    this.sprites = {
+      bomb: null,
+      enemy: null,
+      enemyDyingA: null,
+      enemyDyingB: null
+    };
   }
 }
 
