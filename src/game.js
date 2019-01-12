@@ -8,6 +8,7 @@ class Game {
 
     this.context;
     this.menu = menu;
+    this.scorePanel = document.getElementById('score');
 
     this.mouse = {
       x: 0,
@@ -226,6 +227,14 @@ class Game {
 
     // Update the game state
     document.body.setAttribute('class', constants.STATE_PLAYING);
+  }
+
+  stop() {
+    this.scorePanel.style.display = 'block';
+    document.getElementById('score-p').innerHTML = Math.floor(score);
+
+    this.playing = false;
+    // menu.fadeIn(MENU_FADE_IN_DURATION);
   }
 }
 

@@ -66,7 +66,6 @@ const initialize = () => {
   container = document.getElementById('game');
   menu = document.getElementById('menu');
   canvas = document.getElementById('game-canvas');
-  // scorePanel = document.getElementById('score');
   const startButton = document.getElementById('start-button');
 
   game = new Game(menu);
@@ -183,9 +182,7 @@ const onWindowResizeHandler = () => {
   container.style.top = cy;
 
   // Center the menu
-  // menu.css({
-  //   left: (game.world.width - menu.width()) / 2,
-  //   top: (game.world.height - menu.height()) / 2
-  // });
+  menu.style.left = (game.world.width - menu.style.width) / 2;
+  menu.style.top = (game.world.height - menu.style.width) / 2;
 
 };
