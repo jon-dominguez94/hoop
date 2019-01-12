@@ -512,7 +512,7 @@ class Game {
       }
     }
 
-    if(this.intersections.length) console.log(this.intersections);
+    // if(this.intersections.length) console.log(this.intersections);
   }
 
   findLineIntersection(p1, p2, p3, p4) {
@@ -541,48 +541,45 @@ class Game {
 
   solveIntersections() {
 
-    while (intersections.length) {
-      var ix = intersections.pop();
+    while (this.intersections.length) {
+      var last_intersection = this.intersections.pop();
 
       // Begin the trail path
-      context.beginPath();
+      this.context.beginPath();
 
-      var points = player.trail.slice(ix[0], ix[1]);
-      points[0] = ix[2];
-      points.push(ix[2]);
+      const points = this.player.trail.slice(last_intersection[0], last_intersection[1]);
+      points[0] = last_intersection[2];
+      points.push(last_intersection[2]);
 
-      var bounds = new Region();
+      const bounds = new Region();
 
-      for (var i = 0, len = points.length; i < len; i++) {
-        var p1 = points[i];
-        var p2 = points[i + 1];
+      for (let i = 0, len = points.length; i < len; i++) {
+        const p1 = points[i];
+        const p2 = points[i + 1];
 
         if (i === 0) {
           // This is the first loop, so we need to start by moving into position
-          context.moveTo(p1.x, p1.y);
+          this.context.moveTo(p1.x, p1.y);
         }
         else if (p1 && p2) {
           // Draw a curve between the current and next trail point
-          context.quadraticCurveTo(p1.x, p1.y, p1.x + (p2.x - p1.x) / 2, p1.y + (p2.y - p1.y) / 2);
+          this.context.quadraticCurveTo(p1.x, p1.y, p1.x + (p2.x - p1.x) / 2, p1.y + (p2.y - p1.y) / 2);
         }
 
         bounds.inflate(p1.x, p1.y);
       }
 
-      var center = bounds.center();
+      const center = bounds.center();
+  
+      const gradient = this.context.createRadialGradient(center.x, center.y, 0, center.x, center.y, bounds.size());
+      // gradient.addColorStop(1, 'rgba(0, 255, 255, 0.0)');
+      // gradient.addColorStop(0, 'rgba(0, 255, 255, 0.2)');
+      gradient.addColorStop(1, "rgba(255, 150, 0, 0.0)");
+      gradient.addColorStop(0, "rgba(255, 150, 0, 0.2)");
+      this.context.fillStyle = gradient;
+      this.context.closePath();
 
-      // Solid fill, faster
-      // context.fillStyle = 'rgba(0,255,255,0.2)';
-      // context.closePath();
-
-      // Gradient fill, prettier
-      var gradient = context.createRadialGradient(center.x, center.y, 0, center.x, center.y, bounds.size());
-      gradient.addColorStop(1, 'rgba(0, 255, 255, 0.0)');
-      gradient.addColorStop(0, 'rgba(0, 255, 255, 0.2)');
-      context.fillStyle = gradient;
-      context.closePath();
-
-      context.fill();
+      this.context.fill();
 
     }
   }

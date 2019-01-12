@@ -1,3 +1,5 @@
+import { Point } from './ancestors';
+
 class Region {
   constructor(){
     this.left = 999999;
