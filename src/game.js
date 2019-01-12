@@ -178,7 +178,7 @@ class Game {
       // updateParticles();
 
       this.findIntersections();
-      // solveIntersections();
+      this.solveIntersections();
 
       this.renderPlayer();
 
@@ -537,6 +537,54 @@ class Game {
     }
 
     return null;
+  }
+
+  solveIntersections() {
+
+    while (intersections.length) {
+      var ix = intersections.pop();
+
+      // Begin the trail path
+      context.beginPath();
+
+      var points = player.trail.slice(ix[0], ix[1]);
+      points[0] = ix[2];
+      points.push(ix[2]);
+
+      var bounds = new Region();
+
+      for (var i = 0, len = points.length; i < len; i++) {
+        var p1 = points[i];
+        var p2 = points[i + 1];
+
+        if (i === 0) {
+          // This is the first loop, so we need to start by moving into position
+          context.moveTo(p1.x, p1.y);
+        }
+        else if (p1 && p2) {
+          // Draw a curve between the current and next trail point
+          context.quadraticCurveTo(p1.x, p1.y, p1.x + (p2.x - p1.x) / 2, p1.y + (p2.y - p1.y) / 2);
+        }
+
+        bounds.inflate(p1.x, p1.y);
+      }
+
+      var center = bounds.center();
+
+      // Solid fill, faster
+      // context.fillStyle = 'rgba(0,255,255,0.2)';
+      // context.closePath();
+
+      // Gradient fill, prettier
+      var gradient = context.createRadialGradient(center.x, center.y, 0, center.x, center.y, bounds.size());
+      gradient.addColorStop(1, 'rgba(0, 255, 255, 0.0)');
+      gradient.addColorStop(0, 'rgba(0, 255, 255, 0.2)');
+      context.fillStyle = gradient;
+      context.closePath();
+
+      context.fill();
+
+    }
   }
 }
 
