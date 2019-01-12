@@ -195,7 +195,7 @@ class Game {
     // After the user has started his first game, this will never
     // go back to being 0
     if (this.score !== 0) {
-      renderHeader();
+      this.renderHeader();
     }
     // console.log('updated');
     requestAnimFrame(this.update.bind(this));
@@ -354,6 +354,119 @@ class Game {
 
     this.timeLastFrame = timeThisFrame;
 
+  }
+
+  renderHeader() {
+
+    const padding = 10,
+      energyBarHeight = 4,
+      energyBarWidth = 100,
+      ENERGY_LABEL = 'ENERGY:',
+      MULTIPLIER_LABEL = 'MULTIPLIER:',
+      TIME_LABEL = 'TIME:',
+      SCORE_LABEL = 'SCORE:';
+
+    this.player.animatedEnergy += (this.player.energy - this.player.animatedEnergy) * 0.2;
+
+    this.context.fillStyle = 'rgba(0,0,0,0.5)';
+    this.context.fillRect(0, 0, this.world.width, constants.HEADER_HEIGHT);
+
+    this.context.save();
+    this.context.translate(padding, padding);
+
+    // Energy label
+    this.context.font = "10px Arial";
+    this.context.fillStyle = "#ffffff";
+    this.context.fillText(ENERGY_LABEL, 0, 8);
+    this.context.translate(56, 0);
+
+    // Energy bar 
+    this.context.save();
+    this.context.fillStyle = 'rgba(40,40,40,0.8)';
+    this.context.fillRect(0, 2, energyBarWidth, energyBarHeight);
+    this.context.shadowOffsetX = 0;
+    this.context.shadowOffsetY = 0;
+    this.context.shadowBlur = 14;
+    this.context.shadowColor = "rgba(0,240,255,0.9)";
+    this.context.fillStyle = 'rgba(251,114,0, 0.8)';
+    // this.context.fillStyle = 'rgba(0,200,220, 0.8)';
+    this.context.fillRect(0, 2, (this.player.animatedEnergy / 100) * energyBarWidth, energyBarHeight);
+    this.context.restore();
+
+    this.context.translate(122, 0);
+
+    // Multiplier label
+    this.context.font = "10px Arial";
+    this.context.fillStyle = "#ffffff";
+    this.context.fillText(MULTIPLIER_LABEL, 0, 8);
+    this.context.translate(73, 0);
+
+    // Multiplier
+    var i = constants.MULTIPLIER_LIMIT - 1;
+
+    while (i--) {
+      this.context.save();
+      this.context.beginPath();
+
+      var x = 6 + (i / constants.MULTIPLIER_LIMIT) * 80;
+      var y = 5;
+      var s = 6;
+
+      this.context.fillStyle = 'rgba(40,40,40,0.8)';
+      this.context.arc(x, y, s, 0, Math.PI * 2, true);
+      this.context.fill();
+
+      if (i < this.multiplier.major) {
+        this.context.beginPath();
+        this.context.shadowOffsetX = 0;
+        this.context.shadowOffsetY = 0;
+        this.context.shadowBlur = 14;
+        this.context.shadowColor = "rgba(0,240,255,0.9)";
+        this.context.fillStyle = 'rgba(0,200,220,0.8)';
+
+        if (i < this.multiplier.major - 1) {
+          // We're drawing a major (entirely filled) step
+          this.context.arc(x, y, s, 0, Math.PI * 2, true);
+        }
+        else {
+          // We're drawing a minor (partly filled) step
+          this.context.fillStyle = 'rgba(0,200,220,' + (0.8 * this.multiplier.minor) + ')';
+          this.context.arc(x, y, s * this.multiplier.minor, 0, Math.PI * 2, false);
+        }
+
+        this.context.fill();
+      }
+
+      this.context.restore();
+    }
+
+    this.context.translate(73, 0);
+
+    // Time label
+    this.context.font = "10px Arial";
+    this.context.fillStyle = "#ffffff";
+    this.context.fillText(TIME_LABEL, 0, 8);
+
+    // Time
+    this.context.font = "bold 10px Arial";
+    this.context.fillStyle = 'rgba(0,200,220, 0.8)';
+    this.context.fillText(Math.round(this.duration / 1000) + 's', 35, 8);
+
+    this.context.translate(65, 0);
+
+    // Score label
+    this.context.font = "10px Arial";
+    this.context.fillStyle = "#ffffff";
+    this.context.fillText(SCORE_LABEL, 0, 8);
+
+    // Score
+    this.context.font = "bold 10px Arial";
+    this.context.fillStyle = 'rgba(0,200,220, 0.8)';
+    this.context.fillText(Math.floor(score), 47, 8);
+
+    this.context.restore();
+
+    this.invalidate(0, 0, this.world.width, constants.HEADER_HEIGHT + 5);
   }
 }
 
