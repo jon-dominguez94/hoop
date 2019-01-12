@@ -27,6 +27,7 @@ class Game {
       enemyDyingB: null
     };
 
+    this.dirtyRegions = [],
     this.playing = false,
     this.score = 0,
     this.duration = 0,
@@ -194,7 +195,14 @@ class Game {
   }
 
   clear() {
+    var i = this.dirtyRegions.length;
 
+    while (i--) {
+      var r = this.dirtyRegions[i];
+      context.clearRect(Math.floor(r.x), Math.floor(r.y), Math.ceil(r.width), Math.ceil(r.height));
+    }
+
+    this.dirtyRegions = [];
   }
 }
 
