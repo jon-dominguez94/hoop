@@ -396,10 +396,6 @@ class Game {
 
     this.context.translate(122, 0);
 
-    
-
-    // this.context.translate(73, 0);
-
     // Time label
     this.context.font = "10px Arial";
     this.context.fillStyle = "#ffffff";
@@ -410,7 +406,7 @@ class Game {
     this.context.fillStyle = "rgba(251,114,0, 0.8)";
     this.context.fillText(Math.round(this.duration / 1000) + 's', 35, 8);
 
-    this.context.translate(65, 0);
+    this.context.translate(70, 0);
 
     // Score label
     this.context.font = "10px Arial";
@@ -422,7 +418,7 @@ class Game {
     this.context.fillStyle = "rgba(251,114,0, 0.8)";
     this.context.fillText(Math.floor(score), 47, 8);
     
-    this.context.translate(86, 0);
+    this.context.translate(90, 0);
     
     // Multiplier label
     this.context.font = "10px Arial";
