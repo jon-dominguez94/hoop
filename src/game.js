@@ -1,4 +1,6 @@
 import constants from './constants';
+import { Multiplier } from './ancestors';
+
 
 class Game {
   constructor(){
@@ -23,6 +25,13 @@ class Game {
       enemyDyingA: null,
       enemyDyingB: null
     };
+
+    this.playing = false,
+    this.score = 0,
+    this.duration = 0,
+    this.difficulty = 1,
+    this.multiplier = new Multiplier(0.2, constants.MULTIPLIER_LIMIT);
+
   }
 }
 

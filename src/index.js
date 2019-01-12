@@ -103,7 +103,7 @@ const initialize = () => {
 
 const onDocumentMouseDownHandler = (e) => {
   game.mouse.down = true;
-  console.log(game.mouse);
+  // console.log(game.mouse);
 };
 
 const onDocumentMouseMoveHandler = (event) => {
@@ -115,7 +115,7 @@ const onDocumentMouseMoveHandler = (event) => {
 
   game.mouse.velocityX = Math.abs(game.mouse.x - game.mouse.previousX) / game.world.width;
   game.mouse.velocityY = Math.abs(game.mouse.y - game.mouse.previousY) / game.world.height;
-  console.log(game.mouse);
+  // console.log(game.mouse);
 };
 
 const onDocumentMouseUpHandler = (event) => {
