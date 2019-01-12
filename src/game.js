@@ -4,9 +4,10 @@ import { requestAnimFrame } from './util';
 import Player from './entities/player';
 
 class Game {
-  constructor(context){
+  constructor(menu){
 
-    this.context = context;
+    this.context;
+    this.menu = menu;
 
     this.mouse = {
       x: 0,

@@ -52,9 +52,8 @@ function findxy(e) {
   draw();
 }
 
-const game = new Game();
-window.game = game;
-let container;
+
+let container, menu;
 
 document.addEventListener('DOMContentLoaded', () => {
   init();
@@ -62,11 +61,17 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const initialize = () => {
+
+
   container = document.getElementById('game');
-  // menu = document.getElementById('menu');
+  menu = document.getElementById('menu');
   canvas = document.getElementById('game-canvas');
   // scorePanel = document.getElementById('score');
   // startButton = document.getElementById('start-button');
+
+  const game = new Game(menu);
+  window.game = game;
+
   if (canvas && canvas.getContext) {
     game.context = canvas.getContext('2d');
 
