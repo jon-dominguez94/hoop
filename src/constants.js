@@ -31,5 +31,5 @@ const constants = {
 
 constants.ENEMY_MOVER_START_FRAME = constants.FRAMERATE * 2;
 
-console.log(constants);
+// console.log(constants);
 export default constants;
