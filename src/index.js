@@ -56,7 +56,7 @@ function findxy(e) {
 let container, menu, game;
 
 document.addEventListener('DOMContentLoaded', () => {
-  init();
+  // init();
   initialize();
 });
 

@@ -1,5 +1,5 @@
 import constants from './constants';
-import { Multiplier } from './ancestors';
+import { Point, Multiplier } from './ancestors';
 import { requestAnimFrame } from './util';
 import Player from './entities/player';
 import Region from './region';
@@ -174,7 +174,7 @@ class Game {
       this.context.globalCompositeOperation = 'lighter';
 
       // updateMeta();
-      // updatePlayer();
+      this.updatePlayer();
       // updateParticles();
 
       // findIntersections();
@@ -245,6 +245,27 @@ class Game {
       width: width,
       height: height
     });
+  }
+
+  updatePlayer() {
+
+    // Interpolate towards the mouse, results in smooth
+    // movement
+    this.player.interpolate(this.mouse.x, this.mouse.y, 0.4);
+
+    // Add points to the trail, if needed
+    while (this.player.trail.length < this.player.length) {
+      this.player.trail.push(new Point(this.player.x, this.player.y));
+    }
+
+    // Remove the oldest point in the trail
+    this.player.trail.shift();
+
+    // No energy – no game
+    if (this.player.energy === 0) {
+      this.stop();
+    }
+
   }
 
   renderPlayer() {
