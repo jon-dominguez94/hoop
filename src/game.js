@@ -2,6 +2,7 @@ import constants from './constants';
 import { Multiplier } from './ancestors';
 import { requestAnimFrame } from './util';
 import Player from './entities/player';
+import Region from './region';
 
 class Game {
   constructor(menu){
@@ -179,7 +180,7 @@ class Game {
       // findIntersections();
       // solveIntersections();
 
-      // renderPlayer();
+      this.renderPlayer();
 
       // updateEnemies();
       // renderEnemies();
@@ -235,6 +236,51 @@ class Game {
 
     this.playing = false;
     // menu.fadeIn(MENU_FADE_IN_DURATION);
+  }
+
+  invalidate(x, y, width, height) {
+    this.dirtyRegions.push({
+      x: x,
+      y: y,
+      width: width,
+      height: height
+    });
+  }
+
+  renderPlayer() {
+    // Begin the trail path
+    this.context.beginPath();
+
+    const bounds = new Region();
+    const i = this.player.trail.length;
+
+    // Draw a curve through the tail
+    for (let i = 0, len = this.player.trail.length; i < len; i++) {
+      var p1 = this.player.trail[i];
+      var p2 = this.player.trail[i + 1];
+
+      if (i === 0) {
+        // This is the first loop, so we need to start by moving into position
+        this.context.moveTo(p1.x + (p2.x - p1.x) / 2, p1.y + (p2.y - p1.y) / 2);
+      }
+      else if (p2) {
+        // Draw a curve between the current and next trail point
+        this.context.quadraticCurveTo(p1.x, p1.y, p1.x + (p2.x - p1.x) / 2, p1.y + (p2.y - p1.y) / 2);
+      }
+
+      bounds.inflate(p1.x, p1.y);
+    }
+
+    // Draw the trail stroke
+    this.context.strokeStyle = '#648d93';
+    this.context.lineWidth = 2;
+    this.context.stroke();
+
+    bounds.expand(4, 4);
+
+    var boundsRect = bounds.toRectangle();
+
+    this.invalidate(boundsRect.x, boundsRect.y, boundsRect.width, boundsRect.height);
   }
 }
 
