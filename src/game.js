@@ -2,6 +2,7 @@ import constants from './constants';
 import { Point, Multiplier } from './ancestors';
 import { requestAnimFrame } from './util';
 import Player from './entities/player';
+import Enemy from './entities/enemy';
 import Region from './region';
 
 class Game {
@@ -589,55 +590,55 @@ class Game {
     var enemy;
     var padding = 60;
 
-    var i = enemies.length;
+    var i = this.enemies.length;
 
     var numberOfBombs = 0;
     var numberOfMovers = 0;
 
     while (i--) {
-      if (enemies[i].type === ENEMY_TYPE_BOMB) {
+      if (this.enemies[i].type === ENEMY_TYPE_BOMB) {
         numberOfBombs++;
       }
     }
 
-    var canAddBombs = numberOfBombs / enemies.length < 0.4;
-    var canAddMovers = numberOfMovers / enemies.length < 0.3 && frameCount > ENEMY_MOVER_START_FRAME;
+    var canAddBombs = numberOfBombs / this.enemies.length < 0.4;
+    var canAddMovers = numberOfMovers / this.enemies.length < 0.3 && frameCount > ENEMY_MOVER_START_FRAME;
 
-    i = Math.floor(ENEMY_COUNT + difficulty) - enemies.length;
+    i = Math.floor(constants.ENEMY_COUNT + this.difficulty) - this.enemies.length;
 
     while (i-- && Math.random() > 0.85) {
 
-      var type = ENEMY_TYPE_NORMAL;
+      var type = constants.ENEMY_TYPE_NORMAL;
 
       if (canAddBombs) {
-        type = Math.random() > 0.5 ? ENEMY_TYPE_NORMAL : ENEMY_TYPE_BOMB;
+        type = Math.random() > 0.5 ? constants.ENEMY_TYPE_NORMAL : ENEMY_TYPE_BOMB;
       }
 
       enemy = new Enemy();
-      enemy.x = padding + Math.round(Math.random() * (world.width - padding - padding));
-      enemy.y = padding + Math.round(Math.random() * (world.height - padding - padding));
+      enemy.x = padding + Math.round(Math.random() * (this.world.width - padding - padding));
+      enemy.y = padding + Math.round(Math.random() * (this.world.height - padding - padding));
       enemy.type = type;
 
-      enemies.push(enemy);
+      this.enemies.push(enemy);
     }
 
-    i = enemies.length;
+    i = this.enemies.length;
 
     while (i--) {
-      enemy = enemies[i];
+      enemy = this.enemies[i];
 
-      enemy.time = Math.min(enemy.time + (0.2 * timeFactor), 100);
+      enemy.time = Math.min(enemy.time + (0.2 * this.timeFactor), 100);
       enemy.scale += ((enemy.scaleTarget - enemy.scale) + 0.01) * 0.3;
       enemy.alpha += (enemy.alphaTarget - enemy.alpha) * 0.1;
 
-      if (enemy.type === ENEMY_TYPE_BOMB_MOVER || enemy.type === ENEMY_TYPE_NORMAL_MOVER) {
+      if (enemy.type === constants.ENEMY_TYPE_BOMB_MOVER || enemy.type === constants.ENEMY_TYPE_NORMAL_MOVER) {
         enemy.x += enemy.velocity.x;
         enemy.y += enemy.velocity.y;
 
-        if (enemy.x < 0 || enemy.x > world.width - ENEMY_SIZE) {
+        if (enemy.x < 0 || enemy.x > this.world.width - ENEMY_SIZE) {
           enemy.velocity.x = -enemy.velocity.x;
         }
-        else if (enemy.y < 0 || enemy.y > world.height - ENEMY_SIZE) {
+        else if (enemy.y < 0 || enemy.y > this.world.height - ENEMY_SIZE) {
           enemy.velocity.y = -enemy.velocity.y;
         }
       }
@@ -646,12 +647,12 @@ class Game {
       if (enemy.alive && enemy.time === 100) {
 
         // Fade out bombs
-        if (enemy.type === ENEMY_TYPE_BOMB || enemy.type === ENEMY_TYPE_BOMB_MOVER) {
+        if (enemy.type === constants.ENEMY_TYPE_BOMB || enemy.type === constants.ENEMY_TYPE_BOMB_MOVER) {
           handleBombDeath(enemy);
         }
         else {
           handleEnemyDeath(enemy);
-          enemies.splice(i, 1);
+          this.enemies.splice(i, 1);
         }
 
         enemy.alive = false;
@@ -660,7 +661,7 @@ class Game {
 
       // Remove any faded out bombs
       if (enemy.alive === false && enemy.alphaTarget === 0 && enemy.alpha < 0.05) {
-        enemies.splice(i, 1);
+        this.enemies.splice(i, 1);
       }
 
     }
@@ -678,7 +679,7 @@ class Game {
 
       // The if statements here determine which sprite that
       // will be used to represent this entity
-      if (enemy.type === ENEMY_TYPE_BOMB || enemy.type === ENEMY_TYPE_BOMB_MOVER) {
+      if (enemy.type === constants.ENEMY_TYPE_BOMB || enemy.type === constants.ENEMY_TYPE_BOMB_MOVER) {
         sprite = sprites.bomb;
       }
       else {

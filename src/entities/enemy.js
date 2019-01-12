@@ -2,6 +2,7 @@ import { Entity } from '../ancestors';
 
 class Enemy extends Entity{
   constructor(){
+    super();
     this.scale = 0.01;
     this.scaleTarget = 1;
 
