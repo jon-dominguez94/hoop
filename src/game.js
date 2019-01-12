@@ -1,6 +1,6 @@
 import constants from './constants';
 import { Multiplier } from './ancestors';
-
+import Player from './entities/player';
 
 class Game {
   constructor(){
@@ -32,6 +32,24 @@ class Game {
     this.difficulty = 1,
     this.multiplier = new Multiplier(0.2, constants.MULTIPLIER_LIMIT);
 
+    this.frameScore = 0,
+    this.frameCount = 0,
+    this.timeStart = Date.now(),
+    this.timeLastFrame = Date.now(),
+    this.timeLastSecond = Date.now(),
+    this.timeGameStart = Date.now(),
+    this.timeDelta = 0,
+    this.timeFactor = 0,
+    this.fps = 0,
+    this.fpsMin = 1000,
+    this.fpsMax = 0,
+    this.framesThisSecond = 0;
+
+    this.notifications = [],
+    this.intersections = [],
+    this.particles = [],
+    this.enemies = [],
+    this.player = new Player();
   }
 }
 

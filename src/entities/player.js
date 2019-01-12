@@ -2,6 +2,7 @@ import { Entity } from '../ancestors.js';
 
 class Player extends Entity {
   constructor(){
+    super();
     this.trail = [];
     this.size = 8;
     this.length = 45;

@@ -110,6 +110,18 @@ eval("__webpack_require__.r(__webpack_exports__);\nconst constants = {\n  FRAMER
 
 /***/ }),
 
+/***/ "./src/entities/player.js":
+/*!********************************!*\
+  !*** ./src/entities/player.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _ancestors_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../ancestors.js */ \"./src/ancestors.js\");\n\n\nclass Player extends _ancestors_js__WEBPACK_IMPORTED_MODULE_0__[\"Entity\"] {\n  constructor(){\n    super();\n    this.trail = [];\n    this.size = 8;\n    this.length = 45;\n    this.energy = 100;\n    this.animatedEnergy = 0;\n  }\n\n  adjustEnergy(offset){\n    this.energy = Math.min(Math.max(this.energy + offset, 0), 100);\n  \n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Player);\n\n//# sourceURL=webpack:///./src/entities/player.js?");
+
+/***/ }),
+
 /***/ "./src/game.js":
 /*!*********************!*\
   !*** ./src/game.js ***!
@@ -118,7 +130,7 @@ eval("__webpack_require__.r(__webpack_exports__);\nconst constants = {\n  FRAMER
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./constants */ \"./src/constants.js\");\n/* harmony import */ var _ancestors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ancestors */ \"./src/ancestors.js\");\n\n\n\n\nclass Game {\n  constructor(){\n    this.mouse = {\n      x: 0,\n      y: 0,\n      previousX: 0,\n      previousY: 0,\n      velocityX: 0,\n      velocityY: 0,\n      down: false\n    };\n\n    this.world = {\n      width: _constants__WEBPACK_IMPORTED_MODULE_0__[\"default\"].DEFAULT_WIDTH,\n      height: _constants__WEBPACK_IMPORTED_MODULE_0__[\"default\"].DEFAULT_HEIGHT\n    };\n\n    this.sprites = {\n      bomb: null,\n      enemy: null,\n      enemyDyingA: null,\n      enemyDyingB: null\n    };\n\n    this.playing = false,\n    this.score = 0,\n    this.duration = 0,\n    this.difficulty = 1,\n    this.multiplier = new _ancestors__WEBPACK_IMPORTED_MODULE_1__[\"Multiplier\"](0.2, _constants__WEBPACK_IMPORTED_MODULE_0__[\"default\"].MULTIPLIER_LIMIT);\n\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Game);\n\n//# sourceURL=webpack:///./src/game.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./constants */ \"./src/constants.js\");\n/* harmony import */ var _ancestors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ancestors */ \"./src/ancestors.js\");\n/* harmony import */ var _entities_player__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./entities/player */ \"./src/entities/player.js\");\n\n\n\n\nclass Game {\n  constructor(){\n    this.mouse = {\n      x: 0,\n      y: 0,\n      previousX: 0,\n      previousY: 0,\n      velocityX: 0,\n      velocityY: 0,\n      down: false\n    };\n\n    this.world = {\n      width: _constants__WEBPACK_IMPORTED_MODULE_0__[\"default\"].DEFAULT_WIDTH,\n      height: _constants__WEBPACK_IMPORTED_MODULE_0__[\"default\"].DEFAULT_HEIGHT\n    };\n\n    this.sprites = {\n      bomb: null,\n      enemy: null,\n      enemyDyingA: null,\n      enemyDyingB: null\n    };\n\n    this.playing = false,\n    this.score = 0,\n    this.duration = 0,\n    this.difficulty = 1,\n    this.multiplier = new _ancestors__WEBPACK_IMPORTED_MODULE_1__[\"Multiplier\"](0.2, _constants__WEBPACK_IMPORTED_MODULE_0__[\"default\"].MULTIPLIER_LIMIT);\n\n    this.frameScore = 0,\n    this.frameCount = 0,\n    this.timeStart = Date.now(),\n    this.timeLastFrame = Date.now(),\n    this.timeLastSecond = Date.now(),\n    this.timeGameStart = Date.now(),\n    this.timeDelta = 0,\n    this.timeFactor = 0,\n    this.fps = 0,\n    this.fpsMin = 1000,\n    this.fpsMax = 0,\n    this.framesThisSecond = 0;\n\n    this.notifications = [],\n    this.intersections = [],\n    this.particles = [],\n    this.enemies = [],\n    this.player = new _entities_player__WEBPACK_IMPORTED_MODULE_2__[\"default\"]();\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Game);\n\n//# sourceURL=webpack:///./src/game.js?");
 
 /***/ }),
 
