@@ -173,7 +173,7 @@ class Game {
       this.context.save();
       this.context.globalCompositeOperation = 'lighter';
 
-      // updateMeta();
+      this.updateMeta();
       this.updatePlayer();
       // updateParticles();
 
@@ -302,6 +302,43 @@ class Game {
     var boundsRect = bounds.toRectangle();
 
     this.invalidate(boundsRect.x, boundsRect.y, boundsRect.width, boundsRect.height);
+  }
+
+  updateMeta() {
+  // Fetch the current time for this frame
+    var timeThisFrame = Date.now();
+
+    // Increase the frame count
+    framesThisSecond++;
+
+    // Check if a second has passed since the last time we updated the FPS
+    if (timeThisFrame > timeLastSecond + 1000) {
+      // Establish the current, minimum and maximum FPS
+      fps = Math.min(Math.round((framesThisSecond * 1000) / (timeThisFrame - timeLastSecond)), FRAMERATE);
+      fpsMin = Math.min(fpsMin, fps);
+      fpsMax = Math.max(fpsMax, fps);
+
+      timeLastSecond = timeThisFrame;
+      framesThisSecond = 0;
+    }
+
+    timeDelta = timeThisFrame - timeLastFrame;
+    timeFactor = timeDelta / (1000 / FRAMERATE);
+
+    // Increment the difficulty by a factor of the time
+    // passed since the last rendered frame to ensure that
+    // difficulty progresses at the same speed no matter what
+    // FPS the game runs at
+    difficulty += 0.002 * Math.max(timeFactor, 1);
+    adjustScore(1);
+
+    frameCount++;
+    frameScore++;
+
+    duration = timeThisFrame - timeStart;
+
+    timeLastFrame = timeThisFrame;
+
   }
 }
 
