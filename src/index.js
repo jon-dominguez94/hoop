@@ -91,7 +91,7 @@ const initialize = () => {
     // menu.hide().delay(MENU_FADE_IN_DURATION).fadeIn(MENU_FADE_IN_DURATION);
 
     // Update the game state
-    // document.body.setAttribute('class', STATE_WELCOME);
+    document.body.setAttribute('class', constants.STATE_WELCOME);
 
     // reset();
     // update();
