@@ -177,7 +177,7 @@ class Game {
       this.updatePlayer();
       // updateParticles();
 
-      // findIntersections();
+      this.findIntersections();
       // solveIntersections();
 
       this.renderPlayer();
@@ -471,6 +471,54 @@ class Game {
     this.context.restore();
 
     this.invalidate(0, 0, this.world.width, constants.HEADER_HEIGHT + 5);
+  }
+
+  findIntersections() {
+    var i = this.player.trail.length;
+
+    var candidates = [];
+
+    while (i--) {
+      var j = this.player.trail.length;
+
+      var p1 = this.player.trail[i];
+      var p2 = this.player.trail[i + 1];
+
+      while (j--) {
+
+        if (Math.abs(i - j) > 1) {
+          var p3 = this.player.trail[j];
+          var p4 = this.player.trail[j + 1];
+
+          if (p1 && p2 && p3 && p4) {
+            var intersection = findLineIntersection(p1, p2, p3, p4);
+            if (intersection) {
+              candidates.push([Math.min(i, j), Math.max(i, j), intersection]);
+            }
+          }
+        }
+
+      }
+    }
+
+    intersections = [];
+
+    // Remove duplicates
+    while (candidates.length) {
+      var i = intersections.length;
+
+      var candidate = candidates.pop();
+
+      while (i--) {
+        if (candidate && intersections[i] && candidate[0] === intersections[i][0] && candidate[1] === intersections[i][1]) {
+          candidate = null;
+        }
+      }
+
+      if (candidate) {
+        intersections.push(candidate);
+      }
+    }
   }
 }
 
