@@ -93,7 +93,7 @@ const initialize = () => {
     // Update the game state
     document.body.setAttribute('class', constants.STATE_WELCOME);
 
-    // reset();
+    game.reset();
     // update();
   }
   else {

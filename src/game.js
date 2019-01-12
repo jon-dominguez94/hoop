@@ -130,6 +130,30 @@ class Game {
 
     this.sprites.bomb = cvs;
   }
+
+  reset() {
+    this.player = new Player();
+    this.player.x = this.mouse.x;
+    this.player.y = this.mouse.y;
+
+    this.notifications = [];
+    this.intersections = [];
+    this.particles = [];
+    this.enemies = [];
+
+    this.score = 0;
+    this.duration = 0;
+    this.playing = false;
+    this.difficulty = 1;
+
+    this.multiplier.reset();
+
+    this.frameCount = 0;
+    this.frameScore = 0;
+
+    this.timeStart = 0;
+    this.timeLastFrame = 0;
+  }
 }
 
 export default Game;
