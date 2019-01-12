@@ -84,7 +84,7 @@ const initialize = () => {
     // Force an initial layout
     onWindowResizeHandler();
 
-    // createSprites();
+    game.createSprites();
 
     // Now that everything is laid out we can show the canvas & UI
     // container.fadeIn(MENU_FADE_IN_DURATION);
