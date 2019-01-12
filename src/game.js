@@ -587,31 +587,25 @@ class Game {
 
   updateEnemies() {
 
-    var enemy;
-    var padding = 60;
+    let enemy;
+    const padding = 60;
+    let numberOfBombs = 0;
 
-    var i = this.enemies.length;
-
-    var numberOfBombs = 0;
-    var numberOfMovers = 0;
-
-    while (i--) {
-      if (this.enemies[i].type === ENEMY_TYPE_BOMB) {
+    for(let i = this.enemies.length - 1; i >= 0; i--){
+      if (this.enemies[i].type === constants.ENEMY_TYPE_BOMB) {
         numberOfBombs++;
       }
     }
 
-    var canAddBombs = numberOfBombs / this.enemies.length < 0.4;
-    var canAddMovers = numberOfMovers / this.enemies.length < 0.3 && frameCount > ENEMY_MOVER_START_FRAME;
+    const canAddBombs = numberOfBombs / this.enemies.length < 0.4;
+    let missingEnemies = Math.floor(constants.ENEMY_COUNT + this.difficulty) - this.enemies.length;
 
-    i = Math.floor(constants.ENEMY_COUNT + this.difficulty) - this.enemies.length;
+    while (missingEnemies-- && Math.random() > 0.85) {
 
-    while (i-- && Math.random() > 0.85) {
-
-      var type = constants.ENEMY_TYPE_NORMAL;
+      let type = constants.ENEMY_TYPE_NORMAL;
 
       if (canAddBombs) {
-        type = Math.random() > 0.5 ? constants.ENEMY_TYPE_NORMAL : ENEMY_TYPE_BOMB;
+        type = Math.random() > 0.5 ? type : constants.ENEMY_TYPE_BOMB;
       }
 
       enemy = new Enemy();
@@ -622,32 +616,17 @@ class Game {
       this.enemies.push(enemy);
     }
 
-    i = this.enemies.length;
-
-    while (i--) {
+    for (let i = this.enemies.length - 1; i >= 0; i--) {
       enemy = this.enemies[i];
-
       enemy.time = Math.min(enemy.time + (0.2 * this.timeFactor), 100);
       enemy.scale += ((enemy.scaleTarget - enemy.scale) + 0.01) * 0.3;
       enemy.alpha += (enemy.alphaTarget - enemy.alpha) * 0.1;
-
-      if (enemy.type === constants.ENEMY_TYPE_BOMB_MOVER || enemy.type === constants.ENEMY_TYPE_NORMAL_MOVER) {
-        enemy.x += enemy.velocity.x;
-        enemy.y += enemy.velocity.y;
-
-        if (enemy.x < 0 || enemy.x > this.world.width - ENEMY_SIZE) {
-          enemy.velocity.x = -enemy.velocity.x;
-        }
-        else if (enemy.y < 0 || enemy.y > this.world.height - ENEMY_SIZE) {
-          enemy.velocity.y = -enemy.velocity.y;
-        }
-      }
 
       // If this enemy is alive but has reached the end of its life span
       if (enemy.alive && enemy.time === 100) {
 
         // Fade out bombs
-        if (enemy.type === constants.ENEMY_TYPE_BOMB || enemy.type === constants.ENEMY_TYPE_BOMB_MOVER) {
+        if (enemy.type === constants.ENEMY_TYPE_BOMB) {
           handleBombDeath(enemy);
         }
         else {
@@ -670,9 +649,9 @@ class Game {
 
   renderEnemies() {
 
-    var i = this.enemies.length;
+    // var i = this.enemies.length;
 
-    while (i--) {
+    for (let i = this.enemies.length - 1; i >= 0; i--) {
       var enemy = this.enemies[i];
 
       var sprite = null;
@@ -680,34 +659,33 @@ class Game {
       // The if statements here determine which sprite that
       // will be used to represent this entity
       if (enemy.type === constants.ENEMY_TYPE_BOMB || enemy.type === constants.ENEMY_TYPE_BOMB_MOVER) {
-        sprite = sprites.bomb;
-      }
-      else {
-        sprite = sprites.enemy;
+        sprite = this.sprites.bomb;
+      } else {
+        sprite = this.sprites.enemy;
 
         // Are we in the dying phase?
         if (enemy.time > 65) {
-          sprite = sprites.enemyDyingA;
+          sprite = this.sprites.enemyDyingA;
 
-          if (Math.round(enemy.time) % 2 == 0) {
-            sprite = sprites.enemyDyingB;
+          if (Math.round(enemy.time) % 2 === 0) {
+            sprite = this.sprites.enemyDyingB;
           }
         }
       }
 
-      context.save();
-      context.globalAlpha = enemy.alpha;
+      this.context.save();
+      this.context.globalAlpha = enemy.alpha;
 
-      context.translate(Math.round(enemy.x), Math.round(enemy.y));
-      context.scale(enemy.scale, enemy.scale);
-      context.drawImage(sprite, -Math.round(sprite.width / 2), -Math.round(sprite.height / 2));
+      this.context.translate(Math.round(enemy.x), Math.round(enemy.y));
+      this.context.scale(enemy.scale, enemy.scale);
+      this.context.drawImage(sprite, -Math.round(sprite.width / 2), -Math.round(sprite.height / 2));
 
-      context.restore();
+      this.context.restore();
 
-      var sw = (sprite.width * enemy.scale) + 4;
-      var sh = (sprite.height * enemy.scale) + 4;
+      var sw = sprite.width * enemy.scale + 4;
+      var sh = sprite.height * enemy.scale + 4;
 
-      invalidate(enemy.x - (sw / 2), enemy.y - (sw / 2), sw, sh);
+      this.invalidate(enemy.x - sw / 2, enemy.y - sw / 2, sw, sh);
     }
   }
 }
