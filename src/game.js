@@ -1,5 +1,6 @@
 import constants from './constants';
 import { Multiplier } from './ancestors';
+import { requestAnimFrame } from './util';
 import Player from './entities/player';
 
 class Game {
@@ -153,6 +154,47 @@ class Game {
 
     this.timeStart = 0;
     this.timeLastFrame = 0;
+  }
+
+  update(){
+    this.clear();
+
+    // There are quite the few updates and renders that only need
+    // to be carried out while the game is active
+    if (this.playing) {
+      context.save();
+      context.globalCompositeOperation = 'lighter';
+
+      updateMeta();
+      updatePlayer();
+      updateParticles();
+
+      findIntersections();
+      solveIntersections();
+
+      renderPlayer();
+
+      updateEnemies();
+      renderEnemies();
+      renderParticles();
+
+      context.restore();
+
+      renderNotifications();
+    }
+
+
+    // After the user has started his first game, this will never
+    // go back to being 0
+    if (this.score !== 0) {
+      renderHeader();
+    }
+
+    requestAnimFrame(this.update);
+  }
+
+  clear() {
+
   }
 }
 

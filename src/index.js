@@ -94,7 +94,7 @@ const initialize = () => {
     document.body.setAttribute('class', constants.STATE_WELCOME);
 
     game.reset();
-    // update();
+    game.update();
   }
   else {
     alert('Doesn\'t seem like your browser supports the HTML5 canvas element :(');
