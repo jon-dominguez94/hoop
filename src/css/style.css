@@ -22,7 +22,11 @@ body {
 }
 
 .game-container {
-  width: 900px;
-  height: 500px;
+  /* width: 900px;
+  height: 500px; */
   background: #111111;
+}
+
+#menu {
+  background: black;
 }

@@ -293,7 +293,7 @@ class Game {
     }
 
     // Draw the trail stroke
-    this.context.strokeStyle = '#648d93';
+    this.context.strokeStyle = "#FB7200";
     this.context.lineWidth = 2;
     this.context.stroke();
 
