@@ -474,24 +474,20 @@ class Game {
   }
 
   findIntersections() {
-    var i = this.player.trail.length;
-
-    var candidates = [];
-
-    while (i--) {
-      var j = this.player.trail.length;
-
-      var p1 = this.player.trail[i];
-      var p2 = this.player.trail[i + 1];
-
-      while (j--) {
+    const candidates = [];
+    for (let i = this.player.trail.length; i > 0; i--){
+      
+      const p1 = this.player.trail[i];
+      const p2 = this.player.trail[i + 1];
+      
+      for (let j = this.player.trail.length; j > 0; j--){
 
         if (Math.abs(i - j) > 1) {
-          var p3 = this.player.trail[j];
-          var p4 = this.player.trail[j + 1];
+          const p3 = this.player.trail[j];
+          const p4 = this.player.trail[j + 1];
 
           if (p1 && p2 && p3 && p4) {
-            var intersection = this.findLineIntersection(p1, p2, p3, p4);
+            const intersection = this.findLineIntersection(p1, p2, p3, p4);
             if (intersection) {
               candidates.push([Math.min(i, j), Math.max(i, j), intersection]);
             }
@@ -505,16 +501,12 @@ class Game {
 
     // Remove duplicates
     while (candidates.length) {
-      var i = this.intersections.length;
-
       var candidate = candidates.pop();
-
-      while (i--) {
+      for (let i = this.intersections.length; i > 0; i--){
         if (candidate && this.intersections[i] && candidate[0] === this.intersections[i][0] && candidate[1] === this.intersections[i][1]) {
           candidate = null;
         }
       }
-
       if (candidate) {
         this.intersections.push(candidate);
       }
@@ -524,23 +516,23 @@ class Game {
   }
 
   findLineIntersection(p1, p2, p3, p4) {
-    var s1 = {
+    const delta1 = {
       x: p2.x - p1.x,
       y: p2.y - p1.y
-    }
+    };
 
-    var s2 = {
+    const delta2 = {
       x: p4.x - p3.x,
       y: p4.y - p3.y
-    }
+    };
 
-    var s = (-s1.y * (p1.x - p3.x) + s1.x * (p1.y - p3.y)) / (-s2.x * s1.y + s1.x * s2.y);
-    var t = (s2.x * (p1.y - p3.y) - s2.y * (p1.x - p3.x)) / (-s2.x * s1.y + s1.x * s2.y);
+    const diff1 = (-delta1.y * (p1.x - p3.x) + delta1.x * (p1.y - p3.y)) / (-delta2.x * delta1.y + delta1.x * delta2.y);
+    const diff2 = (delta2.x * (p1.y - p3.y) - delta2.y * (p1.x - p3.x)) / (-delta2.x * delta1.y + delta1.x * delta2.y);
 
-    if (s >= 0 && s <= 1 && t >= 0 && t <= 1) {
+    if (diff1 >= 0 && diff1 <= 1 && diff2 >= 0 && diff2 <= 1) {
       return {
-        x: p1.x + (t * s1.x),
-        y: p1.y + (t * s1.y)
+        x: p1.x + (diff2 * delta1.x),
+        y: p1.y + (diff2 * delta1.y)
       };
     }
 
