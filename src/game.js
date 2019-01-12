@@ -189,8 +189,8 @@ class Game {
     if (this.score !== 0) {
       renderHeader();
     }
-
-    requestAnimFrame(this.update);
+    // console.log('updated');
+    requestAnimFrame(this.update.bind(this));
   }
 
   clear() {
