@@ -218,14 +218,14 @@ class Game {
 
     this.playing = true;
 
-    this.menu.fadeOut(constants.MENU_FADE_OUT_DURATION, function () {
+    // this.menu.fadeOut(constants.MENU_FADE_OUT_DURATION, function () {
       // Remove the header after the menu has appeared since
       // it will no longer be used
       document.getElementById('initial-header').remove();
-    });
+    // });
 
     // Update the game state
-    document.body.setAttribute('class', STATE_PLAYING);
+    document.body.setAttribute('class', constants.STATE_PLAYING);
   }
 }
 

@@ -53,7 +53,7 @@ function findxy(e) {
 }
 
 
-let container, menu;
+let container, menu, game;
 
 document.addEventListener('DOMContentLoaded', () => {
   init();
@@ -67,16 +67,16 @@ const initialize = () => {
   menu = document.getElementById('menu');
   canvas = document.getElementById('game-canvas');
   // scorePanel = document.getElementById('score');
-  // startButton = document.getElementById('start-button');
+  const startButton = document.getElementById('start-button');
 
-  const game = new Game(menu);
+  game = new Game(menu);
   window.game = game;
 
   if (canvas && canvas.getContext) {
     game.context = canvas.getContext('2d');
 
     // Bind event listeners
-    // startButton.addEventListener('click', onStartButtonClick, false);
+    startButton.addEventListener('click', onStartButtonClick, false);
     document.addEventListener('mousedown', onDocumentMouseDownHandler, false);
     document.addEventListener('mousemove', onDocumentMouseMoveHandler, false);
     document.addEventListener('mouseup', onDocumentMouseUpHandler, false);
@@ -103,6 +103,11 @@ const initialize = () => {
   else {
     alert('Doesn\'t seem like your browser supports the HTML5 canvas element :(');
   }
+};
+
+const onStartButtonClick = (event) => {
+  game.start();
+  event.preventDefault();
 };
 
 const onDocumentMouseDownHandler = (e) => {
