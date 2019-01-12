@@ -491,7 +491,7 @@ class Game {
           var p4 = this.player.trail[j + 1];
 
           if (p1 && p2 && p3 && p4) {
-            var intersection = findLineIntersection(p1, p2, p3, p4);
+            var intersection = this.findLineIntersection(p1, p2, p3, p4);
             if (intersection) {
               candidates.push([Math.min(i, j), Math.max(i, j), intersection]);
             }
@@ -501,24 +501,50 @@ class Game {
       }
     }
 
-    intersections = [];
+    this.intersections = [];
 
     // Remove duplicates
     while (candidates.length) {
-      var i = intersections.length;
+      var i = this.intersections.length;
 
       var candidate = candidates.pop();
 
       while (i--) {
-        if (candidate && intersections[i] && candidate[0] === intersections[i][0] && candidate[1] === intersections[i][1]) {
+        if (candidate && this.intersections[i] && candidate[0] === this.intersections[i][0] && candidate[1] === this.intersections[i][1]) {
           candidate = null;
         }
       }
 
       if (candidate) {
-        intersections.push(candidate);
+        this.intersections.push(candidate);
       }
     }
+
+    if(this.intersections.length) console.log(this.intersections);
+  }
+
+  findLineIntersection(p1, p2, p3, p4) {
+    var s1 = {
+      x: p2.x - p1.x,
+      y: p2.y - p1.y
+    }
+
+    var s2 = {
+      x: p4.x - p3.x,
+      y: p4.y - p3.y
+    }
+
+    var s = (-s1.y * (p1.x - p3.x) + s1.x * (p1.y - p3.y)) / (-s2.x * s1.y + s1.x * s2.y);
+    var t = (s2.x * (p1.y - p3.y) - s2.y * (p1.x - p3.x)) / (-s2.x * s1.y + s1.x * s2.y);
+
+    if (s >= 0 && s <= 1 && t >= 0 && t <= 1) {
+      return {
+        x: p1.x + (t * s1.x),
+        y: p1.y + (t * s1.y)
+      };
+    }
+
+    return null;
   }
 }
 
