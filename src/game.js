@@ -183,7 +183,7 @@ class Game {
       this.renderPlayer();
 
       // updateEnemies();
-      // renderEnemies();
+      this.renderEnemies();
       // renderParticles();
 
       this.context.restore();
@@ -581,6 +581,132 @@ class Game {
 
       this.context.fill();
 
+    }
+  }
+
+  updateEnemies() {
+
+    var enemy;
+    var padding = 60;
+
+    var i = enemies.length;
+
+    var numberOfBombs = 0;
+    var numberOfMovers = 0;
+
+    while (i--) {
+      if (enemies[i].type === ENEMY_TYPE_BOMB) {
+        numberOfBombs++;
+      }
+    }
+
+    var canAddBombs = numberOfBombs / enemies.length < 0.4;
+    var canAddMovers = numberOfMovers / enemies.length < 0.3 && frameCount > ENEMY_MOVER_START_FRAME;
+
+    i = Math.floor(ENEMY_COUNT + difficulty) - enemies.length;
+
+    while (i-- && Math.random() > 0.85) {
+
+      var type = ENEMY_TYPE_NORMAL;
+
+      if (canAddBombs) {
+        type = Math.random() > 0.5 ? ENEMY_TYPE_NORMAL : ENEMY_TYPE_BOMB;
+      }
+
+      enemy = new Enemy();
+      enemy.x = padding + Math.round(Math.random() * (world.width - padding - padding));
+      enemy.y = padding + Math.round(Math.random() * (world.height - padding - padding));
+      enemy.type = type;
+
+      enemies.push(enemy);
+    }
+
+    i = enemies.length;
+
+    while (i--) {
+      enemy = enemies[i];
+
+      enemy.time = Math.min(enemy.time + (0.2 * timeFactor), 100);
+      enemy.scale += ((enemy.scaleTarget - enemy.scale) + 0.01) * 0.3;
+      enemy.alpha += (enemy.alphaTarget - enemy.alpha) * 0.1;
+
+      if (enemy.type === ENEMY_TYPE_BOMB_MOVER || enemy.type === ENEMY_TYPE_NORMAL_MOVER) {
+        enemy.x += enemy.velocity.x;
+        enemy.y += enemy.velocity.y;
+
+        if (enemy.x < 0 || enemy.x > world.width - ENEMY_SIZE) {
+          enemy.velocity.x = -enemy.velocity.x;
+        }
+        else if (enemy.y < 0 || enemy.y > world.height - ENEMY_SIZE) {
+          enemy.velocity.y = -enemy.velocity.y;
+        }
+      }
+
+      // If this enemy is alive but has reached the end of its life span
+      if (enemy.alive && enemy.time === 100) {
+
+        // Fade out bombs
+        if (enemy.type === ENEMY_TYPE_BOMB || enemy.type === ENEMY_TYPE_BOMB_MOVER) {
+          handleBombDeath(enemy);
+        }
+        else {
+          handleEnemyDeath(enemy);
+          enemies.splice(i, 1);
+        }
+
+        enemy.alive = false;
+
+      }
+
+      // Remove any faded out bombs
+      if (enemy.alive === false && enemy.alphaTarget === 0 && enemy.alpha < 0.05) {
+        enemies.splice(i, 1);
+      }
+
+    }
+
+  }
+
+  renderEnemies() {
+
+    var i = this.enemies.length;
+
+    while (i--) {
+      var enemy = this.enemies[i];
+
+      var sprite = null;
+
+      // The if statements here determine which sprite that
+      // will be used to represent this entity
+      if (enemy.type === ENEMY_TYPE_BOMB || enemy.type === ENEMY_TYPE_BOMB_MOVER) {
+        sprite = sprites.bomb;
+      }
+      else {
+        sprite = sprites.enemy;
+
+        // Are we in the dying phase?
+        if (enemy.time > 65) {
+          sprite = sprites.enemyDyingA;
+
+          if (Math.round(enemy.time) % 2 == 0) {
+            sprite = sprites.enemyDyingB;
+          }
+        }
+      }
+
+      context.save();
+      context.globalAlpha = enemy.alpha;
+
+      context.translate(Math.round(enemy.x), Math.round(enemy.y));
+      context.scale(enemy.scale, enemy.scale);
+      context.drawImage(sprite, -Math.round(sprite.width / 2), -Math.round(sprite.height / 2));
+
+      context.restore();
+
+      var sw = (sprite.width * enemy.scale) + 4;
+      var sh = (sprite.height * enemy.scale) + 4;
+
+      invalidate(enemy.x - (sw / 2), enemy.y - (sw / 2), sw, sh);
     }
   }
 }
