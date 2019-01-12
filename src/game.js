@@ -387,8 +387,9 @@ class Game {
     this.context.shadowOffsetX = 0;
     this.context.shadowOffsetY = 0;
     this.context.shadowBlur = 14;
-    this.context.shadowColor = "rgba(0,240,255,0.9)";
+    this.context.shadowColor = "rgba(255,150,0,0.9)";
     this.context.fillStyle = 'rgba(251,114,0, 0.8)';
+    // this.context.shadowColor = "rgba(0,240,255,0.9)";
     // this.context.fillStyle = 'rgba(0,200,220, 0.8)';
     this.context.fillRect(0, 2, (this.player.animatedEnergy / 100) * energyBarWidth, energyBarHeight);
     this.context.restore();
