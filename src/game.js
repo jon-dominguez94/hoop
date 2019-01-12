@@ -63,7 +63,7 @@ class Game {
     cvs.setAttribute('height', canvasHeight);
     ctx = cvs.getContext('2d');
     ctx.beginPath();
-    ctx.arc(canvasWidth * 0.5, canvasHeight * 0.5, ENEMY_SIZE, 0, Math.PI * 2, true);
+    ctx.arc(canvasWidth * 0.5, canvasHeight * 0.5, constants.ENEMY_SIZE, 0, Math.PI * 2, true);
     ctx.lineWidth = 2;
     ctx.fillStyle = 'rgba(0,200,220, 0.9)';
     ctx.strokeStyle = 'rgba(255,255,255,0.4)'
@@ -74,14 +74,14 @@ class Game {
     ctx.stroke();
     ctx.fill();
 
-    sprites.enemy = cvs;
+    this.sprites.enemy = cvs;
 
     cvs = document.createElement('canvas');
     cvs.setAttribute('width', canvasWidth);
     cvs.setAttribute('height', canvasHeight);
     ctx = cvs.getContext('2d');
     ctx.beginPath();
-    ctx.arc(canvasWidth * 0.5, canvasHeight * 0.5, ENEMY_SIZE * 1.4, 0, Math.PI * 2, true);
+    ctx.arc(canvasWidth * 0.5, canvasHeight * 0.5, constants.ENEMY_SIZE * 1.4, 0, Math.PI * 2, true);
     ctx.lineWidth = 2;
     ctx.fillStyle = 'rgba(190,220,90, 0.9)';
     ctx.strokeStyle = 'rgba(255,255,255,0.4)'
@@ -92,14 +92,14 @@ class Game {
     ctx.stroke();
     ctx.fill();
 
-    sprites.enemyDyingA = cvs;
+    this.sprites.enemyDyingA = cvs;
 
     cvs = document.createElement('canvas');
     cvs.setAttribute('width', canvasWidth);
     cvs.setAttribute('height', canvasHeight);
     ctx = cvs.getContext('2d');
     ctx.beginPath();
-    ctx.arc(canvasWidth * 0.5, canvasHeight * 0.5, ENEMY_SIZE * 1.4, 0, Math.PI * 2, true);
+    ctx.arc(canvasWidth * 0.5, canvasHeight * 0.5, constants.ENEMY_SIZE * 1.4, 0, Math.PI * 2, true);
     ctx.lineWidth = 2;
     ctx.fillStyle = 'rgba(190,220,90, 0.9)';
     ctx.strokeStyle = 'rgba(255,255,255,0.4)'
@@ -110,14 +110,14 @@ class Game {
     ctx.stroke();
     ctx.fill();
 
-    sprites.enemyDyingB = cvs;
+    this.sprites.enemyDyingB = cvs;
 
     cvs = document.createElement('canvas');
     cvs.setAttribute('width', canvasWidth);
     cvs.setAttribute('height', canvasHeight);
     ctx = cvs.getContext('2d');
     ctx.beginPath();
-    ctx.arc(canvasWidth * 0.5, canvasHeight * 0.5, ENEMY_SIZE, 0, Math.PI * 2, true);
+    ctx.arc(canvasWidth * 0.5, canvasHeight * 0.5, constants.ENEMY_SIZE, 0, Math.PI * 2, true);
     ctx.lineWidth = 2;
     ctx.fillStyle = 'rgba(220,50,50, 0.9)';
     ctx.strokeStyle = 'rgba(255,255,255,0.4)'
@@ -128,7 +128,7 @@ class Game {
     ctx.stroke();
     ctx.fill();
 
-    sprites.bomb = cvs;
+    this.sprites.bomb = cvs;
   }
 }
 
