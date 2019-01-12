@@ -182,7 +182,7 @@ class Game {
 
       this.renderPlayer();
 
-      // updateEnemies();
+      this.updateEnemies();
       this.renderEnemies();
       // renderParticles();
 
