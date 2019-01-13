@@ -214,15 +214,11 @@ class Game {
 
     this.playing = true;
 
-    // this.menu.fadeOut(constants.MENU_FADE_OUT_DURATION, function () {
-      // Remove the header after the menu has appeared since
-      // it will no longer be used
-      const ih = document.getElementById('initial-header');
-      if(ih) ih.remove();
-      document.getElementById('menu').classList.add('fade-out');
-      document.getElementById('score').classList.add('hidden');
+    const ih = document.getElementById('initial-header');
+    if(ih) ih.remove();
+    document.getElementById('menu').classList.add('fade-out');
+    document.getElementById('score').classList.add('hidden');
 
-      // });
     }
     
     stop() {
@@ -232,7 +228,6 @@ class Game {
       this.playing = false;
       document.getElementById('menu').classList.remove('fade-out');
       document.getElementById('score').classList.remove('hidden');
-    // menu.fadeIn(MENU_FADE_IN_DURATION);
   }
 
   invalidate(x, y, width, height) {

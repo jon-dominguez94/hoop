@@ -16,28 +16,18 @@ const initialize = () => {
   const startButton = document.getElementById('start-button');
 
   game = new Game(menu);
-  window.game = game;
+  // window.game = game;
 
   if (canvas && canvas.getContext) {
     game.context = canvas.getContext('2d');
 
     startButton.addEventListener('click', onStartButtonClick, false);
-    document.addEventListener('mousedown', onDocumentMouseDownHandler, false);
     document.addEventListener('mousemove', onDocumentMouseMoveHandler, false);
-    document.addEventListener('mouseup', onDocumentMouseUpHandler, false);
     window.addEventListener('resize', onWindowResizeHandler, false);
 
     onWindowResizeHandler();
 
     game.createSprites();
-
-    // Now that everything is laid out we can show the canvas & UI
-    // container.fadeIn(MENU_FADE_IN_DURATION);
-    // menu.hide().delay(MENU_FADE_IN_DURATION).fadeIn(MENU_FADE_IN_DURATION);
-    // menu.classList.add('shown');
-    // menu.style.opacity = '1';
-    // menu.style.visibility = 'visible';
-
     game.reset();
     game.update();
   }
@@ -51,10 +41,6 @@ const onStartButtonClick = (event) => {
   event.preventDefault();
 };
 
-const onDocumentMouseDownHandler = (e) => {
-  game.mouse.down = true;
-};
-
 const onDocumentMouseMoveHandler = (event) => {
   game.mouse.previousX = game.mouse.x;
   game.mouse.previousY = game.mouse.y;
@@ -64,11 +50,6 @@ const onDocumentMouseMoveHandler = (event) => {
 
   game.mouse.velocityX = Math.abs(game.mouse.x - game.mouse.previousX) / game.world.width;
   game.mouse.velocityY = Math.abs(game.mouse.y - game.mouse.previousY) / game.world.height;
-};
-
-const onDocumentMouseUpHandler = (event) => {
-  game.mouse.down = false;
-  console.log(game.mouse);
 };
 
 const onWindowResizeHandler = () => {
