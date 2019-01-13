@@ -2,6 +2,7 @@ import { Entity } from '../ancestors';
 
 class Particle extends Entity {
   constructor(x, y, speed, color) {
+    super();
     this.x = x;
     this.y = y;
 

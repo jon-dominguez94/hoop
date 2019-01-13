@@ -3,6 +3,8 @@ import { Point, Multiplier } from './ancestors';
 import { requestAnimFrame } from './util';
 import Player from './entities/player';
 import Enemy from './entities/enemy';
+import Particle from './entities/particle';
+import Notification from './entities/notification';
 import Region from './region';
 
 class Game {
@@ -185,11 +187,11 @@ class Game {
 
       this.updateEnemies();
       this.renderEnemies();
-      // renderParticles();
+      this.renderParticles();
 
       this.context.restore();
 
-      // renderNotifications();
+      this.renderNotifications();
     }
 
 
@@ -624,10 +626,10 @@ class Game {
 
       if (enemy.alive && enemy.time === 100) {
         if (enemy.type === constants.ENEMY_TYPE_BOMB) {
-          handleBombDeath(enemy);
+          this.handleBombDeath(enemy);
         }
         else {
-          handleEnemyDeath(enemy);
+          this.handleEnemyDeath(enemy);
           this.enemies.splice(i, 1);
         }
         enemy.alive = false;
@@ -674,6 +676,119 @@ class Game {
       this.invalidate(enemy.x - spriteWidth / 2, enemy.y - spriteWidth / 2, spriteWidth, spriteHeight);
     }
   }
+
+  handleBombDeath(entity) {
+    entity.alphaTarget = 0;
+    entity.scaleTarget = 0.01;
+  }
+
+  handleEnemyDeath(entity) {
+    this.player.adjustEnergy(constants.ENERGY_PER_ENEMY_DEATH);
+    this.multiplier.reset();
+
+    this.emitParticles('#eeeeee', entity.x, entity.y, 3, 15);
+
+    this.notify(constants.ENERGY_PER_ENEMY_DEATH + '♥', entity.x, entity.y, 1.2, [230, 90, 90]);
+
+  }
+
+  emitParticles(color, x, y, speed, quantity) {
+    while (quantity--) {
+      this.particles.push(new Particle(x, y, speed, color));
+    }
+  }
+
+  updateParticles() {
+
+    // var i = this.particles.length;
+
+    // while (i--) {
+    for(let i = this.particles.length - 1; i >= 0; i--){
+      const particle = this.particles[i];
+
+      particle.x += particle.velocity.x;
+      particle.y += particle.velocity.y;
+
+      particle.velocity.x *= 0.98;
+      particle.velocity.y *= 0.98;
+
+      if (particle.fading === true) {
+        particle.alpha *= 0.92;
+      }
+      else if (Math.random() > 0.92) {
+        particle.fading = true;
+      }
+
+      if (particle.alpha < 0.05) {
+        this.particles.splice(i, 1);
+      }
+    }
+
+  }
+
+  renderParticles() {
+
+    // var i = particles.length;
+
+    // while (i--) {
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      const particle = this.particles[i];
+
+      this.context.save();
+      this.context.globalAlpha = particle.alpha;
+      this.context.fillStyle = particle.color;
+      this.context.fillRect(particle.x, particle.y, 1, 1);
+      this.context.restore();
+
+      this.invalidate(particle.x - 2, particle.y - 2, 4, 4);
+    }
+
+  }
+
+  notify(text, x, y, scale, rgb) {
+    this.notifications.push(new Notification(text, x, y, scale, rgb));
+  }
+
+  renderNotifications() {
+    // var i = notifications.length;
+
+    // Go through and draw all notification texts
+    // while (i--) {
+    for(let i = this.notifications.length - 1; i >= 0; i--){
+      const notification = this.notifications[i];
+
+      // Make the text float upwards
+      notification.y -= 0.4;
+
+      let radius = 14 * notification.scale;
+
+      // Draw the notification
+      this.context.save();
+      this.context.font = 'bold ' + Math.round(12 * notification.scale) + "px Arial";
+
+      this.context.beginPath();
+      this.context.fillStyle = 'rgba(0,0,0,' + (0.7 * notification.alpha) + ')';
+      this.context.arc(notification.x, notification.y, radius, 0, Math.PI * 2, true);
+      this.context.fill();
+
+      this.context.fillStyle = "rgba( " + notification.rgb[0] + ", " + notification.rgb[1] + ", " + notification.rgb[2] + ", " + notification.alpha + " )";
+      this.context.fillText(notification.text, notification.x - (this.context.measureText(notification.text).width * 0.5), notification.y + (4 * notification.scale));
+      this.context.restore();
+
+      // Fade out
+      notification.alpha *= 1 - (0.08 * (1 - ((notification.alpha - 0.08) / 1)));
+
+      // If the notifaction is faded out, remove it
+      if (notification.alpha < 0.05) {
+        this.notifications.splice(i, 1);
+      }
+
+      radius += 2;
+
+      this.invalidate(notification.x - radius, notification.y - radius, radius * 2, radius * 2);
+    }
+  }
+
 }
 
 export default Game;

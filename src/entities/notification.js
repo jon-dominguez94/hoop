@@ -2,6 +2,7 @@ import { Entity } from "../ancestors";
 
 class Notification extends Entity {
   constructor(text, x, y, scale, rgb) {
+    super();
     this.text = text || '';
     this.x = x || 0;
     this.y = y || 0;
