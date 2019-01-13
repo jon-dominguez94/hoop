@@ -218,6 +218,9 @@ class Game {
     if(ih) ih.remove();
     document.getElementById('score').classList.add('hidden');
     this.menu.classList.add('fade-out');
+    setTimeout(() => {
+      this.menu.classList.add('behind');
+    }, 700);
 
     }
     
@@ -226,6 +229,8 @@ class Game {
       document.getElementById('score-p').innerHTML = Math.floor(this.score);
       
       this.playing = false;
+      
+      this.menu.classList.remove('behind');
       this.menu.classList.remove('fade-out');
       document.getElementById('score').classList.remove('hidden');
   }
