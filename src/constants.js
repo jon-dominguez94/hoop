@@ -19,11 +19,6 @@ const constants = {
   HEADER_HEIGHT: 30,
   MENU_FADE_IN_DURATION:600,
   MENU_FADE_OUT_DURATION: 600,
-
-  STATE_WELCOME: 'start',
-  STATE_PLAYING: 'playing',
-  STATE_LOSER: 'loser',
-  STATE_WINNER: 'winner'
 };
 
 export default constants;

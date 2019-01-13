@@ -219,9 +219,6 @@ class Game {
       // it will no longer be used
       document.getElementById('initial-header').remove();
     // });
-
-    // Update the game state
-    document.body.setAttribute('class', constants.STATE_PLAYING);
   }
 
   stop() {

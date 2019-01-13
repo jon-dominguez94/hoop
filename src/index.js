@@ -21,17 +21,12 @@ const initialize = () => {
   if (canvas && canvas.getContext) {
     game.context = canvas.getContext('2d');
 
-    // Bind event listeners
     startButton.addEventListener('click', onStartButtonClick, false);
     document.addEventListener('mousedown', onDocumentMouseDownHandler, false);
     document.addEventListener('mousemove', onDocumentMouseMoveHandler, false);
     document.addEventListener('mouseup', onDocumentMouseUpHandler, false);
-    // canvas.addEventListener('touchstart', onCanvasTouchStartHandler, false);
-    // canvas.addEventListener('touchmove', onCanvasTouchMoveHandler, false);
-    // canvas.addEventListener('touchend', onCanvasTouchEndHandler, false);
     window.addEventListener('resize', onWindowResizeHandler, false);
 
-    // Force an initial layout
     onWindowResizeHandler();
 
     game.createSprites();
@@ -39,9 +34,6 @@ const initialize = () => {
     // Now that everything is laid out we can show the canvas & UI
     // container.fadeIn(MENU_FADE_IN_DURATION);
     // menu.hide().delay(MENU_FADE_IN_DURATION).fadeIn(MENU_FADE_IN_DURATION);
-
-    // Update the game state
-    document.body.setAttribute('class', constants.STATE_WELCOME);
 
     game.reset();
     game.update();
