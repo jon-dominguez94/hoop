@@ -1,62 +1,9 @@
-console.log("webpack is working");
-
-
 import Game from './game';
 import constants from './constants';
 
-
-let canvas,
-  ctx,
-  prevX,
-  currX,
-  prevY,
-  currY,
-  lineColor = '#008080',
-  lineSize = 2,
-  width,
-  height;
-
-function init(){
-  canvas = document.getElementById('game-canvas');
-  ctx = canvas.getContext('2d');
-  width = canvas.width;
-  height = canvas.height;
-
-  canvas.addEventListener('mousemove', e => {
-    findxy(e);
-  });
-  canvas.addEventListener('mouseout', e => {
-    currX = currY = undefined;
-  });
-}
-
-function draw(){
-  ctx.beginPath();
-  ctx.moveTo(prevX, prevY);
-  ctx.lineTo(currX, currY);
-  ctx.strokeStyle = lineColor;
-  ctx.lineWidth = lineSize;
-  ctx.stroke();
-  ctx.closePath();
-}
-
-function findxy(e) {
-  if(currX === undefined && currY === undefined){
-    currX = e.clientX - canvas.offsetLeft;
-    currY = e.clientY - canvas.offsetTop;
-  }
-  prevX = currX;
-  prevY = currY;
-  currX = e.clientX - canvas.offsetLeft;
-  currY = e.clientY - canvas.offsetTop;
-  draw();
-}
-
-
-let container, menu, game;
+let container, menu, game, canvas;
 
 document.addEventListener('DOMContentLoaded', () => {
-  // init();
   initialize();
 });
 
@@ -111,7 +58,6 @@ const onStartButtonClick = (event) => {
 
 const onDocumentMouseDownHandler = (e) => {
   game.mouse.down = true;
-  // console.log(game.mouse);
 };
 
 const onDocumentMouseMoveHandler = (event) => {
@@ -123,7 +69,6 @@ const onDocumentMouseMoveHandler = (event) => {
 
   game.mouse.velocityX = Math.abs(game.mouse.x - game.mouse.previousX) / game.world.width;
   game.mouse.velocityY = Math.abs(game.mouse.y - game.mouse.previousY) / game.world.height;
-  // console.log(game.mouse);
 };
 
 const onDocumentMouseUpHandler = (event) => {
@@ -140,7 +85,6 @@ const onCanvasTouchStartHandler = (event) => {
 
     game.mouse.down = true;
   }
-  // console.log(game.mouse);
 };
 
 const onCanvasTouchMoveHandler = (event) => {
@@ -150,14 +94,10 @@ const onCanvasTouchMoveHandler = (event) => {
     game.mouse.x = event.touches[0].pageX - (window.innerWidth - game.world.width) * 0.5;
     game.mouse.y = event.touches[0].pageY - (window.innerHeight - game.world.height) * 0.5 - 20;
   }
-  // console.log(game.mouse);
-
 };
 
 const onCanvasTouchEndHandler = (event) => {
   game.mouse.down = false;
-  // console.log(game.mouse);
-
 };
 
 const onWindowResizeHandler = () => {

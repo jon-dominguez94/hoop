@@ -65,10 +65,8 @@ class Game {
   }
 
   createSprites() {
-    const canvasWidth = 64,
-    canvasHeight = 64;
-    let cvs,
-    ctx;
+    const canvasWidth = 64, canvasHeight = 64;
+    let cvs, ctx;
 
     cvs = document.createElement('canvas');
     cvs.setAttribute('width', canvasWidth);
@@ -78,7 +76,7 @@ class Game {
     ctx.arc(canvasWidth * 0.5, canvasHeight * 0.5, constants.ENEMY_SIZE, 0, Math.PI * 2, true);
     ctx.lineWidth = 2;
     ctx.fillStyle = 'rgba(0,200,220, 0.9)';
-    ctx.strokeStyle = 'rgba(255,255,255,0.4)'
+    ctx.strokeStyle = 'rgba(255,255,255,0.4)';
     ctx.shadowColor = 'rgba(0,240,255,0.9)';
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
@@ -96,7 +94,7 @@ class Game {
     ctx.arc(canvasWidth * 0.5, canvasHeight * 0.5, constants.ENEMY_SIZE * 1.4, 0, Math.PI * 2, true);
     ctx.lineWidth = 2;
     ctx.fillStyle = 'rgba(190,220,90, 0.9)';
-    ctx.strokeStyle = 'rgba(255,255,255,0.4)'
+    ctx.strokeStyle = 'rgba(255,255,255,0.4)';
     ctx.shadowColor = 'rgba(220,240,150,0.9)';
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
@@ -114,7 +112,7 @@ class Game {
     ctx.arc(canvasWidth * 0.5, canvasHeight * 0.5, constants.ENEMY_SIZE * 1.4, 0, Math.PI * 2, true);
     ctx.lineWidth = 2;
     ctx.fillStyle = 'rgba(190,220,90, 0.9)';
-    ctx.strokeStyle = 'rgba(255,255,255,0.4)'
+    ctx.strokeStyle = 'rgba(255,255,255,0.4)';
     ctx.shadowColor = 'rgba(220,240,150,0.9)';
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
@@ -170,8 +168,6 @@ class Game {
   update(){
     this.clear();
 
-    // There are quite the few updates and renders that only need
-    // to be carried out while the game is active
     if (this.playing) {
       this.context.save();
       this.context.globalCompositeOperation = 'lighter';
@@ -202,11 +198,9 @@ class Game {
   }
 
   clear() {
-    var i = this.dirtyRegions.length;
-
-    while (i--) {
-      var r = this.dirtyRegions[i];
-      this.context.clearRect(Math.floor(r.x), Math.floor(r.y), Math.ceil(r.width), Math.ceil(r.height));
+    for (let i = this.dirtyRegions.length - 1; i >= 0; i--){
+      var dirtyRegion = this.dirtyRegions[i];
+      this.context.clearRect(Math.floor(dirtyRegion.x), Math.floor(dirtyRegion.y), Math.ceil(dirtyRegion.width), Math.ceil(dirtyRegion.height));
     }
 
     this.dirtyRegions = [];
@@ -232,7 +226,7 @@ class Game {
 
   stop() {
     this.scorePanel.style.display = 'block';
-    document.getElementById('score-p').innerHTML = Math.floor(score);
+    document.getElementById('score-p').innerHTML = Math.floor(this.score);
 
     this.playing = false;
     // menu.fadeIn(MENU_FADE_IN_DURATION);
@@ -416,7 +410,7 @@ class Game {
     // Score
     this.context.font = "bold 10px Arial";
     this.context.fillStyle = "rgba(251,114,0, 0.8)";
-    this.context.fillText(Math.floor(score), 47, 8);
+    this.context.fillText(Math.floor(this.score), 47, 8);
     
     this.context.translate(90, 0);
     
@@ -580,6 +574,63 @@ class Game {
       this.context.closePath();
 
       this.context.fill();
+    }
+
+    if (this.frameCount % 2 == 1) {
+
+      var bmp = this.context.getImageData(0, 0, this.world.width, this.world.height);
+      var bmpw = bmp.width;
+      var pixels = bmp.data;
+      // console.log(bmp);
+      var casualties = [];
+
+      var i = this.enemies.length;
+
+      while (i--) {
+        var enemy = this.enemies[i];
+
+        var ex = Math.round(enemy.x);
+        var ey = Math.round(enemy.y);
+
+        var indices = [
+          ((ey * bmpw) + Math.round(ex - constants.ENEMY_SIZE)) * 4,
+          ((ey * bmpw) + Math.round(ex + constants.ENEMY_SIZE)) * 4,
+          ((Math.round(ey - constants.ENEMY_SIZE) * bmpw) + ex) * 4,
+          ((Math.round(ey + constants.ENEMY_SIZE) * bmpw) + ex) * 4
+        ];
+
+        var j = indices.length;
+
+        while (j--) {
+          var index = indices[j];
+          // console.log(`first: ${pixels[index + 1]}`);
+          // console.log(`second: ${pixels[index + 2]}`);
+          if (pixels[index + 1] > 0 && pixels[index + 2] === 0) {
+
+            if (enemy.type === constants.ENEMY_TYPE_BOMB || enemy.type === constants.ENEMY_TYPE_BOMB_MOVER) {
+              this.handleBombInClosure(enemy);
+            }
+            else {
+              this.handleEnemyInClosure(enemy);
+
+              casualties.push(enemy);
+            }
+
+            this.enemies.splice(i, 1);
+
+            break;
+          }
+        }
+      }
+
+      // If more than one enemy was killed, show the multiplier
+      if (casualties.length > 1) {
+        // Increase the score exponential depending on the number of
+        // casualties
+        var scoreChange = this.adjustScore(casualties.length * constants.SCORE_PER_ENEMY);
+
+        this.notify(scoreChange, this.player.x, this.player.y - 10, casualties.length / 1.5, [250, 250, 100]);
+      }
 
     }
   }
@@ -778,9 +829,9 @@ class Game {
   }
 
   handleEnemyInClosure(entity) {
-    this.player.adjustEnergy(constant.ENERGY_PER_ENEMY_ENCLOSED);
+    this.player.adjustEnergy(constants.ENERGY_PER_ENEMY_ENCLOSED);
 
-    const multMajor = multiplier.major;
+    const multMajor = this.multiplier.major;
     this.multiplier.increase();
 
     if (this.multiplier.major > multMajor) {
@@ -789,7 +840,7 @@ class Game {
 
     this.emitParticles('#eeeeee', entity.x, entity.y, 3, 6);
 
-    const scoreChange = adjustScore(constant.SCORE_PER_ENEMY);
+    const scoreChange = this.adjustScore(constants.SCORE_PER_ENEMY);
 
     this.notify('' + Math.floor(scoreChange), entity.x, entity.y);
   }
