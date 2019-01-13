@@ -3,6 +3,10 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+canvas {
+  cursor: none;
+}
+
 .page-wrapper {
   height: 100vh;
   background: url('../galaxy.jpg');
@@ -36,7 +40,6 @@ body {
 }
 
 #menu {
-  /* background: rgba(251, 114, 0, 0.5); */
   background-image: radial-gradient(ellipse, rgba(251, 114, 0, 0.5), black);
   position: absolute;
   top: 0;
@@ -44,9 +47,6 @@ body {
   right: 0;
   bottom: 0;
   margin: 40px;
-  /* opacity: 0; */
-  /* visibility: hidden; */
-  /* transition: visibility 1s, opacity 1s linear; */
 }
 
 #initial-header, #score {
@@ -98,19 +98,7 @@ body {
   text-align: center;
 }
 
-.none {
-  display: none;
-}
 
-.hidden {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.shown {
-  opacity: 1 !important;
-  visibility: visible !important;
-}
 
 
 /* fade effects*/
@@ -169,4 +157,22 @@ animation-delay: 1.6s;
  -webkit-animation-duration:0.7s;
  -moz-animation-duration:0.7s;
  animation-duration:0.7s;
+}
+
+.none {
+  display: none !important;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.shown {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.behind {
+  z-index: -100;
 }

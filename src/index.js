@@ -1,7 +1,7 @@
 import Game from './game';
 import constants from './constants';
 
-let container, menu, game, canvas;
+let container, game, canvas;
 
 document.addEventListener('DOMContentLoaded', () => {
   initialize();
@@ -11,12 +11,10 @@ const initialize = () => {
 
 
   container = document.getElementById('game');
-  menu = document.getElementById('menu');
   canvas = document.getElementById('game-canvas');
   const startButton = document.getElementById('start-button');
 
-  game = new Game(menu);
-  // window.game = game;
+  game = new Game();
 
   if (canvas && canvas.getContext) {
     game.context = canvas.getContext('2d');
@@ -71,8 +69,4 @@ const onWindowResizeHandler = () => {
 
   container.style.left = canvasX;
   container.style.top = canvasY;
-
-  // menu.style.left = (game.world.width - menu.style.width) / 2;
-  // menu.style.top = (game.world.height - menu.style.width) / 2;
-
 };

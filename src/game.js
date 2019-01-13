@@ -8,10 +8,10 @@ import Notification from './entities/notification';
 import Region from './region';
 
 class Game {
-  constructor(menu){
+  constructor(){
 
     this.context;
-    this.menu = menu;
+    this.menu = document.getElementById("menu");
     this.scorePanel = document.getElementById('score');
 
     this.mouse = {
@@ -216,8 +216,8 @@ class Game {
 
     const ih = document.getElementById('initial-header');
     if(ih) ih.remove();
-    document.getElementById('menu').classList.add('fade-out');
     document.getElementById('score').classList.add('hidden');
+    this.menu.classList.add('fade-out');
 
     }
     
@@ -226,7 +226,7 @@ class Game {
       document.getElementById('score-p').innerHTML = Math.floor(this.score);
       
       this.playing = false;
-      document.getElementById('menu').classList.remove('fade-out');
+      this.menu.classList.remove('fade-out');
       document.getElementById('score').classList.remove('hidden');
   }
 
