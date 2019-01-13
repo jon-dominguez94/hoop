@@ -178,7 +178,7 @@ class Game {
 
       this.updateMeta();
       this.updatePlayer();
-      // updateParticles();
+      this.updateParticles();
 
       this.findIntersections();
       this.solveIntersections();
@@ -194,13 +194,10 @@ class Game {
       this.renderNotifications();
     }
 
-
-    // After the user has started his first game, this will never
-    // go back to being 0
     if (this.score !== 0) {
       this.renderHeader();
     }
-    // console.log('updated');
+   
     requestAnimFrame(this.update.bind(this));
   }
 
@@ -727,22 +724,17 @@ class Game {
   }
 
   renderParticles() {
-
-    // var i = particles.length;
-
-    // while (i--) {
     for (let i = this.particles.length - 1; i >= 0; i--) {
       const particle = this.particles[i];
 
       this.context.save();
       this.context.globalAlpha = particle.alpha;
       this.context.fillStyle = particle.color;
-      this.context.fillRect(particle.x, particle.y, 1, 1);
+      this.context.fillRect(particle.x, particle.y, 3, 3);
       this.context.restore();
 
-      this.invalidate(particle.x - 2, particle.y - 2, 4, 4);
+      this.invalidate(particle.x - 2, particle.y - 2, 6, 6);
     }
-
   }
 
   notify(text, x, y, scale, rgb) {
@@ -750,10 +742,6 @@ class Game {
   }
 
   renderNotifications() {
-    // var i = notifications.length;
-
-    // Go through and draw all notification texts
-    // while (i--) {
     for(let i = this.notifications.length - 1; i >= 0; i--){
       const notification = this.notifications[i];
 
@@ -787,6 +775,32 @@ class Game {
 
       this.invalidate(notification.x - radius, notification.y - radius, radius * 2, radius * 2);
     }
+  }
+
+  handleEnemyInClosure(entity) {
+    this.player.adjustEnergy(constant.ENERGY_PER_ENEMY_ENCLOSED);
+
+    const multMajor = multiplier.major;
+    this.multiplier.increase();
+
+    if (this.multiplier.major > multMajor) {
+      this.notify('X' + this.multiplier.major, this.world.width / 2, this.world.height / 2, this.multiplier.major, [60, 250, 130]);
+    }
+
+    this.emitParticles('#eeeeee', entity.x, entity.y, 3, 6);
+
+    const scoreChange = adjustScore(constant.SCORE_PER_ENEMY);
+
+    this.notify('' + Math.floor(scoreChange), entity.x, entity.y);
+  }
+
+  handleBombInClosure(entity) {
+    this.player.adjustEnergy(constants.ENERGY_PER_BOMB_ENCLOSED);
+    this.multiplier.reset();
+
+    this.notify(constants.ENERGY_PER_BOMB_ENCLOSED + '♥', entity.x, entity.y, 1.2, [230, 90, 90]);
+
+
   }
 
 }
