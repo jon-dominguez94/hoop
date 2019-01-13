@@ -26,9 +26,9 @@ const initialize = () => {
     document.addEventListener('mousedown', onDocumentMouseDownHandler, false);
     document.addEventListener('mousemove', onDocumentMouseMoveHandler, false);
     document.addEventListener('mouseup', onDocumentMouseUpHandler, false);
-    canvas.addEventListener('touchstart', onCanvasTouchStartHandler, false);
-    canvas.addEventListener('touchmove', onCanvasTouchMoveHandler, false);
-    canvas.addEventListener('touchend', onCanvasTouchEndHandler, false);
+    // canvas.addEventListener('touchstart', onCanvasTouchStartHandler, false);
+    // canvas.addEventListener('touchmove', onCanvasTouchMoveHandler, false);
+    // canvas.addEventListener('touchend', onCanvasTouchEndHandler, false);
     window.addEventListener('resize', onWindowResizeHandler, false);
 
     // Force an initial layout
@@ -76,52 +76,26 @@ const onDocumentMouseUpHandler = (event) => {
   console.log(game.mouse);
 };
 
-const onCanvasTouchStartHandler = (event) => {
-  if (event.touches.length == 1) {
-    event.preventDefault();
-
-    game.mouse.x = event.touches[0].pageX - (window.innerWidth - game.world.width) * 0.5;
-    game.mouse.y = event.touches[0].pageY - (window.innerHeight - game.world.height) * 0.5;
-
-    game.mouse.down = true;
-  }
-};
-
-const onCanvasTouchMoveHandler = (event) => {
-  if (event.touches.length == 1) {
-    event.preventDefault();
-
-    game.mouse.x = event.touches[0].pageX - (window.innerWidth - game.world.width) * 0.5;
-    game.mouse.y = event.touches[0].pageY - (window.innerHeight - game.world.height) * 0.5 - 20;
-  }
-};
-
-const onCanvasTouchEndHandler = (event) => {
-  game.mouse.down = false;
-};
-
 const onWindowResizeHandler = () => {
-  // Update the game size
-  game.world.width = constants.TOUCH_INPUT ? window.innerWidth : constants.DEFAULT_WIDTH;
-  game.world.height = constants.TOUCH_INPUT ? window.innerHeight : constants.DEFAULT_HEIGHT;
 
-  // Resize the container
+  // Update the game size
+  // game.world.width = constants.TOUCH_INPUT ? window.innerWidth : constants.DEFAULT_WIDTH;
+  // game.world.height = constants.TOUCH_INPUT ? window.innerHeight : constants.DEFAULT_HEIGHT;
+  game.world.width = window.innerWidth < constants.DEFAULT_WIDTH ? window.innerWidth : constants.DEFAULT_WIDTH;
+  game.world.height = window.innerHeight < constants.DEFAULT_HEIGHT ? window.innerHeight : constants.DEFAULT_HEIGHT;
+
   container.style.width = (game.world.width);
   container.style.height = (game.world.height);
 
-  // Resize the canvas
   canvas.width = game.world.width;
   canvas.height = game.world.height;
 
-  // Determine the x/y position of the canvas
-  var cx = Math.max((window.innerWidth - game.world.width) * 0.5, 1);
-  var cy = Math.max((window.innerHeight - game.world.height) * 0.5, 1);
+  var canvasX = Math.max((window.innerWidth - game.world.width) * 0.5, 1);
+  var canvasY = Math.max((window.innerHeight - game.world.height) * 0.5, 1);
 
-  // Update the position of the canvas
-  container.style.left = cx;
-  container.style.top = cy;
+  container.style.left = canvasX;
+  container.style.top = canvasY;
 
-  // Center the menu
   menu.style.left = (game.world.width - menu.style.width) / 2;
   menu.style.top = (game.world.height - menu.style.width) / 2;
 
