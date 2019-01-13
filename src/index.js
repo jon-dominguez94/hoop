@@ -34,6 +34,9 @@ const initialize = () => {
     // Now that everything is laid out we can show the canvas & UI
     // container.fadeIn(MENU_FADE_IN_DURATION);
     // menu.hide().delay(MENU_FADE_IN_DURATION).fadeIn(MENU_FADE_IN_DURATION);
+    // menu.classList.add('shown');
+    // menu.style.opacity = '1';
+    // menu.style.visibility = 'visible';
 
     game.reset();
     game.update();
@@ -88,7 +91,7 @@ const onWindowResizeHandler = () => {
   container.style.left = canvasX;
   container.style.top = canvasY;
 
-  menu.style.left = (game.world.width - menu.style.width) / 2;
-  menu.style.top = (game.world.height - menu.style.width) / 2;
+  // menu.style.left = (game.world.width - menu.style.width) / 2;
+  // menu.style.top = (game.world.height - menu.style.width) / 2;
 
 };
