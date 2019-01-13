@@ -22,15 +22,18 @@ body {
 }
 
 .game-container {
-  background: #111111;
+  background: #010101;
   position: relative;
 }
 
+/*  #FB7200; */
 #menu {
-  background: black;
+  /* background: rgba(251, 114, 0, 0.5); */
+  background-image: radial-gradient(ellipse, rgba(251, 114, 0, 0.5), black);
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  margin: 40px;
 }
