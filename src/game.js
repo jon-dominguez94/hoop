@@ -622,10 +622,7 @@ class Game {
       enemy.scale += ((enemy.scaleTarget - enemy.scale) + 0.01) * 0.3;
       enemy.alpha += (enemy.alphaTarget - enemy.alpha) * 0.1;
 
-      // If this enemy is alive but has reached the end of its life span
       if (enemy.alive && enemy.time === 100) {
-
-        // Fade out bombs
         if (enemy.type === constants.ENEMY_TYPE_BOMB) {
           handleBombDeath(enemy);
         }
@@ -633,40 +630,29 @@ class Game {
           handleEnemyDeath(enemy);
           this.enemies.splice(i, 1);
         }
-
         enemy.alive = false;
-
       }
 
-      // Remove any faded out bombs
       if (enemy.alive === false && enemy.alphaTarget === 0 && enemy.alpha < 0.05) {
         this.enemies.splice(i, 1);
       }
-
     }
 
   }
 
   renderEnemies() {
-
-    // var i = this.enemies.length;
-
     for (let i = this.enemies.length - 1; i >= 0; i--) {
       var enemy = this.enemies[i];
 
       var sprite = null;
 
-      // The if statements here determine which sprite that
-      // will be used to represent this entity
-      if (enemy.type === constants.ENEMY_TYPE_BOMB || enemy.type === constants.ENEMY_TYPE_BOMB_MOVER) {
+      if (enemy.type === constants.ENEMY_TYPE_BOMB) {
         sprite = this.sprites.bomb;
       } else {
         sprite = this.sprites.enemy;
 
-        // Are we in the dying phase?
         if (enemy.time > 65) {
           sprite = this.sprites.enemyDyingA;
-
           if (Math.round(enemy.time) % 2 === 0) {
             sprite = this.sprites.enemyDyingB;
           }
@@ -682,10 +668,10 @@ class Game {
 
       this.context.restore();
 
-      var sw = sprite.width * enemy.scale + 4;
-      var sh = sprite.height * enemy.scale + 4;
+      var spriteWidth = sprite.width * enemy.scale + 4;
+      var spriteHeight = sprite.height * enemy.scale + 4;
 
-      this.invalidate(enemy.x - sw / 2, enemy.y - sw / 2, sw, sh);
+      this.invalidate(enemy.x - spriteWidth / 2, enemy.y - spriteWidth / 2, spriteWidth, spriteHeight);
     }
   }
 }
