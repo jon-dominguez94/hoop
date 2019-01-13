@@ -217,15 +217,21 @@ class Game {
     // this.menu.fadeOut(constants.MENU_FADE_OUT_DURATION, function () {
       // Remove the header after the menu has appeared since
       // it will no longer be used
-      document.getElementById('initial-header').remove();
-    // });
-  }
+      const ih = document.getElementById('initial-header');
+      if(ih) ih.remove();
+      document.getElementById('menu').classList.add('fade-out');
+      document.getElementById('score').classList.add('hidden');
 
-  stop() {
-    this.scorePanel.style.display = 'block';
-    document.getElementById('score-p').innerHTML = Math.floor(this.score);
-
-    this.playing = false;
+      // });
+    }
+    
+    stop() {
+      this.scorePanel.style.display = 'block';
+      document.getElementById('score-p').innerHTML = Math.floor(this.score);
+      
+      this.playing = false;
+      document.getElementById('menu').classList.remove('fade-out');
+      document.getElementById('score').classList.remove('hidden');
     // menu.fadeIn(MENU_FADE_IN_DURATION);
   }
 
