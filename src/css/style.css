@@ -46,10 +46,13 @@ body {
   margin: 40px;
 }
 
-#initial-header {
+#initial-header, #score {
   position: absolute;
   top: 0;
   padding-top: 40px;
+}
+
+#initial-header{
   font-size: 48px;
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -78,4 +81,24 @@ body {
   background: rgba(0, 0, 0, 0.5);
   padding: 10px 35px;
   border-radius: 3px;
+}
+
+#score > h3 {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+#score > p {
+  font-weight: 700;
+  font-size: 48px;
+  margin: 10px;
+}
+
+.none {
+  display: none;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
 }
