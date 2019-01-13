@@ -1,5 +1,6 @@
 body {
   color: white;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .page-wrapper {
@@ -45,10 +46,36 @@ body {
   margin: 40px;
 }
 
+#initial-header {
+  position: absolute;
+  top: 0;
+  padding-top: 40px;
+  font-size: 48px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
 .welcome {
-  width: 30%;
+  min-width: 180px;
+  width: 35%;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  border-radius: 3px;
+}
+
+.welcome > h2 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .welcome > p {
   text-align: center;
+  margin: 15px;
+  font-size: 12px;
+}
+
+#start-button {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 35px;
+  border-radius: 3px;
 }
