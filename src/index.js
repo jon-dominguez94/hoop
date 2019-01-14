@@ -8,8 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const initialize = () => {
-
-
   container = document.getElementById('game');
   canvas = document.getElementById('game-canvas');
   const startButton = document.getElementById('start-button');
@@ -44,7 +42,20 @@ const onDocumentMouseMoveHandler = (event) => {
   game.mouse.previousY = game.mouse.y;
 
   game.mouse.x = event.clientX - (window.innerWidth - game.world.width) * 0.5;
-  game.mouse.y = event.clientY - (window.innerHeight - game.world.height) * 0.5;
+  // game.mouse.y = event.clientY - (window.innerHeight - game.world.height) * 0.5;
+  // mouse tracking fix. TODO: find real solution
+  game.mouse.y = event.clientY - (window.innerHeight - game.world.height) * 0.5 - 30;
+
+  console.log({
+    gameMouseX: game.mouse.x,
+    eventclientX: event.clientX,
+    windowinnerWidth: window.innerWidth,
+    gameWorldWidth: game.world.width,
+    gameMouseY: game.mouse.y,
+    eventclienty: event.clientY,
+    windowinnerheight: window.innerHeight,
+    gameWorldheight: game.world.height
+  });
 
   game.mouse.velocityX = Math.abs(game.mouse.x - game.mouse.previousX) / game.world.width;
   game.mouse.velocityY = Math.abs(game.mouse.y - game.mouse.previousY) / game.world.height;
@@ -63,10 +74,4 @@ const onWindowResizeHandler = () => {
 
   canvas.width = game.world.width;
   canvas.height = game.world.height;
-
-  var canvasX = Math.max((window.innerWidth - game.world.width) * 0.5, 1);
-  var canvasY = Math.max((window.innerHeight - game.world.height) * 0.5, 1);
-
-  container.style.left = canvasX;
-  container.style.top = canvasY;
 };
