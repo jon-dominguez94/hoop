@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Hoop</title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="../src/css/reset.css" />
-  <link rel="stylesheet" type="text/css" href="../src/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="./src/css/reset.css" />
+  <link rel="stylesheet" type="text/css" href="./src/css/style.css" />
 </head>
 <body>
   <div class="page-wrapper">
@@ -20,10 +20,10 @@
       </div>
       <div class="profile-links">
         <a href="https://github.com/jon-dominguez94">
-          <img src="../src/github.png" alt="GitHub">
+          <img src="./src/github.png" alt="GitHub">
         </a>
         <a href="https://www.linkedin.com/in/jondominguez94/">
-          <img src="../src/linkedin.png" alt="LinkedIn">
+          <img src="./src/linkedin.png" alt="LinkedIn">
         </a>
       </div>
     </div>
@@ -31,7 +31,8 @@
       <div id="game" class="game-container fade-in">
         <canvas id="game-canvas"></canvas>
         <div class="fade-in" id="menu">
-          <img id="initial-header" src="https://fontmeme.com/permalink/190114/5c9f42bc5327b219103fa65b3c0b584b.png">
+          <img id="initial-header" src="https://fontmeme.com/permalink/190114/7d6ae5c593041926095448c6bd964b8d.png">
+          <!-- <img id="initial-header" src="https://fontmeme.com/permalink/190114/5c9f42bc5327b219103fa65b3c0b584b.png"> -->
           <div class="hidden" id="score">
             <h3>Your Score:</h3>
             <p id="score-p">100000</p>
@@ -45,17 +46,17 @@
       </div>
     </div>
     
-    <script src="./main.js"></script>
+    <script src="./dist/main.js"></script>
   </div>
-  <iframe src="../src/sounds/silence.wav" allow="autoplay" id="audio" style="display:none"></iframe>
-  <audio id="bgm" src='../src/sounds/bg.wav' autoplay loop></audio>
-  <audio id="move" src='../src/sounds/move.wav'></audio>
-  <audio id="open" src='../src/sounds/open.wav'></audio>
-  <audio id="close" src='../src/sounds/close.wav'></audio>
-  <audio id="kill" src='../src/sounds/kill.wav'></audio>
-  <audio id="die" src='../src/sounds/die.wav'></audio>
-  <audio id="killbomb" src='../src/sounds/killbomb.wav'></audio>
-  <audio id="upgrade" src='../src/sounds/upgrade.wav'></audio>
-  <audio id="fail" src='../src/sounds/fail.wav'></audio>
+  <iframe src="./src/sounds/silence.wav" allow="autoplay" id="audio" style="display:none"></iframe>
+  <audio id="bgm" src='./src/sounds/bg.wav' autoplay loop></audio>
+  <audio id="move" src='./src/sounds/move.wav'></audio>
+  <audio id="open" src='./src/sounds/open.wav'></audio>
+  <audio id="close" src='./src/sounds/close.wav'></audio>
+  <audio id="kill" src='./src/sounds/kill.wav'></audio>
+  <audio id="die" src='./src/sounds/die.wav'></audio>
+  <audio id="killbomb" src='./src/sounds/killbomb.wav'></audio>
+  <audio id="upgrade" src='./src/sounds/upgrade.wav'></audio>
+  <audio id="fail" src='./src/sounds/fail.wav'></audio>
 </body>
 </html>
