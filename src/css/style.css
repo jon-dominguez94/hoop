@@ -10,6 +10,8 @@ canvas {
 .page-wrapper {
   height: 100vh;
   background: url('../galaxy.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
 }
@@ -17,6 +19,8 @@ canvas {
 .header {
   flex: 0 1 50px;
   background: rgba(11,11,11,0.6);
+  display: flex;
+  justify-content: space-between;
 }
 
 .main {
@@ -101,6 +105,11 @@ canvas {
   color: #FF00FF;
 }
 
+
+.github-pic {
+  height: 80%;
+  width: auto;
+}
 
 
 
