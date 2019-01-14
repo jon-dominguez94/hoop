@@ -20,8 +20,7 @@ class Game {
       previousX: 0,
       previousY: 0,
       velocityX: 0,
-      velocityY: 0,
-      down: false
+      velocityY: 0
     };
 
     this.world = {
@@ -224,12 +223,12 @@ class Game {
 
     }
     
-    stop() {
+  stop() {
       this.scorePanel.style.display = 'block';
       document.getElementById('score-p').innerHTML = Math.floor(this.score);
       
       this.playing = false;
-      
+
       this.menu.classList.remove('behind');
       this.menu.classList.remove('fade-out');
       document.getElementById('score').classList.remove('hidden');

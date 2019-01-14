@@ -4,7 +4,7 @@ body {
 }
 
 canvas {
-  cursor: none;
+  /* cursor: none; */
 }
 
 .page-wrapper {
