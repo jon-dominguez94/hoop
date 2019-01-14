@@ -45,7 +45,6 @@ export class Multiplier {
   increase() {
     this.minor += this.step;
 
-    // Do we need to increment the major value?
     while (this.minor >= 1) {
       if (this.major < this.max) {
         this.major++;

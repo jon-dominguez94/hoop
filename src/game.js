@@ -220,8 +220,7 @@ class Game {
     setTimeout(() => {
       this.menu.classList.add('behind');
     }, 700);
-
-    }
+  }
     
   stop() {
       this.scorePanel.style.display = 'block';
@@ -244,51 +243,35 @@ class Game {
   }
 
   updatePlayer() {
-
-    // Interpolate towards the mouse, results in smooth
-    // movement
     this.player.interpolate(this.mouse.x, this.mouse.y, 0.4);
 
-    // Add points to the trail, if needed
     while (this.player.trail.length < this.player.length) {
       this.player.trail.push(new Point(this.player.x, this.player.y));
     }
 
-    // Remove the oldest point in the trail
     this.player.trail.shift();
-
-    // No energy – no game
     if (this.player.energy === 0) {
       this.stop();
     }
-
   }
 
   renderPlayer() {
-    // Begin the trail path
     this.context.beginPath();
-
     const bounds = new Region();
-    const i = this.player.trail.length;
 
-    // Draw a curve through the tail
-    for (let i = 0, len = this.player.trail.length; i < len; i++) {
+    for (let i = 0; i < this.player.trail.length; i++) {
       var p1 = this.player.trail[i];
       var p2 = this.player.trail[i + 1];
 
       if (i === 0) {
-        // This is the first loop, so we need to start by moving into position
         this.context.moveTo(p1.x + (p2.x - p1.x) / 2, p1.y + (p2.y - p1.y) / 2);
       }
       else if (p2) {
-        // Draw a curve between the current and next trail point
         this.context.quadraticCurveTo(p1.x, p1.y, p1.x + (p2.x - p1.x) / 2, p1.y + (p2.y - p1.y) / 2);
       }
 
       bounds.inflate(p1.x, p1.y);
     }
-
-    // Draw the trail stroke
     this.context.strokeStyle = "#FB7200";
     this.context.lineWidth = 2;
     this.context.stroke();
@@ -305,10 +288,6 @@ class Game {
 
     if (this.playing) {
       multipliedOffset = offset * this.multiplier.major;
-
-      // Adjust the score, but scale the adjustment by a factor
-      // of the framerate. This is done to avoid giving people
-      // with low FPS an advantage.
       this.score += multipliedOffset * (this.fps / constants.FRAMERATE);
     }
 
@@ -583,12 +562,12 @@ class Game {
       var bmp = this.context.getImageData(0, 0, this.world.width, this.world.height);
       var bmpw = bmp.width;
       var pixels = bmp.data;
-      // console.log(bmp);
       var casualties = [];
 
-      var i = this.enemies.length;
+      // var i = this.enemies.length;
 
-      while (i--) {
+      // while (i--) {
+      for(let i = this.enemies.length - 1; i >= 0; i--){
         var enemy = this.enemies[i];
 
         var ex = Math.round(enemy.x);

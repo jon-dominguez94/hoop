@@ -10,13 +10,12 @@
 // })();
 
 export const requestAnimFrame = (cb) => {
-  // console.log('anim');
   return window.requestAnimationFrame(cb) ||
     window.webkitRequestAnimationFrame(cb) ||
     window.mozRequestAnimationFrame(cb) ||
     window.oRequestAnimationFrame(cb) ||
     window.msRequestAnimationFrame(cb) ||
-    function (/* function */ cb, /* DOMElement */ element) {
+    function (cb) {
       window.setTimeout(cb, 1000 / 60);
     };
 };

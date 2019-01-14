@@ -12,7 +12,6 @@ class Player extends Entity {
 
   adjustEnergy(offset){
     this.energy = Math.min(Math.max(this.energy + offset, 0), 100);
-  
   }
 }
 

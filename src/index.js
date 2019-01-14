@@ -28,7 +28,7 @@ const initialize = () => {
     game.update();
   }
   else {
-    alert('Doesn\'t seem like your browser supports the HTML5 canvas element :(');
+    alert('Your browser doesn\'t) support HTML5 canvas');
   }
 };
 
@@ -45,17 +45,6 @@ const onDocumentMouseMoveHandler = (event) => {
   // game.mouse.y = event.clientY - (window.innerHeight - game.world.height) * 0.5;
   // mouse tracking fix. TODO: find real solution
   game.mouse.y = event.clientY - (window.innerHeight - game.world.height) * 0.5 - 30;
-
-  console.log({
-    gameMouseX: game.mouse.x,
-    eventclientX: event.clientX,
-    windowinnerWidth: window.innerWidth,
-    gameWorldWidth: game.world.width,
-    gameMouseY: game.mouse.y,
-    eventclienty: event.clientY,
-    windowinnerheight: window.innerHeight,
-    gameWorldheight: game.world.height
-  });
 
   game.mouse.velocityX = Math.abs(game.mouse.x - game.mouse.previousX) / game.world.width;
   game.mouse.velocityY = Math.abs(game.mouse.y - game.mouse.previousY) / game.world.height;

@@ -16,9 +16,7 @@ const constants = {
   ENERGY_PER_BOMB_ENCLOSED: -30,
   MULTIPLIER_LIMIT: 5,
 
-  HEADER_HEIGHT: 30,
-  MENU_FADE_IN_DURATION:600,
-  MENU_FADE_OUT_DURATION: 600,
+  HEADER_HEIGHT: 30
 };
 
 export default constants;
