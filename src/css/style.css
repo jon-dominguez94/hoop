@@ -106,6 +106,13 @@ canvas {
   color: #FF00FF;
 }
 
+.profile-links {
+  width: 80px;
+  padding-top: 5px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: space-between;
+}
 
 .profile-links img {
   height: 80%;
