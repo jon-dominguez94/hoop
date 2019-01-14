@@ -272,7 +272,9 @@ class Game {
 
       bounds.inflate(p1.x, p1.y);
     }
-    this.context.strokeStyle = "#FB7200";
+    this.context.strokeStyle = "#BA55D3";
+    // this.context.strokeStyle = "#8A2BE2";
+    // this.context.strokeStyle = "#FB7200";
     this.context.lineWidth = 2;
     this.context.stroke();
 
@@ -362,8 +364,12 @@ class Game {
     this.context.shadowOffsetX = 0;
     this.context.shadowOffsetY = 0;
     this.context.shadowBlur = 14;
-    this.context.shadowColor = "rgba(255,150,0,0.9)";
-    this.context.fillStyle = 'rgba(251,114,0, 0.8)';
+    this.context.shadowColor = "rgba(255,0,255, 0.9)";
+    this.context.fillStyle = "rgba(255,0,255, 0.8)";
+    // this.context.shadowColor = "rgba(178,73,255,0.9)";
+    // this.context.fillStyle = "rgba(138,43,226, 0.8)";
+    // this.context.shadowColor = "rgba(255,150,0,0.9)";
+    // this.context.fillStyle = 'rgba(251,114,0, 0.8)';
     // this.context.shadowColor = "rgba(0,240,255,0.9)";
     // this.context.fillStyle = 'rgba(0,200,220, 0.8)';
     this.context.fillRect(0, 2, (this.player.animatedEnergy / 100) * energyBarWidth, energyBarHeight);
@@ -378,7 +384,9 @@ class Game {
 
     // Time
     this.context.font = "bold 10px Arial";
-    this.context.fillStyle = "rgba(251,114,0, 0.8)";
+    this.context.fillStyle = "rgb(255,0,255)";
+    // this.context.fillStyle = "rgb(138,43,226)";
+    // this.context.fillStyle = "rgba(251,114,0, 0.8)";
     this.context.fillText(Math.round(this.duration / 1000) + 's', 35, 8);
 
     this.context.translate(70, 0);
@@ -390,7 +398,9 @@ class Game {
 
     // Score
     this.context.font = "bold 10px Arial";
-    this.context.fillStyle = "rgba(251,114,0, 0.8)";
+    this.context.fillStyle = "rgb(255,0,255)";
+    // this.context.fillStyle = "rgb(138,43,226)";
+    // this.context.fillStyle = "rgba(251,114,0, 0.8)";
     this.context.fillText(Math.floor(this.score), 47, 8);
     
     this.context.translate(90, 0);
@@ -423,8 +433,12 @@ class Game {
         this.context.shadowBlur = 14;
         // this.context.shadowColor = "rgba(0,240,255,0.9)";
         // this.context.fillStyle = 'rgba(0,200,220,0.8)';
-        this.context.shadowColor = "rgba(255,150,0,0.9)";
-        this.context.fillStyle = 'rgba(251,114,0, 0.8)';
+        // this.context.shadowColor = "rgba(255,150,0,0.9)";
+        // this.context.fillStyle = 'rgba(251,114,0, 0.8)';
+        this.context.shadowColor = "rgba(255,0,255, 0.9)";
+        this.context.fillStyle = "rgba(255,0,255, 0.9)";
+        // this.context.shadowColor = "rgba(178,73,255,0.9)";
+        // this.context.fillStyle = "rgba(138,43,226, 0.8)";
 
         if (i < this.multiplier.major - 1) {
           // We're drawing a major (entirely filled) step
@@ -432,7 +446,9 @@ class Game {
         }
         else {
           // We're drawing a minor (partly filled) step
-          this.context.fillStyle = "rgba(251,114,0," + 0.8 * this.multiplier.minor + ")";
+          this.context.fillStyle = "rgba(255,0,255," + 0.8 * this.multiplier.minor + ")";
+          // this.context.fillStyle = "rgba(138,43,226," + 0.8 * this.multiplier.minor + ")";
+          // this.context.fillStyle = "rgba(251,114,0," + 0.8 * this.multiplier.minor + ")";
           // this.context.fillStyle = 'rgba(0,200,220,' + (0.8 * this.multiplier.minor) + ')';
           this.context.arc(x, y, radius * this.multiplier.minor, 0, Math.PI * 2, false);
         }
@@ -549,8 +565,12 @@ class Game {
       const gradient = this.context.createRadialGradient(center.x, center.y, 0, center.x, center.y, bounds.size());
       // gradient.addColorStop(1, 'rgba(0, 255, 255, 0.0)');
       // gradient.addColorStop(0, 'rgba(0, 255, 255, 0.2)');
-      gradient.addColorStop(1, "rgba(255, 150, 0, 0.0)");
-      gradient.addColorStop(0, "rgba(255, 150, 0, 0.2)");
+      gradient.addColorStop(1, "rgba(255,0,255, 0.0)");
+      gradient.addColorStop(0, "rgba(255,0,255, 0.2)");
+      // gradient.addColorStop(1, "rgba(138,43,226, 0.0)");
+      // gradient.addColorStop(0, "rgba(138,43,226, 0.2)");
+      // gradient.addColorStop(1, "rgba(255, 150, 0, 0.0)");
+      // gradient.addColorStop(0, "rgba(255, 150, 0, 0.2)");
       this.context.fillStyle = gradient;
       this.context.closePath();
 
@@ -586,7 +606,8 @@ class Game {
           var index = indices[j];
           // console.log(`first: ${pixels[index + 1]}`);
           // console.log(`second: ${pixels[index + 2]}`);
-          if (pixels[index + 1] > 0 && pixels[index + 2] === 0) {
+          // if (pixels[index + 1] > 0 && pixels[index + 2] === 0) {
+          if (pixels[index + 1] >= 0 && pixels[index + 2] >= 200) {
 
             if (enemy.type === constants.ENEMY_TYPE_BOMB || enemy.type === constants.ENEMY_TYPE_BOMB_MOVER) {
               this.handleBombInClosure(enemy);

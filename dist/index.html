@@ -12,13 +12,26 @@
 <body>
   <div class="page-wrapper">
     <div class="header">
-      
+      <div>
+        <h1 class="game-name">Hoop</h1>
+      </div>
+      <div id="mute-button" class="mute">
+        MUTE
+      </div>
+      <div class="profile-links">
+        <a href="https://github.com/jon-dominguez94">
+          <img src="../src/github.png" alt="GitHub">
+        </a>
+        <a href="https://www.linkedin.com/in/jondominguez94/">
+          <img src="../src/linkedin.png" alt="LinkedIn">
+        </a>
+      </div>
     </div>
     <div class="main">
-      <div id="game" class="game-container">
+      <div id="game" class="game-container fade-in">
         <canvas id="game-canvas"></canvas>
         <div class="fade-in" id="menu">
-          <h1 id="initial-header">Hoop</h1>
+          <img id="initial-header" src="https://fontmeme.com/permalink/190114/5c9f42bc5327b219103fa65b3c0b584b.png">
           <div class="hidden" id="score">
             <h3>Your Score:</h3>
             <p id="score-p">100000</p>
@@ -34,5 +47,7 @@
     
     <script src="./main.js"></script>
   </div>
+  <iframe src="../src/sounds/silence.wav" allow="autoplay" id="audio" style="display:none"></iframe>
+  <audio id="bgm" src='../src/sounds/bg.wav' autoplay loop></audio>
 </body>
 </html>

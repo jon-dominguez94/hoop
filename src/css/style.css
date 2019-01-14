@@ -9,14 +9,20 @@ canvas {
 
 .page-wrapper {
   height: 100vh;
+  width: 100vw;
   background: url('../galaxy.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
 }
 
 .header {
-  flex: 0 1 60px;
-  background: #111111;
+  flex: 0 1 50px;
+  background: rgba(11,11,11,0.6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .main {
@@ -27,8 +33,9 @@ canvas {
 }
 
 .game-container {
-  background: #010101;
+  background:  rgba(0,0,0,0.8);
   position: relative;
+  border-radius: 5px;
 }
 
 /*  #FB7200; */
@@ -40,7 +47,7 @@ canvas {
 }
 
 #menu {
-  background-image: radial-gradient(ellipse, rgba(251, 114, 0, 0.5), black);
+  background-image: radial-gradient(ellipse, rgba(255,0,255, 0.5), black);
   position: absolute;
   top: 0;
   left: 0;
@@ -55,10 +62,11 @@ canvas {
   padding-top: 40px;
 }
 
-#initial-header{
-  font-size: 48px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
+#initial-header {
+  width: 320px;
+  position: absolute;
+  top:0;
+  padding-top: 20px;
 }
 
 .welcome {
@@ -97,10 +105,31 @@ canvas {
   font-size: 48px;
   margin: 10px;
   text-align: center;
+  color: #FF00FF;
 }
 
+.profile-links {
+  width: 80px;
+  padding-top: 7px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: space-between;
+}
 
+.profile-links img {
+  height: 80%;
+  width: auto;
+}
 
+.game-name {
+  font-size: 22px;
+  margin-left: 10px;
+}
+
+.mute {
+  cursor: pointer;
+  font-size: 14px;
+}
 
 /* fade effects*/
 
