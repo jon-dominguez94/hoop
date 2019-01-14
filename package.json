@@ -4,15 +4,21 @@
   "description": "## Background and Overview",
   "main": "index.js",
   "dependencies": {
-    "live-server": "^1.2.1"
+    "live-server": "^1.2.1",
+    "webpack": "^4.28.4"
   },
   "devDependencies": {
-    "webpack": "^4.28.1",
+    "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1"
+  },
+  "engines": {
+    "node": "10.13.0",
+    "npm": "6.5.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --watch --mode=development"
+    "dev": "webpack --watch --mode=development",
+    "postinstall": "webpack"
   },
   "repository": {
     "type": "git",
