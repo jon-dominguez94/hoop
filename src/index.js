@@ -57,7 +57,7 @@ const onWindowResizeHandler = () => {
   // game.world.height = constants.TOUCH_INPUT ? window.innerHeight : constants.DEFAULT_HEIGHT;
   if(constants.TOUCH_INPUT){
     game.world.width = window.innerWidth;
-    game.world.height = window.innerHeight;
+    game.world.height = window.innerHeight - 50;
   } else {
     game.world.width = window.innerWidth < constants.DEFAULT_WIDTH ? window.innerWidth : constants.DEFAULT_WIDTH;
     game.world.height = window.innerHeight < constants.DEFAULT_HEIGHT ? window.innerHeight : constants.DEFAULT_HEIGHT;

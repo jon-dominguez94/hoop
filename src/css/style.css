@@ -62,10 +62,11 @@ canvas {
   padding-top: 40px;
 }
 
-#initial-header{
-  font-size: 48px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
+#game-logo {
+  width: 320px;
+  position: absolute;
+  top:0;
+  padding-top: 20px;
 }
 
 .welcome {
