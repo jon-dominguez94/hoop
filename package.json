@@ -1,13 +1,10 @@
 {
-  "name": "hoop",
+  "name": "Hoop",
   "version": "1.0.0",
-  "description": "## Background and Overview",
+  "description": "Hoop Game by JONDoOM",
   "main": "index.js",
   "dependencies": {
     "live-server": "^1.2.1",
-    "webpack": "^4.28.4"
-  },
-  "devDependencies": {
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1"
   },
