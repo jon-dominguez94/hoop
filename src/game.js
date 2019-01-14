@@ -81,9 +81,11 @@ class Game {
     ctx.beginPath();
     ctx.arc(canvasWidth * 0.5, canvasHeight * 0.5, constants.ENEMY_SIZE, 0, Math.PI * 2, true);
     ctx.lineWidth = 2;
-    ctx.fillStyle = 'rgba(0,200,220, 0.9)';
     ctx.strokeStyle = 'rgba(255,255,255,0.4)';
-    ctx.shadowColor = 'rgba(0,240,255,0.9)';
+    ctx.fillStyle = "rgba(30,144,255,0.9)";
+    ctx.shadowColor = 'rgba(60,174,255,0.9)';
+    // ctx.fillStyle = 'rgba(0,200,220, 0.9)';
+    // ctx.shadowColor = 'rgba(0,240,255,0.9)';
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
     ctx.shadowBlur = 20;
@@ -99,17 +101,19 @@ class Game {
     ctx.beginPath();
     ctx.arc(canvasWidth * 0.5, canvasHeight * 0.5, constants.ENEMY_SIZE * 1.4, 0, Math.PI * 2, true);
     ctx.lineWidth = 2;
-    ctx.fillStyle = 'rgba(190,220,90, 0.9)';
     ctx.strokeStyle = 'rgba(255,255,255,0.4)';
-    ctx.shadowColor = 'rgba(220,240,150,0.9)';
+    ctx.fillStyle = "rgba(216,191,216, 0.9)";
+    ctx.shadowColor = 'rgba(255,231,255,0.9)';
+    // ctx.fillStyle = 'rgba(190,220,90, 0.9)';
+    // ctx.shadowColor = 'rgba(220,240,150,0.9)';
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
     ctx.shadowBlur = 20;
     ctx.stroke();
     ctx.fill();
-
+    
     this.sprites.enemyDyingA = cvs;
-
+    
     cvs = document.createElement('canvas');
     cvs.setAttribute('width', canvasWidth);
     cvs.setAttribute('height', canvasHeight);
@@ -117,9 +121,11 @@ class Game {
     ctx.beginPath();
     ctx.arc(canvasWidth * 0.5, canvasHeight * 0.5, constants.ENEMY_SIZE * 1.4, 0, Math.PI * 2, true);
     ctx.lineWidth = 2;
-    ctx.fillStyle = 'rgba(190,220,90, 0.9)';
     ctx.strokeStyle = 'rgba(255,255,255,0.4)';
-    ctx.shadowColor = 'rgba(220,240,150,0.9)';
+    ctx.fillStyle = "rgba(216,191,216, 0.9)";
+    ctx.shadowColor = 'rgba(255,231,255,0.9)';
+    // ctx.fillStyle = 'rgba(190,220,90, 0.9)';
+    // ctx.shadowColor = 'rgba(220,240,150,0.9)';
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
     ctx.shadowBlur = 10;
@@ -171,7 +177,6 @@ class Game {
     this.timeLastFrame = 0;
   }
   
-
   update(){
     this.clear();
 
