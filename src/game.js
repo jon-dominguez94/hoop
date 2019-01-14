@@ -15,6 +15,9 @@ class Game {
     this.scorePanel = document.getElementById('score');
     this.openSound = document.getElementById('open');
     this.closeSound = document.getElementById('close');
+    this.killSound = document.getElementById('kill');
+    this.killbombSound = document.getElementById('killbomb');
+    this.dieSound = document.getElementById('die');
 
     this.mouse = {
       x: 0,
@@ -742,13 +745,15 @@ class Game {
   }
 
   handleEnemyDeath(entity) {
+    this.dieSound.currentTime = 0;
+    this.dieSound.play();
+
     this.player.adjustEnergy(constants.ENERGY_PER_ENEMY_DEATH);
     this.multiplier.reset();
 
     this.emitParticles('#eeeeee', entity.x, entity.y, 3, 15);
 
     this.notify(constants.ENERGY_PER_ENEMY_DEATH + '♥', entity.x, entity.y, 1.2, [230, 90, 90]);
-
   }
 
   emitParticles(color, x, y, speed, quantity) {
@@ -840,6 +845,10 @@ class Game {
   }
 
   handleEnemyInClosure(entity) {
+
+    this.killSound.currentTime = 0;
+    this.killSound.play();
+
     this.player.adjustEnergy(constants.ENERGY_PER_ENEMY_ENCLOSED);
 
     const multMajor = this.multiplier.major;
@@ -857,12 +866,14 @@ class Game {
   }
 
   handleBombInClosure(entity) {
+
+    this.killbombSound.currentTime = 0;
+    this.killbombSound.play();
+
     this.player.adjustEnergy(constants.ENERGY_PER_BOMB_ENCLOSED);
     this.multiplier.reset();
 
     this.notify(constants.ENERGY_PER_BOMB_ENCLOSED + '♥', entity.x, entity.y, 1.2, [230, 90, 90]);
-
-
   }
 
 }
