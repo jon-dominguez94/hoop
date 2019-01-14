@@ -13,6 +13,13 @@ class Game {
     this.context;
     this.menu = document.getElementById("menu");
     this.scorePanel = document.getElementById('score');
+    this.openSound = document.getElementById('open');
+    this.closeSound = document.getElementById('close');
+    this.killSound = document.getElementById('kill');
+    this.killbombSound = document.getElementById('killbomb');
+    this.dieSound = document.getElementById('die');
+    this.upgradeSound = document.getElementById('upgrade');
+    this.failSound = document.getElementById('fail');
 
     this.mouse = {
       x: 0,
@@ -163,6 +170,7 @@ class Game {
     this.timeStart = 0;
     this.timeLastFrame = 0;
   }
+  
 
   update(){
     this.clear();
@@ -208,6 +216,9 @@ class Game {
   start() {
     this.reset();
 
+    this.openSound.currentTime = 0;
+    this.openSound.play();
+
     this.timeStart = Date.now();
     this.timeLastFrame = this.timeStart;
 
@@ -223,15 +234,18 @@ class Game {
   }
     
   stop() {
-      this.scorePanel.style.display = 'block';
-      document.getElementById('score-p').innerHTML = Math.floor(this.score);
-      
-      this.playing = false;
+    this.closeSound.currentTime = 0;
+    this.closeSound.play();
 
-      this.menu.classList.remove('behind');
-      this.menu.classList.remove('fade-out');
-      document.getElementById('score').classList.remove('hidden');
-  }
+    this.scorePanel.style.display = 'block';
+    document.getElementById('score-p').innerHTML = Math.floor(this.score);
+    
+    this.playing = false;
+
+    this.menu.classList.remove('behind');
+    this.menu.classList.remove('fade-out');
+    document.getElementById('score').classList.remove('hidden');
+}
 
   invalidate(x, y, width, height) {
     this.dirtyRegions.push({
@@ -733,13 +747,17 @@ class Game {
   }
 
   handleEnemyDeath(entity) {
+    this.dieSound.currentTime = 0;
+    this.dieSound.play();
+
     this.player.adjustEnergy(constants.ENERGY_PER_ENEMY_DEATH);
     this.multiplier.reset();
+    this.failSound.currentTime = 0;
+    this.failSound.play();
 
     this.emitParticles('#eeeeee', entity.x, entity.y, 3, 15);
 
     this.notify(constants.ENERGY_PER_ENEMY_DEATH + '♥', entity.x, entity.y, 1.2, [230, 90, 90]);
-
   }
 
   emitParticles(color, x, y, speed, quantity) {
@@ -831,6 +849,10 @@ class Game {
   }
 
   handleEnemyInClosure(entity) {
+
+    this.killSound.currentTime = 0;
+    this.killSound.play();
+
     this.player.adjustEnergy(constants.ENERGY_PER_ENEMY_ENCLOSED);
 
     const multMajor = this.multiplier.major;
@@ -838,6 +860,8 @@ class Game {
 
     if (this.multiplier.major > multMajor) {
       this.notify('X' + this.multiplier.major, this.world.width / 2, this.world.height / 2, this.multiplier.major, [60, 250, 130]);
+      this.upgradeSound.currentTime = 0;
+      this.upgradeSound.play();
     }
 
     this.emitParticles('#eeeeee', entity.x, entity.y, 3, 6);
@@ -848,12 +872,16 @@ class Game {
   }
 
   handleBombInClosure(entity) {
+
+    this.killbombSound.currentTime = 0;
+    this.killbombSound.play();
+
     this.player.adjustEnergy(constants.ENERGY_PER_BOMB_ENCLOSED);
     this.multiplier.reset();
+    this.failSound.currentTime = 0;
+    this.failSound.play();
 
     this.notify(constants.ENERGY_PER_BOMB_ENCLOSED + '♥', entity.x, entity.y, 1.2, [230, 90, 90]);
-
-
   }
 
 }
