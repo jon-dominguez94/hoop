@@ -21,6 +21,7 @@ canvas {
   background: rgba(11,11,11,0.6);
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .main {
@@ -106,7 +107,7 @@ canvas {
 }
 
 
-.github-pic {
+.profile-links img {
   height: 80%;
   width: auto;
 }
