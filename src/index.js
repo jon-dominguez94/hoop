@@ -1,7 +1,7 @@
 import Game from './game';
 import constants from './constants';
 
-let container, game, canvas;
+let container, game, canvas, bgm;
 
 document.addEventListener('DOMContentLoaded', () => {
   initialize();
@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const initialize = () => {
   container = document.getElementById('game');
   canvas = document.getElementById('game-canvas');
+  bgm = document.getElementById('bgm');
   const startButton = document.getElementById('start-button');
 
   game = new Game();

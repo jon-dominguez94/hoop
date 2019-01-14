@@ -126,7 +126,10 @@ canvas {
   margin-left: 10px;
 }
 
-
+.mute {
+  cursor: pointer;
+  font-size: 14px;
+}
 
 /* fade effects*/
 
