@@ -42,11 +42,16 @@ const onStartButtonClick = (event) => {
 
 const onMuteButtonClick = (event) => {
   event.preventDefault();
+  const audioTags = document.getElementsByTagName('audio');
   if(bgm.muted === true){
-    bgm.muted = false;
+    for(let i = 0; i < audioTags.length; i++) {
+      audioTags[i].muted = false;
+    }
     muteButton.innerHTML = "MUTE";
   } else {
-    bgm.muted = true;
+    for (let i = 0; i < audioTags.length; i++) {
+      audioTags[i].muted = true;
+    }
     muteButton.innerHTML = "UNMUTE";
   } 
 };
