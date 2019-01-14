@@ -1,7 +1,7 @@
 import Game from './game';
 import constants from './constants';
 
-let container, game, canvas, bgm;
+let container, game, canvas, bgm, muteButton;
 
 document.addEventListener('DOMContentLoaded', () => {
   initialize();
@@ -11,6 +11,7 @@ const initialize = () => {
   container = document.getElementById('game');
   canvas = document.getElementById('game-canvas');
   bgm = document.getElementById('bgm');
+  muteButton = document.getElementById('mute-button');
   const startButton = document.getElementById('start-button');
 
   game = new Game();
@@ -19,6 +20,7 @@ const initialize = () => {
     game.context = canvas.getContext('2d');
 
     startButton.addEventListener('click', onStartButtonClick, false);
+    muteButton.addEventListener('click', onMuteButtonClick, false);
     document.addEventListener('mousemove', onDocumentMouseMoveHandler, false);
     window.addEventListener('resize', onWindowResizeHandler, false);
 
@@ -34,8 +36,19 @@ const initialize = () => {
 };
 
 const onStartButtonClick = (event) => {
-  game.start();
   event.preventDefault();
+  game.start();
+};
+
+const onMuteButtonClick = (event) => {
+  event.preventDefault();
+  if(bgm.muted === true){
+    bgm.muted = false;
+    muteButton.innerHTML = "MUTE";
+  } else {
+    bgm.muted = true;
+    muteButton.innerHTML = "UNMUTE";
+  } 
 };
 
 const onDocumentMouseMoveHandler = (event) => {
