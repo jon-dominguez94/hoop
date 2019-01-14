@@ -62,7 +62,7 @@ canvas {
   padding-top: 40px;
 }
 
-#game-logo {
+#initial-header {
   width: 320px;
   position: absolute;
   top:0;
