@@ -109,7 +109,7 @@ canvas {
 
 .profile-links {
   width: 80px;
-  padding-top: 5px;
+  padding-top: 7px;
   margin-right: 10px;
   display: flex;
   justify-content: space-between;
@@ -118,6 +118,11 @@ canvas {
 .profile-links img {
   height: 80%;
   width: auto;
+}
+
+.game-name {
+  font-size: 22px;
+  margin-left: 10px;
 }
 
 
