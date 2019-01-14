@@ -13,6 +13,8 @@ class Game {
     this.context;
     this.menu = document.getElementById("menu");
     this.scorePanel = document.getElementById('score');
+    this.openSound = document.getElementById('open');
+    this.closeSound = document.getElementById('close');
 
     this.mouse = {
       x: 0,
@@ -163,6 +165,7 @@ class Game {
     this.timeStart = 0;
     this.timeLastFrame = 0;
   }
+  
 
   update(){
     this.clear();
@@ -208,6 +211,9 @@ class Game {
   start() {
     this.reset();
 
+    this.openSound.currentTime = 0;
+    this.openSound.play();
+
     this.timeStart = Date.now();
     this.timeLastFrame = this.timeStart;
 
@@ -223,15 +229,18 @@ class Game {
   }
     
   stop() {
-      this.scorePanel.style.display = 'block';
-      document.getElementById('score-p').innerHTML = Math.floor(this.score);
-      
-      this.playing = false;
+    this.closeSound.currentTime = 0;
+    this.closeSound.play();
 
-      this.menu.classList.remove('behind');
-      this.menu.classList.remove('fade-out');
-      document.getElementById('score').classList.remove('hidden');
-  }
+    this.scorePanel.style.display = 'block';
+    document.getElementById('score-p').innerHTML = Math.floor(this.score);
+    
+    this.playing = false;
+
+    this.menu.classList.remove('behind');
+    this.menu.classList.remove('fade-out');
+    document.getElementById('score').classList.remove('hidden');
+}
 
   invalidate(x, y, width, height) {
     this.dirtyRegions.push({

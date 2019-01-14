@@ -62,6 +62,12 @@ const onDocumentMouseMoveHandler = (event) => {
 
   game.mouse.velocityX = Math.abs(game.mouse.x - game.mouse.previousX) / game.world.width;
   game.mouse.velocityY = Math.abs(game.mouse.y - game.mouse.previousY) / game.world.height;
+  // const moveSound = document.getElementById("move");
+  // if(moveSound.currentTime === 0 || moveSound.ended){
+  //   moveSound.pause();
+  //   moveSound.currentTime = 0;
+  //   moveSound.play();
+  // }
 };
 
 const onWindowResizeHandler = () => {
