@@ -17,7 +17,18 @@ Live Link: jon-dominguez94.github.io/hoop
 
 Hoop was built with pure `Javascript` and no external libraries. All game rendering and styling was done with `HTML5 Canvas`
 
-## Wireframes
+## Site
+
+### Landing Page
+
+Hoop is currently working on all modern browsers, as well as iOS and Android.
+
+<div style="display: flex; height: 350px; width: 56%; align-items: center;;">
+  <img src='./screenshots/landing.png' width="auto" height="250px" style="margin-right:70px">
+  <img src='./screenshots/ios.png' width="auto" height="350px">
+</div>
+
+<!-- ![](./screenshots/landing.png) ![](./screenshots/ios.png) -->
 
 This app will consist of a single page with a canvas. The canvas contains all the game info including health, score, time, and the board.
 
