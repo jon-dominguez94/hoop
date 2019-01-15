@@ -2,6 +2,7 @@ body {
   color: white;
   font-family: 'Open Sans', sans-serif;
   overflow: hidden;
+  position: fixed;
 }
 
 canvas {

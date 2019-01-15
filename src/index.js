@@ -121,3 +121,7 @@ const onCanvasTouchMoveHandler = (event) => {
 const onCanvasTouchEndHandler = (event) => {
   game.mouse.down = false;
 }
+
+document.addEventListener('ontouchmove', function(e) {
+  e.preventDefault();
+});
