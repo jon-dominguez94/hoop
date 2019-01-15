@@ -22,6 +22,9 @@ const initialize = () => {
     startButton.addEventListener('click', onStartButtonClick, false);
     muteButton.addEventListener('click', onMuteButtonClick, false);
     document.addEventListener('mousemove', onDocumentMouseMoveHandler, false);
+    canvas.addEventListener('touchstart', onCanvasTouchStartHandler, false);
+    canvas.addEventListener('touchmove', onCanvasTouchMoveHandler, false);
+    canvas.addEventListener('touchend', onCanvasTouchEndHandler, false);
     window.addEventListener('resize', onWindowResizeHandler, false);
 
     onWindowResizeHandler();
@@ -94,3 +97,27 @@ const onWindowResizeHandler = () => {
   canvas.width = game.world.width;
   canvas.height = game.world.height;
 };
+
+const onCanvasTouchStartHandler = (event) => {
+  if (event.touches.length == 1) {
+    event.preventDefault();
+
+    game.mouse.x = event.touches[0].pageX - (window.innerWidth - game.world.width) * 0.5;
+    game.mouse.y = event.touches[0].pageY - (window.innerHeight - game.world.height) * 0.5;
+
+    game.mouse.down = true;
+  }
+}
+
+const onCanvasTouchMoveHandler = (event) => {
+  if (event.touches.length == 1) {
+    event.preventDefault();
+
+    game.mouse.x = event.touches[0].pageX - (window.innerWidth - game.world.width) * 0.5;
+    game.mouse.y = event.touches[0].pageY - (window.innerHeight - game.world.height) * 0.5 - 20;
+  }
+}
+
+const onCanvasTouchEndHandler = (event) => {
+  game.mouse.down = false;
+}
