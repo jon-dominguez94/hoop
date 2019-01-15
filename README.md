@@ -23,9 +23,9 @@ Hoop was built with pure `Javascript` and no external libraries. All game render
 
 Hoop is currently working on all modern browsers, as well as iOS and Android.
 
-<div style="display: flex; height: 350px; width: 56%; align-items: center;;">
-  <img src='./screenshots/landing.png' width="auto" height="250px" style="margin-right:70px">
-  <img src='./screenshots/ios.png' width="auto" height="350px">
+<div style="display: flex; align-items: center; justify-content: space-between;">
+  <img src='./screenshots/landing.png' width="60%" height="auto" style="margin-right:70px">
+  <img src='./screenshots/ios.png' width="30%" height="auto">
 </div>
 
 <!-- ![](./screenshots/landing.png) ![](./screenshots/ios.png) -->
