@@ -40,5 +40,44 @@ Upon game death, the menu will reappear with your score and buttton to start a n
 
 There are many things rendering on the board at once so it was difficult to create the game logic. I went through many implementations to figure out when and where orbs were encompassed but I finally landed on the following:
 
-* 
+* Render the players trail
+  * Array of points connected with quadratic curves
+* Check every combination of four points in the trail to see if there are any collisions
+  * At least four points to create a closed circle
+* Save the start index, end index, and collision point
+* Fill that area with a radial-gradient to signify closed circle
+* For each active orb, grab each pixel position on the board
+  * Each orb is its own canvas on top of the original canvas. Therefore, each orb's position on the window has a matching position on the board
+* Check those pixels on the board
+  * If it is clear, do nothing. If it has the color of the radial-gradient, orb has been enclosed so react depending on the orb type
 
+```
+for(let i = this.enemies.length - 1; i >= 0; i--){
+  const enemy = this.enemies[i];
+  const ex = Math.round(enemy.x);
+  const ey = Math.round(enemy.y);
+
+  const indices = [
+    ((ey * bmpw) + Math.round(ex - constants.ENEMY_SIZE)) * 4,
+    ((ey * bmpw) + Math.round(ex + constants.ENEMY_SIZE)) * 4,
+    ((Math.round(ey - constants.ENEMY_SIZE) * bmpw) + ex) * 4,
+    ((Math.round(ey + constants.ENEMY_SIZE) * bmpw) + ex) * 4
+  ];
+  for(j = indices.length - 1; j >= 0; j++){}
+    const index = indices[j];
+    if (pixels[index + 1] >= 0 && pixels[index + 2] >= 200) {
+      if (enemy.type === constants.ENEMY_TYPE_BOMB || enemy.type === constants.ENEMY_TYPE_BOMB_MOVER) {
+        this.handleBombInClosure(enemy);
+      }
+      else {
+        this.handleEnemyInClosure(enemy);
+
+        casualties.push(enemy);
+      }
+
+      this.enemies.splice(i, 1);
+      break;
+    }
+  }
+}
+```
