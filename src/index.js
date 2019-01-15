@@ -25,7 +25,7 @@ const initialize = () => {
     document.addEventListener('mousemove', onDocumentMouseMoveHandler, false);
     canvas.addEventListener('touchstart', onCanvasTouchStartHandler, false);
     canvas.addEventListener('touchmove', onCanvasTouchMoveHandler, false);
-    canvas.addEventListener('touchend', onCanvasTouchEndHandler, false);
+    // canvas.addEventListener('touchend', onCanvasTouchEndHandler, false);
     window.addEventListener('resize', onWindowResizeHandler, false);
 
     onWindowResizeHandler();
@@ -102,7 +102,7 @@ const onCanvasTouchStartHandler = (event) => {
     game.mouse.x = event.touches[0].pageX - (window.innerWidth - game.world.width) * 0.5;
     game.mouse.y = event.touches[0].pageY - (innerHeight() - game.world.height) * 0.5;
 
-    game.mouse.down = true;
+    // game.mouse.down = true;
   }
 };
 
@@ -116,9 +116,9 @@ const onCanvasTouchMoveHandler = (event) => {
   }
 };
 
-const onCanvasTouchEndHandler = (event) => {
-  game.mouse.down = false;
-};
+// const onCanvasTouchEndHandler = (event) => {
+//   game.mouse.down = false;
+// };
 
 // document.addEventListener('ontouchmove', function(e) {
 //   e.preventDefault();
