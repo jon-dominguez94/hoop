@@ -86,7 +86,8 @@ const onWindowResizeHandler = () => {
   // game.world.height = constants.TOUCH_INPUT ? window.innerHeight : constants.DEFAULT_HEIGHT;
   if(constants.TOUCH_INPUT){
     game.world.width = window.innerWidth;
-    game.world.height = innerHeight() - 100;
+    game.world.height = innerHeight() - 150;
+    document.getElementById('main').style.alignItems = 'flex-start';
     // game.world.height = window.innerHeight - 50;
   } else {
     game.world.width = window.innerWidth < constants.DEFAULT_WIDTH ? window.innerWidth : constants.DEFAULT_WIDTH;
@@ -105,7 +106,7 @@ const onCanvasTouchStartHandler = (event) => {
     event.preventDefault();
 
     game.mouse.x = event.touches[0].pageX - (window.innerWidth - game.world.width) * 0.5;
-    game.mouse.y = event.touches[0].pageY - (innerHeight() - game.world.height) * 0.5;
+    game.mouse.y = event.touches[0].pageY - (innerHeight() - game.world.height) * 0.5 - 70;
 
     game.mouse.down = true;
   }
