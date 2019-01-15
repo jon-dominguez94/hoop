@@ -71,12 +71,6 @@ const onDocumentMouseMoveHandler = (event) => {
 
   game.mouse.velocityX = Math.abs(game.mouse.x - game.mouse.previousX) / game.world.width;
   game.mouse.velocityY = Math.abs(game.mouse.y - game.mouse.previousY) / game.world.height;
-  // const moveSound = document.getElementById("move");
-  // if(moveSound.currentTime === 0 || moveSound.ended){
-  //   moveSound.pause();
-  //   moveSound.currentTime = 0;
-  //   moveSound.play();
-  // }
 };
 
 const onWindowResizeHandler = () => {
@@ -117,7 +111,7 @@ const onCanvasTouchMoveHandler = (event) => {
     event.preventDefault();
 
     game.mouse.x = event.touches[0].pageX - (window.innerWidth - game.world.width) * 0.5;
-    game.mouse.y = event.touches[0].pageY - (innerHeight() - game.world.height) * 0.5;
+    game.mouse.y = event.touches[0].pageY - (innerHeight() - game.world.height) * 0.5 + 20;
     // game.mouse.y = event.touches[0].pageY;
   }
 };
@@ -126,6 +120,6 @@ const onCanvasTouchEndHandler = (event) => {
   game.mouse.down = false;
 };
 
-document.addEventListener('ontouchmove', function(e) {
-  e.preventDefault();
-});
+// document.addEventListener('ontouchmove', function(e) {
+//   e.preventDefault();
+// });
