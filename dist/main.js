@@ -106,7 +106,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nconst constants = {\n  FRAMERATE: 60,\n  DEFAULT_HEIGHT: 510,\n  DEFAULT_WIDTH: 900,\n  TOUCH_INPUT: navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/i),\n\n  ENEMY_COUNT: 2,\n  ENEMY_SIZE: 10,\n  ENEMY_TYPE_NORMAL: 1,\n  ENEMY_TYPE_BOMB: 2,\n\n  SCORE_PER_ENEMY: 30,\n  SCORE_PER_TICK: 0.02,\n  ENERGY_PER_ENEMY_DEATH: -20,\n  ENERGY_PER_ENEMY_ENCLOSED: 1,\n  ENERGY_PER_BOMB_ENCLOSED: -30,\n  MULTIPLIER_LIMIT: 5,\n\n  HEADER_HEIGHT: 30\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (constants);\n\n//# sourceURL=webpack:///./src/constants.js?");
+eval("__webpack_require__.r(__webpack_exports__);\nconst constants = {\n  FRAMERATE: 60,\n  DEFAULT_HEIGHT: 510,\n  DEFAULT_WIDTH: 900,\n  TOUCH_INPUT: navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/i),\n\n  ENEMY_COUNT: 2,\n  ENEMY_SIZE: 10,\n  ENEMY_TYPE_NORMAL: 1,\n  ENEMY_TYPE_BOMB: 2,\n\n  SCORE_PER_ENEMY: 50,\n  SCORE_PER_TICK: 0.2,\n  ENERGY_PER_ENEMY_DEATH: -20,\n  ENERGY_PER_ENEMY_ENCLOSED: 1,\n  ENERGY_PER_BOMB_ENCLOSED: -30,\n  MULTIPLIER_LIMIT: 6,\n\n  HEADER_HEIGHT: 30\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (constants);\n\n//# sourceURL=webpack:///./src/constants.js?");
 
 /***/ }),
 
