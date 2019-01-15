@@ -1,25 +1,21 @@
-# Hoop
+![](https://fontmeme.com/permalink/190115/4f00ef057837286d0eb8f1b65654103e.png)
 
 ## Background and Overview
 
-Hoop is a simple but addictive game. The main focus of the game is to use your mouse to draw a hoop around friendly objects on the board while avoiding enemy objects. Hooping around the friendly objects will increase your score, multiplier, and replenish your health. Hooping around enemy objects will decrease your health and reset your multiplier.
+Hoop is a simple but addictive game. The main focus of the game is to use your mouse/touchscreen to draw a hoop around blue orbs on the board while avoiding red orbs. Hooping around the blue orb will increase your score, multiplier, and replenish your health. Hooping around red orbs will decrease your health and reset your multiplier.
 
-The longer you survive, the faster objects will show up. Each object has a certain lifetime and will disappear when it expires. Friendly objects will flash before disappearing as an alert so you can give those priority. Allowing friendlies to disappear will reset your multiplier and decrease your health.
+The longer you survive, the faster objects will show up. Each object has a certain lifetime and will disappear when it expires. Blue will flash before disappearing as an alert so you can give those priority. Allowing blue orbs to die will reset your multiplier and decrease your health.
 
 The traced mouse trail will only last a certain amount of time before fading away. Objects must be fully encompassed with an active trail to count. Hooping around multiple friendlies with the same hoop will result in a bonus.
 
-## Funcitonality and MVPs
+Play until your health is depleted!
 
-In Hoop, users will be able to 
+## Demo
+Live Link: jon-dominguez94.github.io/hoop
 
- - [ ] Draw on the canvas using their mouse
- - [ ] Customize theme of game
- - [ ] Start the game when ready
- - [ ] Reset to play a new game
- - [ ] See their high score
+## Technologies
 
-In addition,this project will include
-[] An About dropdown describing the basic functionality
+Hoop was built with pure `Javascript` and no external libraries. All game rendering and styling was done with `HTML5 Canvas`
 
 ## Wireframes
 
