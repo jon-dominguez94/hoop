@@ -40,11 +40,11 @@ const initialize = () => {
   }
 };
 
-const playMusic() = () => {
+const playMusic = () => {
   for(i = 0; i < 2; i++){
     muteButton.click();
   }
-}
+};
 
 const onStartButtonClick = (event) => {
   event.preventDefault();
