@@ -106,7 +106,7 @@ const onCanvasTouchStartHandler = (event) => {
     event.preventDefault();
 
     game.mouse.x = event.touches[0].pageX - (window.innerWidth - game.world.width) * 0.5;
-    game.mouse.y = event.touches[0].pageY - (innerHeight() - game.world.height) * 0.5 - 70;
+    game.mouse.y = event.touches[0].pageY - (innerHeight() - game.world.height) * 0.5;
 
     game.mouse.down = true;
   }
@@ -117,7 +117,8 @@ const onCanvasTouchMoveHandler = (event) => {
     event.preventDefault();
 
     game.mouse.x = event.touches[0].pageX - (window.innerWidth - game.world.width) * 0.5;
-    game.mouse.y = event.touches[0].pageY - (innerHeight() - game.world.height) * 0.5 - 70;
+    game.mouse.y = event.touches[0].pageY - (innerHeight() - game.world.height) * 0.5 - 45;
+    // game.mouse.y = event.touches[0].pageY;
   }
 };
 
