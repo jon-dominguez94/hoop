@@ -30,9 +30,11 @@ Hoop is currently working on all modern browsers, as well as iOS and Android. Ho
 
 While playing, fully drawn hoops by the user will highlight with the game theme color. Notifications will show for points, health depletion, and multipliers
 
-![](./screenshots/playing.png)
+![](./screenshots/active.png)
 
 Upon game death, the menu will reappear with your score and buttton to start a new game
+
+![](./screenshots/end.png)
 
 ## Feature Highlights
 
@@ -50,6 +52,8 @@ There are many things rendering on the board at once so it was difficult to crea
   * Each orb is its own canvas on top of the original canvas. Therefore, each orb's position on the window has a matching position on the board
 * Check those pixels on the board
   * If it is clear, do nothing. If it has the color of the radial-gradient, orb has been enclosed so react depending on the orb type
+
+![](./screenshots/active.png)
 
 ```
 for(let i = this.enemies.length - 1; i >= 0; i--){
@@ -91,6 +95,8 @@ I wanted the multiplier to gradually step up before increasing to the next level
 * Check if the multiplier has reached a full step
   * If so, fill in the entire circle
   * Else, fill in the circle but adjust the radius by multiplying by the step
+
+![](./screenshots/mult.png)
 
 ```
 while (let i = constants.MULTIPLIER_LIMIT - 1; i >= 0; i--) {
