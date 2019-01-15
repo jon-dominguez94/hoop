@@ -16,10 +16,6 @@ const initialize = () => {
   const startButton = document.getElementById('start-button');
 
   game = new Game();
-  if(constants.TOUCH_INPUT){
-    muteButton.click();
-    muteButton.click();
-  }
 
   if (canvas && canvas.getContext) {
     game.context = canvas.getContext('2d');
@@ -33,6 +29,7 @@ const initialize = () => {
     window.addEventListener('resize', onWindowResizeHandler, false);
 
     onWindowResizeHandler();
+    playMusic();
 
     game.createSprites();
     game.reset();
@@ -42,6 +39,12 @@ const initialize = () => {
     alert('Your browser doesn\'t) support HTML5 canvas');
   }
 };
+
+const playMusic() = () => {
+  for(i = 0; i < 2; i++){
+    muteButton.click();
+  }
+}
 
 const onStartButtonClick = (event) => {
   event.preventDefault();
