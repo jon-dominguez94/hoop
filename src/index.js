@@ -1,5 +1,6 @@
 import Game from './game';
 import constants from './constants';
+import innerHeight from 'ios-inner-height';
 
 let container, game, canvas, bgm, muteButton;
 
@@ -85,7 +86,8 @@ const onWindowResizeHandler = () => {
   // game.world.height = constants.TOUCH_INPUT ? window.innerHeight : constants.DEFAULT_HEIGHT;
   if(constants.TOUCH_INPUT){
     game.world.width = window.innerWidth;
-    game.world.height = window.innerHeight - 50;
+    game.world.height = innerHeight() - 50;
+    // game.world.height = window.innerHeight - 50;
   } else {
     game.world.width = window.innerWidth < constants.DEFAULT_WIDTH ? window.innerWidth : constants.DEFAULT_WIDTH;
     game.world.height = window.innerHeight < constants.DEFAULT_HEIGHT ? window.innerHeight : constants.DEFAULT_HEIGHT;
@@ -107,7 +109,7 @@ const onCanvasTouchStartHandler = (event) => {
 
     game.mouse.down = true;
   }
-}
+};
 
 const onCanvasTouchMoveHandler = (event) => {
   if (event.touches.length == 1) {
@@ -116,11 +118,11 @@ const onCanvasTouchMoveHandler = (event) => {
     game.mouse.x = event.touches[0].pageX - (window.innerWidth - game.world.width) * 0.5;
     game.mouse.y = event.touches[0].pageY - (window.innerHeight - game.world.height) * 0.5 - 20;
   }
-}
+};
 
 const onCanvasTouchEndHandler = (event) => {
   game.mouse.down = false;
-}
+};
 
 document.addEventListener('ontouchmove', function(e) {
   e.preventDefault();

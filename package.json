@@ -4,6 +4,7 @@
   "description": "Hoop Game by JONDoOM",
   "main": "index.js",
   "dependencies": {
+    "ios-inner-height": "^1.1.0",
     "live-server": "^1.2.1",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1"
