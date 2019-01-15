@@ -29,7 +29,7 @@ const initialize = () => {
     window.addEventListener('resize', onWindowResizeHandler, false);
 
     onWindowResizeHandler();
-    playMusic();
+    setTimeout(playMusic, 1000);
 
     game.createSprites();
     game.reset();
