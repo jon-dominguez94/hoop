@@ -1,5 +1,18 @@
 ![](https://fontmeme.com/permalink/190115/4f00ef057837286d0eb8f1b65654103e.png)
 
+# Table of Contents
+- [Background](#background-and-overview)
+  - [Demo](#Demo)
+- [Technologies](#Technologies)
+- [Site](#Site)
+  - [Landing Page](#landing-page)
+  - [In-Game](#in-game)
+  - [Game Over](#game-over)
+- [Feature Highlights](#feature-highlights)
+  - [Handle Enclosures](#handle-enclosures)
+  - [Particles and Notifications](#particles-and-notifications)
+  - [Multiplier](#multiplier)
+
 ## Background and Overview
 
 Hoop is a simple but addictive game. The main focus of the game is to use your mouse/touchscreen to draw a hoop around blue orbs on the board while avoiding red orbs. Hooping around the blue orb will increase your score, multiplier, and replenish your health. Hooping around red orbs will decrease your health and reset your multiplier.
@@ -28,9 +41,13 @@ Hoop is currently working on all modern browsers, as well as iOS and Android. Ho
   <img src='./screenshots/ios.png' width="33%" height="auto">
 </div>
 
+### In Game
+
 While playing, fully drawn hoops by the user will highlight with the game theme color. Notifications will show for points, health depletion, and multipliers
 
 ![](./screenshots/active.png)
+
+### Game Over
 
 Upon game death, the menu will reappear with your score and buttton to start a new game
 
@@ -38,7 +55,7 @@ Upon game death, the menu will reappear with your score and buttton to start a n
 
 ## Feature Highlights
 
-### Player Trail
+### Handle Enclosures
 
 There are many things rendering on the board at once so it was difficult to create the game logic. I went through many implementations to figure out when and where orbs were encompassed but I finally landed on the following:
 
@@ -53,7 +70,7 @@ There are many things rendering on the board at once so it was difficult to crea
 * Check those pixels on the board
   * If it is clear, do nothing. If it has the color of the radial-gradient, orb has been enclosed so react depending on the orb type
 
-![](./screenshots/active.png)
+![](./screenshots/playing.png)
 
 ```
 for(let i = this.enemies.length - 1; i >= 0; i--){
@@ -82,6 +99,56 @@ for(let i = this.enemies.length - 1; i >= 0; i--){
       this.enemies.splice(i, 1);
       break;
     }
+  }
+}
+```
+
+### Particles and Notifications
+
+Whenever something happens in the game, there is a notification. It can vary between adding to the score, losing health, high score increase, and more. Also, when blue orbs are encompassed, an explosion animation is played. At first, it was different to implement because I was rendering everything on one canvas. But in adding this feature, I refactored to have all orbs as their own canvas leading to a much easier implementation of notifications and particles.
+
+* Most notifications inherit the x and y values from object that triggered them
+  * This allowed me to render them exactly where the event occurred
+* Every framerate, I decrease the notifications y-value to give it an effect of bubbling up
+
+* Particles also inherit x and y values
+* However, they are also given a random x and y velocity
+* Every framerate, they get updated positions based on their velocities and eventually fade out
+
+![](./screenshots/active.png)
+
+```
+renderNotifications() {
+  for(let i = this.notifications.length - 1; i >= 0; i--){
+    const notification = this.notifications[i];
+
+    // Make the text float upwards
+    notification.y -= 0.4;
+
+    let radius = 14 * notification.scale;
+    this.context.save();
+    this.context.font = 'bold ' + Math.round(12 * notification.scale) + "px Arial";
+
+    this.context.beginPath();
+    this.context.fillStyle = 'rgba(0,0,0,' + (0.7 * notification.alpha) + ')';
+    this.context.arc(notification.x, notification.y, radius, 0, Math.PI * 2, true);
+    this.context.fill();
+
+    this.context.fillStyle = "rgba( " + notification.rgb[0] + ", " + notification.rgb[1] + ", " + notification.rgb[2] + ", " + notification.alpha + " )";
+    this.context.fillText(notification.text, notification.x - (this.context.measureText(notification.text).width * 0.5), notification.y + (4 * notification.scale));
+    this.context.restore();
+
+    // Fade out
+    notification.alpha *= 1 - (0.08 * (1 - ((notification.alpha - 0.08) / 1)));
+
+    // If the notifaction is faded out, remove it
+    if (notification.alpha < 0.05) {
+      this.notifications.splice(i, 1);
+    }
+
+    radius += 2;
+
+    this.invalidate(notification.x - radius, notification.y - radius, radius * 2, radius * 2);
   }
 }
 ```
@@ -133,3 +200,5 @@ while (let i = constants.MULTIPLIER_LIMIT - 1; i >= 0; i--) {
   this.context.restore();
 }
 ```
+
+[Back to Top](#)
