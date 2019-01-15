@@ -16,6 +16,9 @@ const initialize = () => {
   const startButton = document.getElementById('start-button');
 
   game = new Game();
+  if(constants.TOUCH_INPUT){
+    muteButton.click().then(() => muteButton.click());
+  }
 
   if (canvas && canvas.getContext) {
     game.context = canvas.getContext('2d');
