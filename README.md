@@ -10,8 +10,8 @@ The traced mouse trail will only last a certain amount of time before fading awa
 
 Play until your health is depleted!
 
-## Demo
-Live Link: jon-dominguez94.github.io/hoop
+### Demo
+[Live Link](https://jon-dominguez94.github.io/hoop)
 
 ## Technologies
 
@@ -21,67 +21,24 @@ Hoop was built with pure `Javascript` and no external libraries. All game render
 
 ### Landing Page
 
-Hoop is currently working on all modern browsers, as well as iOS and Android.
+Hoop is currently working on all modern browsers, as well as iOS and Android. However, mobile versions start in the muted mode.
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
-  <img src='./screenshots/landing.png' width="65%" height="auto" style="margin-right:70px">
-  <img src='./screenshots/ios.png' width="35%" height="auto">
+  <img src='./screenshots/landing.png' width="63%" height="auto" style="margin-right:10px">
+  <img src='./screenshots/ios.png' width="33%" height="auto">
 </div>
 
-<!-- ![](./screenshots/landing.png) ![](./screenshots/ios.png) -->
+While playing, fully drawn hoops by the user will highlight with the game theme color. Notifications will show for points, health depletion, and multipliers
 
-This app will consist of a single page with a canvas. The canvas contains all the game info including health, score, time, and the board.
+![](./screenshots/playing.png)
 
-Upon loading the page, a modal will be displayed on top of the board with options and a start button. Above the modal will be the name of the game
+Upon game death, the menu will reappear with your score and buttton to start a new game
 
-![Wireframe](./screenshots/newgame.png)
+## Features
 
-After pressing start, the modal will disappear and the user can control the mouse to draw on the board. After a few seconds, the game will start
+### Player Trail
 
-![Wireframe](./screenshots/active_game.png)
+There are many things rendering on the board at once so it was difficult to create the game logic. I went through many implementations to figure out when and where orbs were encompassed but I finally landed on the following:
 
-Upon Game Over, the modal will reappear with settings and a restart button. Above this modal will be the score from the previous game
+* 
 
-![Wireframe](./screenshots/gameover.png)
-
-At the top of the page is a dropdown that activated on hover. The dropdown will contain info about the game and links to Github repository and LinkedIn.
-
-![Wireframe](./screenshots/dropdown.png)
-
-## Architecture and Technologies
-
-This project will be implemented with the following technologies
-
-* Vanilla JavaScript for overall structure and game logic
-* `HTML5 Canvas` for DOM manipulation and rendering
-* Webpack to bundle up and serve the various scripts
-
-## Implementation Timeline
-
-##### Day 1: 
-- [ ] Setup all necessary Node Modules, including webpack
-- [ ] Setup most of what site will look like including menu modal
-- [ ] Learn how to use HTML5 Canvas
-
-##### Day 2: 
-- [ ] Write logic for drawing on the canvas
-- [ ] Figure out how to only trace past few frames of drawing
-- [ ] Figure out how to determine when a hoop is closed and check what is encompassed
-
-##### Day 3:
-- [ ] Learn how to draw objects on the board
-- [ ] Create random object generator
-
-
-##### Day 4:
-- [ ] Write logic to make objects appear/disappear 
-- [ ] Write logic to add/subtract from score
-
-##### Day 5:
-- [ ] Add effects
-- [ ] Finish styling
-
-##### Day 6:
-- [ ] Create about modal
-- [ ] Clean up code, styling
-- [ ] Publish live site
