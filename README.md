@@ -24,7 +24,7 @@ Hoop was built with pure `Javascript` and no external libraries. All game render
 Hoop is currently working on all modern browsers, as well as iOS and Android. However, mobile versions start in the muted mode.
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
-  <img src='./screenshots/landing.png' width="63%" height="auto" style="margin-right:10px">
+  <img src='./screenshots/landing.png' width="63%" height="auto" style="margin-right:20px; margin-bottom: 50px">
   <img src='./screenshots/ios.png' width="33%" height="auto">
 </div>
 
@@ -34,7 +34,7 @@ While playing, fully drawn hoops by the user will highlight with the game theme 
 
 Upon game death, the menu will reappear with your score and buttton to start a new game
 
-## Features
+## Feature Highlights
 
 ### Player Trail
 
@@ -79,5 +79,51 @@ for(let i = this.enemies.length - 1; i >= 0; i--){
       break;
     }
   }
+}
+```
+
+### Multiplier
+
+I wanted the multiplier to gradually step up before increasing to the next level. The logic behind it wasn't difficult but the rendering was a little tricky to come up with but the implementation was simple and clean.
+
+* Render empty black circles for each possible multiplier
+* Set fill and shadow styles
+* Check if the multiplier has reached a full step
+  * If so, fill in the entire circle
+  * Else, fill in the circle but adjust the radius by multiplying by the step
+
+```
+while (let i = constants.MULTIPLIER_LIMIT - 1; i >= 0; i--) {
+  this.context.save();
+  this.context.beginPath();
+
+  const x = 6 + (i / constants.MULTIPLIER_LIMIT) * 80;
+  const y = 5;
+  const radius = 6;
+
+  this.context.fillStyle = 'rgba(40,40,40,0.8)';
+  this.context.arc(x, y, radius, 0, Math.PI * 2, true);
+  this.context.fill();
+
+  if (i < this.multiplier.major) {
+    this.context.beginPath();
+    this.context.shadowOffsetX = 0;
+    this.context.shadowOffsetY = 0;
+    this.context.shadowBlur = 14;
+    this.context.shadowColor = "rgba(255,0,255, 0.9)";
+    this.context.fillStyle = "rgba(255,0,255, 0.9)";
+
+    // fully filled circle
+    if (i < this.multiplier.major - 1) {
+      this.context.arc(x, y, radius, 0, Math.PI * 2, true);
+    }
+    // partially filled
+    else {
+      this.context.fillStyle = "rgba(255,0,255," + 0.8 * this.multiplier.minor + ")";
+      this.context.arc(x, y, radius * this.multiplier.minor, 0, Math.PI * 2, false);
+    }
+    this.context.fill();
+  }
+  this.context.restore();
 }
 ```
