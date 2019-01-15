@@ -29,7 +29,9 @@ const initialize = () => {
     window.addEventListener('resize', onWindowResizeHandler, false);
 
     onWindowResizeHandler();
-    setTimeout(playMusic, 1000);
+    if(constants.TOUCH_INPUT){
+      muteMusic();
+    }
 
     game.createSprites();
     game.reset();
@@ -40,10 +42,16 @@ const initialize = () => {
   }
 };
 
-const playMusic = () => {
-  for(i = 0; i < 2; i++){
-    muteButton.click();
+const muteMusic = () => {
+  // for(let i = 0; i < 2; i++){
+  //   muteButton.touch();
+  //   // muteButton.touchend();
+  // }
+  const audioTags = document.getElementsByTagName("audio");
+  for (let i = 0; i < audioTags.length; i++) {
+    audioTags[i].muted = true;
   }
+  muteButton.innerHTML = "UNMUTE";
 };
 
 const onStartButtonClick = (event) => {
