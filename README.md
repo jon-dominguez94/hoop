@@ -1,10 +1,10 @@
 ![](https://fontmeme.com/permalink/190115/4f00ef057837286d0eb8f1b65654103e.png)
 
 # Table of Contents
-- [Background](#background-and-overview)
-  - [Demo](#Demo)
-- [Technologies](#Technologies)
-- [Site](#Site)
+- [Background and Overview](#background-and-overview)
+  - [Demo](#demo)
+- [Technologies](#technologies)
+- [Site](#site)
   - [Landing Page](#landing-page)
   - [In-Game](#in-game)
   - [Game Over](#game-over)
