@@ -17,7 +17,8 @@ const initialize = () => {
 
   game = new Game();
   if(constants.TOUCH_INPUT){
-    muteButton.click().then(() => muteButton.click());
+    muteButton.click();
+    muteButton.click();
   }
 
   if (canvas && canvas.getContext) {
