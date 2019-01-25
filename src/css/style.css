@@ -61,7 +61,7 @@ canvas {
 #initial-header, #score {
   position: absolute;
   top: 0;
-  padding-top: 40px;
+  padding-top: 30px;
 }
 
 #initial-header {
@@ -81,13 +81,15 @@ canvas {
 
 .welcome > h2 {
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+  font-size: 20px;
 }
 
 .welcome > p {
   text-align: center;
   margin: 15px;
-  font-size: 12px;
+  font-size: 14px;
+  line-height: 17px;
 }
 
 #start-button {
@@ -131,6 +133,23 @@ canvas {
 .mute {
   cursor: pointer;
   font-size: 14px;
+}
+
+.my-name-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 19px;
+}
+
+#my-name {
+  margin-left: 20px;
+  font-size: 12px;
+}
+
+.tiny {
+  font-size: 8px;
+  margin-right: 3px;
 }
 
 /* fade effects*/
