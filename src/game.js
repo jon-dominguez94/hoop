@@ -232,6 +232,7 @@ class Game {
     const ih = document.getElementById('initial-header');
     if(ih) ih.remove();
     document.getElementById('score').classList.add('hidden');
+    document.getElementById('stop-btn').classList.remove('none');
     this.menu.classList.add('fade-out');
     setTimeout(() => {
       this.menu.classList.add('behind');
