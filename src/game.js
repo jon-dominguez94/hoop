@@ -553,7 +553,7 @@ class Game {
       const last_intersection = this.intersections.pop();
       this.context.beginPath();
       const points = this.player.trail.slice(last_intersection[0], last_intersection[1]);
-      
+
       points[0] = last_intersection[2];
       points.push(last_intersection[2]);
 
@@ -703,9 +703,9 @@ class Game {
 
   renderEnemies() {
     for (let i = this.enemies.length - 1; i >= 0; i--) {
-      var enemy = this.enemies[i];
+      const enemy = this.enemies[i];
 
-      var sprite = null;
+      let sprite = null;
 
       if (enemy.type === constants.ENEMY_TYPE_BOMB) {
         sprite = this.sprites.bomb;
@@ -729,8 +729,8 @@ class Game {
 
       this.context.restore();
 
-      var spriteWidth = sprite.width * enemy.scale + 4;
-      var spriteHeight = sprite.height * enemy.scale + 4;
+      const spriteWidth = sprite.width * enemy.scale + 4;
+      const spriteHeight = sprite.height * enemy.scale + 4;
 
       this.invalidate(enemy.x - spriteWidth / 2, enemy.y - spriteWidth / 2, spriteWidth, spriteHeight);
     }
