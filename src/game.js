@@ -509,7 +509,7 @@ class Game {
 
     // Remove duplicates
     while (candidates.length) {
-      var candidate = candidates.pop();
+      let candidate = candidates.pop();
       for (let i = this.intersections.length; i > 0; i--){
         if (candidate && this.intersections[i] && candidate[0] === this.intersections[i][0] && candidate[1] === this.intersections[i][1]) {
           candidate = null;
@@ -550,12 +550,10 @@ class Game {
   solveIntersections() {
 
     while (this.intersections.length) {
-      var last_intersection = this.intersections.pop();
-
-      // Begin the trail path
+      const last_intersection = this.intersections.pop();
       this.context.beginPath();
-
       const points = this.player.trail.slice(last_intersection[0], last_intersection[1]);
+      
       points[0] = last_intersection[2];
       points.push(last_intersection[2]);
 
@@ -566,7 +564,7 @@ class Game {
         const p2 = points[i + 1];
 
         if (i === 0) {
-          // This is the first loop, so we need to start by moving into position
+          // First loop, only move into position
           this.context.moveTo(p1.x, p1.y);
         }
         else if (p1 && p2) {
@@ -596,31 +594,26 @@ class Game {
 
     if (this.frameCount % 2 == 1) {
 
-      var bmp = this.context.getImageData(0, 0, this.world.width, this.world.height);
-      var bmpw = bmp.width;
-      var pixels = bmp.data;
-      var casualties = [];
+      const bmp = this.context.getImageData(0, 0, this.world.width, this.world.height);
+      const bmpw = bmp.width;
+      const pixels = bmp.data;
+      const casualties = [];
 
-      // var i = this.enemies.length;
-
-      // while (i--) {
       for(let i = this.enemies.length - 1; i >= 0; i--){
-        var enemy = this.enemies[i];
+        const enemy = this.enemies[i];
 
-        var ex = Math.round(enemy.x);
-        var ey = Math.round(enemy.y);
+        const ex = Math.round(enemy.x);
+        const ey = Math.round(enemy.y);
 
-        var indices = [
+        const indices = [
           ((ey * bmpw) + Math.round(ex - constants.ENEMY_SIZE)) * 4,
           ((ey * bmpw) + Math.round(ex + constants.ENEMY_SIZE)) * 4,
           ((Math.round(ey - constants.ENEMY_SIZE) * bmpw) + ex) * 4,
           ((Math.round(ey + constants.ENEMY_SIZE) * bmpw) + ex) * 4
         ];
 
-        var j = indices.length;
-
-        while (j--) {
-          var index = indices[j];
+        for(let j = indices.length; j >= 0; j--){
+          const index = indices[j];
           // console.log(`first: ${pixels[index + 1]}`);
           // console.log(`second: ${pixels[index + 2]}`);
           // if (pixels[index + 1] > 0 && pixels[index + 2] === 0) {
@@ -642,11 +635,10 @@ class Game {
         }
       }
 
-      // If more than one enemy was killed, show the multiplier
+      // If more than one enemy was killed, show the total score
       if (casualties.length > 1) {
-        // Increase the score exponential depending on the number of
-        // casualties
-        var scoreChange = this.adjustScore(casualties.length * constants.SCORE_PER_ENEMY);
+  
+        const scoreChange = this.adjustScore(casualties.length * constants.SCORE_PER_ENEMY);
 
         this.notify(scoreChange, this.player.x, this.player.y - 10, casualties.length / 1.5, [250, 250, 100]);
       }
