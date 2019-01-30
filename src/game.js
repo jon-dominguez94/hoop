@@ -372,9 +372,9 @@ class Game {
 
     // Energy label
     this.context.fillStyle = "#ffffff";
-    this.context.font = "12px Arial";
+    this.context.font = "11px Arial";
     this.context.fillText(ENERGY_LABEL, 0, 8);
-    this.context.translate(60, 0);
+    this.context.translate(58, 0);
 
     // Energy bar 
     this.context.save();
