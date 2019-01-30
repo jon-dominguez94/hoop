@@ -77,6 +77,7 @@ const onMoreButtonClick = (event) => {
 
 const onCloseButtonClick = (event) => {
   event.preventDefault();
+  // document.getElementById("instructions").classList.add("fade-out");
   document.getElementById("instructions").classList.add("none");
 };
 

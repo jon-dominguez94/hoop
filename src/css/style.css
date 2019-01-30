@@ -74,7 +74,7 @@ canvas {
 }
 
 .welcome {
-  min-width: 180px;
+  min-width: 200px;
   width: 40%;
   background: rgba(0, 0, 0, 0.2);
   padding: 15px;
@@ -171,6 +171,7 @@ canvas {
 #more-btn {
   text-decoration: underline;
   cursor: pointer;
+  padding-left: 10px;
 }
 
 #instructions {
@@ -186,12 +187,13 @@ canvas {
 }
 .instructions-wrapper {
   position: relative;
-  width: 80%;
-  height: 70%;
+  /* width: 60%;
+  height: 60%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 40px 100px;
 }
 
 .inst-header {
