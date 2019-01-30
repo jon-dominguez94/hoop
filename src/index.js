@@ -15,6 +15,8 @@ const initialize = () => {
   muteButton = document.getElementById('mute-button');
   const startButton = document.getElementById('start-button');
   const stopButton = document.getElementById('stop-btn');
+  const moreButton = document.getElementById('more-btn');
+  const closeButton = document.getElementById('close-btn');
 
   game = new Game();
 
@@ -23,6 +25,8 @@ const initialize = () => {
 
     startButton.addEventListener('click', onStartButtonClick, false);
     stopButton.addEventListener('click', onStopButtonClick, false);
+    closeButton.addEventListener('click', onCloseButtonClick, false);
+    moreButton.addEventListener('click', onMoreButtonClick, false);
     muteButton.addEventListener('click', onMuteButtonClick, false);
     document.addEventListener('mousemove', onDocumentMouseMoveHandler, false);
     canvas.addEventListener('touchstart', onCanvasTouchStartHandler, false);
@@ -64,6 +68,16 @@ const onStartButtonClick = (event) => {
 const onStopButtonClick = (event) => {
   event.preventDefault();
   game.stop();
+};
+
+const onMoreButtonClick = (event) => {
+  event.preventDefault();
+  document.getElementById("instructions").classList.remove("none");
+};
+
+const onCloseButtonClick = (event) => {
+  event.preventDefault();
+  document.getElementById("instructions").classList.add("none");
 };
 
 const onMuteButtonClick = (event) => {

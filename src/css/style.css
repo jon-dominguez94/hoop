@@ -33,6 +33,7 @@ canvas {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .game-container {
@@ -131,7 +132,7 @@ canvas {
   margin-left: 10px;
 }
 
-#game-controls {
+.game-controls {
   position: absolute;
   top: 0;
   right: 0;
@@ -144,13 +145,10 @@ canvas {
   color: #dddddd;
 }
 
-.mute, #stop-btn {
+.mute, #stop-btn, #close-btn {
   cursor: pointer;
   font-size: 14px;
   margin-left: 5px;
-}
-
-#stop-btn {
 }
 
 .my-name-wrapper {
@@ -168,6 +166,28 @@ canvas {
 .tiny {
   font-size: 8px;
   margin-right: 3px;
+}
+
+#more-btn {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#instructions {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.instructions-wrapper {
+  position: relative;
+  width: 80%;
+  height: 50%;
 }
 
 /* fade effects*/
