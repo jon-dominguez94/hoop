@@ -617,7 +617,7 @@ class Game {
           // console.log(`first: ${pixels[index + 1]}`);
           // console.log(`second: ${pixels[index + 2]}`);
           // if (pixels[index + 1] > 0 && pixels[index + 2] === 0) {
-          if (pixels[index + 1] >= 0 && pixels[index + 2] >= 200) {
+          if (pixels[index + 1] === 0 && pixels[index + 2] > 0) {
 
             if (enemy.type === constants.ENEMY_TYPE_BOMB || enemy.type === constants.ENEMY_TYPE_BOMB_MOVER) {
               this.handleBombInClosure(enemy);
