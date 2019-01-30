@@ -14,6 +14,7 @@ const initialize = () => {
   bgm = document.getElementById('bgm');
   muteButton = document.getElementById('mute-button');
   const startButton = document.getElementById('start-button');
+  const stopButton = document.getElementById('stop-btn');
 
   game = new Game();
 
@@ -21,6 +22,7 @@ const initialize = () => {
     game.context = canvas.getContext('2d');
 
     startButton.addEventListener('click', onStartButtonClick, false);
+    stopButton.addEventListener('click', onStopButtonClick, false);
     muteButton.addEventListener('click', onMuteButtonClick, false);
     document.addEventListener('mousemove', onDocumentMouseMoveHandler, false);
     canvas.addEventListener('touchstart', onCanvasTouchStartHandler, false);
@@ -51,12 +53,17 @@ const muteMusic = () => {
   for (let i = 0; i < audioTags.length; i++) {
     audioTags[i].muted = true;
   }
-  muteButton.innerHTML = "UNMUTE";
+  muteButton.innerHTML = "Unmute";
 };
 
 const onStartButtonClick = (event) => {
   event.preventDefault();
   game.start();
+};
+
+const onStopButtonClick = (event) => {
+  event.preventDefault();
+  game.stop();
 };
 
 const onMuteButtonClick = (event) => {
@@ -66,12 +73,12 @@ const onMuteButtonClick = (event) => {
     for(let i = 0; i < audioTags.length; i++) {
       audioTags[i].muted = false;
     }
-    muteButton.innerHTML = "MUTE";
+    muteButton.innerHTML = "Mute";
   } else {
     for (let i = 0; i < audioTags.length; i++) {
       audioTags[i].muted = true;
     }
-    muteButton.innerHTML = "UNMUTE";
+    muteButton.innerHTML = "Unmute";
   } 
 };
 
