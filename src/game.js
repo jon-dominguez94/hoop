@@ -763,9 +763,6 @@ class Game {
 
   updateParticles() {
 
-    // var i = this.particles.length;
-
-    // while (i--) {
     for(let i = this.particles.length - 1; i >= 0; i--){
       const particle = this.particles[i];
 
