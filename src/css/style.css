@@ -187,7 +187,30 @@ canvas {
 .instructions-wrapper {
   position: relative;
   width: 80%;
-  height: 50%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inst-header {
+  text-align: center;
+  font-size: 16px;
+  /* list-style-type: disc; */
+}
+
+.header-label {
+  margin: 15px 0 10px 0;
+}
+
+.inst-header li {
+  margin: 8px;
+  font-size: 14px;
+}
+
+hr {
+  width: 20%;
 }
 
 /* fade effects*/
