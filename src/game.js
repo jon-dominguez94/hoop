@@ -358,7 +358,7 @@ class Game {
     const padding = 10,
       energyBarHeight = 4,
       energyBarWidth = 100,
-      ENERGY_LABEL = 'ENERGY:',
+      ENERGY_LABEL = 'HEALTH:',
       MULTIPLIER_LABEL = 'MULTIPLIER:',
       TIME_LABEL = 'TIME:',
       SCORE_LABEL = 'SCORE:';
@@ -375,7 +375,7 @@ class Game {
     this.context.fillStyle = "#ffffff";
     this.context.font = "11px Arial";
     this.context.fillText(ENERGY_LABEL, 0, 8);
-    this.context.translate(56, 0);
+    this.context.translate(52, 0);
 
     // Energy bar 
     this.context.save();

@@ -43,14 +43,16 @@ export class Multiplier {
   }
 
   increase() {
-    this.minor += this.step;
+    // if(this.major < this.max){
+      this.minor += this.step;
 
-    while (this.minor >= 1) {
-      if (this.major < this.max) {
-        this.major++;
+      while (this.minor >= 1) {
+        if (this.major < this.max + 1) {
+          this.major++;
+        }
+
+        this.minor = 1 - this.minor;
       }
-
-      this.minor = 1 - this.minor;
     }
-  }
+  // }
 }
