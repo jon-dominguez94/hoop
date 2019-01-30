@@ -372,9 +372,9 @@ class Game {
 
     // Energy label
     this.context.fillStyle = "#ffffff";
-    this.context.font = "11px Arial";
+    this.context.font = "12px Arial";
     this.context.fillText(ENERGY_LABEL, 0, 8);
-    this.context.translate(56, 0);
+    this.context.translate(60, 0);
 
     // Energy bar 
     this.context.save();
@@ -397,12 +397,12 @@ class Game {
     this.context.translate(122, 0);
 
     // Time label
-    this.context.font = "10px Arial";
+    this.context.font = "11px Arial";
     this.context.fillStyle = "#ffffff";
     this.context.fillText(TIME_LABEL, 0, 8);
 
     // Time
-    this.context.font = "bold 10px Arial";
+    this.context.font = "bold 11px Arial";
     this.context.fillStyle = "rgb(255,0,255)";
     // this.context.fillStyle = "rgb(138,43,226)";
     // this.context.fillStyle = "rgba(251,114,0, 0.8)";
@@ -411,12 +411,12 @@ class Game {
     this.context.translate(70, 0);
 
     // Score label
-    this.context.font = "10px Arial";
+    this.context.font = "11px Arial";
     this.context.fillStyle = "#ffffff";
     this.context.fillText(SCORE_LABEL, 0, 8);
 
     // Score
-    this.context.font = "bold 10px Arial";
+    this.context.font = "bold 11px Arial";
     this.context.fillStyle = "rgb(255,0,255)";
     // this.context.fillStyle = "rgb(138,43,226)";
     // this.context.fillStyle = "rgba(251,114,0, 0.8)";
@@ -425,7 +425,7 @@ class Game {
     this.context.translate(90, 0);
     
     // Multiplier label
-    this.context.font = "10px Arial";
+    this.context.font = "11px Arial";
     this.context.fillStyle = "#ffffff";
     this.context.fillText(MULTIPLIER_LABEL, 0, 8);
     this.context.translate(73, 0);
