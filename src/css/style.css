@@ -228,3 +228,12 @@ animation-delay: 1.6s;
 .behind {
   z-index: -100;
 }
+
+#stop-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 5px;
+}
