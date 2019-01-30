@@ -371,8 +371,8 @@ class Game {
     this.context.translate(padding, padding);
 
     // Energy label
-    this.context.font = "10px Arial";
     this.context.fillStyle = "#ffffff";
+    this.context.font = "11px Arial";
     this.context.fillText(ENERGY_LABEL, 0, 8);
     this.context.translate(56, 0);
 
