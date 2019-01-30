@@ -279,8 +279,8 @@ class Game {
     const bounds = new Region();
 
     for (let i = 0; i < this.player.trail.length; i++) {
-      var p1 = this.player.trail[i];
-      var p2 = this.player.trail[i + 1];
+      const p1 = this.player.trail[i];
+      const p2 = this.player.trail[i + 1];
 
       if (i === 0) {
         this.context.moveTo(p1.x + (p2.x - p1.x) / 2, p1.y + (p2.y - p1.y) / 2);
@@ -299,7 +299,7 @@ class Game {
 
     bounds.expand(4, 4);
 
-    var boundsRect = bounds.toRectangle();
+    const boundsRect = bounds.toRectangle();
 
     this.invalidate(boundsRect.x, boundsRect.y, boundsRect.width, boundsRect.height);
   }
@@ -431,9 +431,7 @@ class Game {
     this.context.translate(73, 0);
 
     // Multiplier
-    var i = constants.MULTIPLIER_LIMIT - 1;
-
-    while (i--) {
+    for (let i = constants.MULTIPLIER_LIMIT - 1; i >= 0; i--){
       this.context.save();
       this.context.beginPath();
 
