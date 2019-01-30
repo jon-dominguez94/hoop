@@ -131,9 +131,23 @@ canvas {
   margin-left: 10px;
 }
 
-.mute {
+#game-controls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+.mute, #stop-btn {
   cursor: pointer;
   font-size: 14px;
+  margin-left: 5px;
+}
+
+#stop-btn {
 }
 
 .my-name-wrapper {
@@ -227,13 +241,4 @@ animation-delay: 1.6s;
 
 .behind {
   z-index: -100;
-}
-
-#stop-btn {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  cursor: pointer;
-  font-size: 14px;
-  padding: 5px;
 }
