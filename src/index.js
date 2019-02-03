@@ -117,7 +117,7 @@ const onWindowResizeHandler = () => {
   // game.world.height = constants.TOUCH_INPUT ? window.innerHeight : constants.DEFAULT_HEIGHT;
   if(constants.TOUCH_INPUT){
     game.world.width = window.innerWidth;
-    game.world.height = innerHeight() - 150;
+    game.world.height = innerHeight() - 50;
     document.getElementById('main').style.alignItems = 'flex-start';
     // game.world.height = window.innerHeight - 50;
   } else {
